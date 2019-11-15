@@ -1,2 +1,2 @@
-# SIMAV
-Implémentation d'un simulateur du système carburant d'un avion permettant la gestion des incidents par le pilote
+# Simulateur
+Mini-simulateur du système carburant d'un avion ayant pour but d'entraîner les pilotes à gérer le système carburant en cas de crise.
