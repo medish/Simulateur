@@ -10,12 +10,10 @@ Reservoir::Reservoir(int _num, double c){
 	pompes.push_back(new Pompe(1,*this,MARCHE, PRIMAIRE));
 	pompes.push_back(new Pompe(1,*this,ARRET, SECONDAIRE));
 }
-//Pompe(int nom,Reservoir &tank, Moteur &moteur, etat_t et, nb nb);
+
 Reservoir::~Reservoir(){
-	for (int i = 0; i < pompes.size(); ++i)
-	{
-		delete pompes[i];
-	}
+	pompes.resize(0);
+	moteurs.resize(0);
 }
 
 /* 

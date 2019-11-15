@@ -36,18 +36,9 @@ Systeme::Systeme(double cap){
 
 
 Systeme::~Systeme(){
-	for (int i = 0; i < reservoirs.size(); ++i)
-	{
-		delete reservoirs[i];
-	}
-	for (int i = 0; i < vannes.size(); ++i)
-	{
-		delete vannes[i];
-	}
-	for (int i = 0; i < moteurs.size(); ++i)
-	{
-		delete moteurs[i];
-	}
+	reservoirs.resize(0);
+	vannes.resize(0);
+	moteurs.resize(0);
 	
 }
 

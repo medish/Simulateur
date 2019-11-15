@@ -6,13 +6,15 @@
 const double conso = 1.9;
 
 Moteur::Moteur(int _num, etat_t _etat, Reservoir& res){
+
 	etat = _etat;
 	res_linked = &res;
-	_num = _num;
+	num = _num;
 } 
 
 Moteur::~Moteur(){
-
+	delete res_linked;
+	delete pompe_linked;
 }
 
 void Moteur::SetPompe(Pompe& p){ 
