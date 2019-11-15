@@ -21,7 +21,7 @@ private:
 	static const double consomation;
 
 public:
-	Moteur(int n, etat_t etat, Reservoir& r, Pompe& p);
+	Moteur(int n, etat_t etat, Reservoir& r);
 	~Moteur();
 	//Getters
 	int GetNumero(){return num;}; 

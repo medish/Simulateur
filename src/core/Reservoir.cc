@@ -3,13 +3,12 @@
 
 
 //Construit un réservoir et ses deux pompes
-Reservoir::Reservoir(int _num, double c, Moteur * m){
+Reservoir::Reservoir(int _num, double c){
 	num= _num;
 	capacity = c;
 	etat = PLEIN;
-	moteurs.push_back(m);
-	pompes.push_back(new Pompe(1,*this,m, MARCHE, PRIMAIRE));
-	pompes.push_back(new Pompe(1,*this,NULL, ARRET, SECONDAIRE));
+	pompes.push_back(new Pompe(1,*this,MARCHE, PRIMAIRE));
+	pompes.push_back(new Pompe(1,*this,ARRET, SECONDAIRE));
 }
 //Pompe(int nom,Reservoir &tank, Moteur &moteur, etat_t et, nb nb);
 Reservoir::~Reservoir(){

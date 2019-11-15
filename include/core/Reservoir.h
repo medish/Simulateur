@@ -28,7 +28,7 @@ private:
 	std::vector<Moteur*> moteurs;
 
 public:
-	Reservoir(int num, double c, Moteur * m);
+	Reservoir(int num, double c);
 	~Reservoir();
 	// Getters
 	int GetNum(){return num;};

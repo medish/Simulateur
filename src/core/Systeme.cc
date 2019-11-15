@@ -2,22 +2,27 @@
 
 Systeme::Systeme(double cap){ 
 	cap_max = cap;
+
+	//Crée les 3 réservoirs avec la configuration de base	
+	reservoirs.push_back(new Reservoir(1, (2*cap/3)));
+ 	reservoirs.push_back(new Reservoir(2, (1*cap/3)));
+ 	reservoirs.push_back(new Reservoir(3, (2*cap/3)));
+ 
+
  	//Initialise les 3 moteurs
 	for (int i = 0; i < 3; ++i) 
 	{	
-	 	moteurs.push_back( new Moteur(i+1,MARCHE,*reservoirs[i], *(reservoirs[i]->GetPompe(0))));
+	 	moteurs.push_back( new Moteur(i+1,MARCHE,*reservoirs[i]));
 	}
-	//Crée les 3 réservoirs avec la configuration de base	
-	reservoirs.push_back(new Reservoir(1, (2*cap/3), moteurs[0]));
- 	reservoirs.push_back(new Reservoir(2, (1*cap/3), moteurs[1]));
- 	reservoirs.push_back(new Reservoir(3, (2*cap/3), moteurs[2]));
- //Moteur(int n, etat_t Etat, Reservoir& Tank, Pompe& P);
-
 	//Relier les pompes avec leur réservoirs et moteurss
 	for (int i = 0; i < reservoirs.size() ; ++i) 
 	{
 	 	reservoirs[i]->GetPompe(0)->SetMoteur(*moteurs[i]);
-	 	reservoirs[i]->GetPompe(0)->SetReservoir(*reservoirs[i]);
+	}
+
+	for (int i = 0; i < 3; ++i)
+	{
+	   moteurs[i]->SetPompe(*(reservoirs[i]->GetPompe(0)));
 	}
 
 	//Ajout des vannes toutes dans l'état fermé
@@ -46,7 +51,7 @@ Systeme::~Systeme(){
 }
 
 void Systeme::AfficherEtat(){
-	//Affiche l'état des réservoirs
+	
 	for (int i = 0; i  < reservoirs.size(); ++i)
 	{
 		reservoirs[i]->printInfos();

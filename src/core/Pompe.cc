@@ -6,10 +6,9 @@
  
 //Initialise une pompe (avec un type un moteur un tank et un état )
 //Dans le cas ou c'est une pompe de secours pas de moteur assigné etat arret et type secondaire
-Pompe::Pompe(int _num, Reservoir &res, Moteur * moteur, etat_t _etat, nb _type){
+Pompe::Pompe(int _num, Reservoir &res, etat_t _etat, nb _type){
 	num = _num;
-	res_linked = &res;	
-	mot_linked = moteur;
+	res_linked = &res;
 	etat = _etat;
 	type = _type;
 }
@@ -33,5 +32,5 @@ void Pompe::SetType(const nb _type){
 	type = _type;
 }  
 void Pompe::printInfos(){
-	std::cout << "Pompe: "<< GetNum() << "/" << GetEtat() << "/" << GetReservoir() << "/"<<GetReservoir()<<"/" << GetMoteur() << std::endl; 
+	std::cout << "Pompe: "<< GetNum() << "/" << GetEtat() << "/" << GetType() << "/"<<GetReservoir()->GetNum()<<"/" << GetMoteur()->GetNumero() << std::endl; 
 } 

@@ -41,7 +41,7 @@ private:
 public:
  
 	//Constructeur
-	Pompe(int num,Reservoir &r, Moteur * m, etat_t _etat, nb type);
+	Pompe(int num,Reservoir &r, etat_t _etat, nb type);
 	~Pompe();
 	
 	//Getters

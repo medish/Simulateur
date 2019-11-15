@@ -5,10 +5,9 @@
 
 const double conso = 1.9;
 
-Moteur::Moteur(int _num, etat_t _etat, Reservoir& res, Pompe& p){
+Moteur::Moteur(int _num, etat_t _etat, Reservoir& res){
 	etat = _etat;
 	res_linked = &res;
-	pompe_linked = &p;
 	_num = _num;
 } 
 
@@ -26,5 +25,5 @@ void Moteur::SetReservoir(Reservoir& res){
 	res_linked = &res;
 }
 void Moteur::printInfos(){
-	std::cout << "Moteur: "<< GetNumero() << "/" << GetEtat() << "/" << GetReservoir() << "/" << GetPompe() << std::endl; 
+	std::cout << "Moteur: "<< GetNumero() << "/" << GetEtat() << "/" << GetReservoir()->GetNum() << "/" << GetPompe()->GetNum() << std::endl; 
 }  
