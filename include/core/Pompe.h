@@ -1,57 +1,64 @@
 #ifndef H_POMPE
 #define H_POMPE
+#pragma once
 
-#include <iostream>
-
-#include "Moteur.h"
-#include "Reservoir.h"
-
-using namespace std;
-
-enum et{
+#ifndef H_ETAT
+#define H_ETAT
+enum etat_t{
 	ARRET = 0,
 	MARCHE,
 	PANNE
 };
+#endif
+
+
+#include "Moteur.h"
+#include "Reservoir.h"
+
+
+
+
+class Moteur;
+class Reservoir;
+
 
 enum nb{
 	PRIMAIRE = 1,
 	SECONDAIRE
 };
 
-enum Tanket{
-	VIDE = 0,
-	PLEIN,
-	VIDANGE,
-	REMPLISSAGE
-};
+
 
 class Pompe{
 
 private:
-	int Num;
-	nb Type;
-	et Etat;
-	Moteur* Alimente; //Le moteur qu'elle alimente
-	Reservoir* Appartient; //Le reservoir auquel elle appartient 
+	int num;
+	nb type;
+	etat_t etat;
+	Moteur* mot_linked; //Le moteur qu'elle alimente
+	Reservoir* res_linked; //Le reservoir auquel elle appartient 
 
 public:
  
 	//Constructeur
-	Pompe(int nom,Reservoir &tank, Moteur &moteur, et et, nb nb);
+	Pompe(int num,Reservoir &r, Moteur * m, etat_t _etat, nb type);
 	~Pompe();
+	
 	//Getters
-	et GetEtat();
-	Moteur* GetMoteur();
-	Reservoir* GetReservoir();
-	nb GetType();
-	int GetNum();
+	int GetNum(){return num;};
+	nb GetType(){return type;};
+	etat_t GetEtat(){return etat;};
+	Moteur* GetMoteur(){return mot_linked;};
+	Reservoir* GetReservoir(){return res_linked;};
+	
 	//Setters
-	void SetMoteur(Moteur & m);
-	void SetEtat(const et etat);
-	void SetReservoir(Reservoir& res);
 	void SetType(const nb nb);
+	void SetEtat(const etat_t etat);
+	void SetMoteur(Moteur & m);
+	void SetReservoir(Reservoir& res);
 
+	//Other methods
+	void printInfos();
 };
 
 

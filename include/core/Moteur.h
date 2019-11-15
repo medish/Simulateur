@@ -1,35 +1,41 @@
+
 #ifndef H_MOTEUR
 #define H_MOTEUR
+#pragma once
 
 
 #include "Reservoir.h"
 #include "Pompe.h"
 
+
+class Reservoir;
+class Pompe;
+
+
 class Moteur{
 private:
-	static const double conso;
-	et Etat;
-	Reservoir* AlimPar; //Nom du réservoir qui l'alimente
-	Pompe* Pom; //Pompe qui lui envoie du carburant
-	int  Numero; //Numero du moteur
+	int  num; //Numero du moteur
+	etat_t etat;
+	Reservoir* res_linked; //Nom du réservoir qui l'alimente
+	Pompe* pompe_linked; //Pompe qui lui envoie du carburant
+	static const double consomation;
 
 public:
-	Moteur(et Etat, Reservoir& Tank, Pompe& P, int n);
+	Moteur(int n, etat_t etat, Reservoir& r, Pompe& p);
 	~Moteur();
 	//Getters
-	et GetEtat();
-	Pompe* GetPompe();
-	Reservoir* GetTank();
-	int GetNumero(); 
+	int GetNumero(){return num;}; 
+	etat_t GetEtat(){return etat;};
+	Pompe* GetPompe(){return pompe_linked;};
+	Reservoir* GetReservoir(){return res_linked;};
 	//Setters
+	void SetEtat(const etat_t etat);
 	void SetPompe(Pompe& po);
-	void SetEtat(const et etat);
 	void SetReservoir(Reservoir& res);
-	void SetNumero(int nb);
- 	//Affiche information
- 	void GetInfo(); 
+	
+	//Affiche information
+ 	void printInfos(); 
 };
-
 
 
 #endif

@@ -1,5 +1,7 @@
 #ifndef H_SYSTEME
 #define H_SYSTEME
+#pragma once
+
 
 #include "Pompe.h"
 #include "Moteur.h"
@@ -12,13 +14,18 @@
 
 using namespace std;
 
+class Pompe;
+class Moteur;
+class Valve;
+class Reservoir;
+
 class Systeme{
 private:
 	double cap_max;
 
-	vector<Moteur*> Moteurs;
-	vector<Reservoir*> Tanks;
- 	vector<Valve*> Vannes;
+	vector<Moteur*> moteurs;
+	vector<Reservoir*> reservoirs;
+ 	vector<Valve*> vannes;
  	
 
 public:
@@ -27,10 +34,13 @@ public:
 	void AfficherEtat();
 
 	//Getters
-	vector<Moteur *> GetMoteurs();
-	vector<Valve *> GetVannes();
-	vector<Reservoir *> GetReservoirs();
+	double GetCapacity(){return cap_max;};
+	vector<Moteur *> GetMoteurs(){return moteurs;};
+	vector<Valve *> GetVannes(){return vannes;};
+	vector<Reservoir *> GetReservoirs(){return reservoirs;};
 	
+	//Setters
+	void setCapacity(double c);
 	
 		
 

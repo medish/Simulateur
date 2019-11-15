@@ -1,44 +1,30 @@
+#include <iostream>
 #include "../../include/core/Moteur.h"
 #include "../../include/core/Reservoir.h"
 #include "../../include/core/Pompe.h"
 
 const double conso = 1.9;
 
-Moteur::Moteur(et Etat, Reservoir& Tank, Pompe& P, int n){
-	this->Etat = Etat;
-	AlimPar = &Tank;
-	Pom = &P;
-	Numero = n;
+Moteur::Moteur(int _num, etat_t _etat, Reservoir& res, Pompe& p){
+	etat = _etat;
+	res_linked = &res;
+	pompe_linked = &p;
+	_num = _num;
 } 
 
 Moteur::~Moteur(){
 
 }
-et Moteur::GetEtat(){
-	return Etat;
-}
-Pompe* Moteur::GetPompe(){
-	return Pom;
-}
-Reservoir* Moteur::GetTank(){
-	return AlimPar;
-}
-int Moteur::GetNumero(){
-	return Numero;
-}
 
-void Moteur::SetPompe(Pompe& po){ 
-	Pom = &po;
+void Moteur::SetPompe(Pompe& p){ 
+	pompe_linked = &p;
 }
-void Moteur::SetEtat(const et etat){
-	Etat = etat;
+void Moteur::SetEtat(const etat_t _etat){
+	etat = _etat;
 }
 void Moteur::SetReservoir(Reservoir& res){
-	AlimPar = &res;
+	res_linked = &res;
 }
-void Moteur::SetNumero(int nb){
-	Numero = nb;
-}
-void Moteur::GetInfo(){
-	cout << "Moteur: "<< GetNumero() << "/" << GetEtat() << "/" << GetTank() << "/" << GetPompe() << endl; 
+void Moteur::printInfos(){
+	std::cout << "Moteur: "<< GetNumero() << "/" << GetEtat() << "/" << GetReservoir() << "/" << GetPompe() << std::endl; 
 }  

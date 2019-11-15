@@ -1,21 +1,18 @@
+
 #include "../../include/core/Valve.h"
 
-Valve::Valve(of o, string nom){
-	Ouverture = o;
-	Nom = nom;
+Valve::Valve(of _etat, std::string _nom){
+	etat = _etat;
+	nom = _nom;
 }
 Valve::~Valve(){
 
 }
 	
 
-string Valve::GetNom(){
-	return Nom;
-}
-
 void Valve::ChangerEtat(){
-	if(of){
-		of = FERME;
+	if(etat){
+		etat = FERME;
 	}else{
 		
 	}

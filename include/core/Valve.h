@@ -1,10 +1,10 @@
 #ifndef H_VALVE
 #define H_VALVE
+#pragma once
+
 
 #include <string>
-#include <iostream>
 
-using namespace std;
 enum of{
 	FERME = 0,
 	OUVERT,
@@ -12,15 +12,16 @@ enum of{
 
 class Valve{
 private: 
-	of Ouverture;
-	string Nom;
+	of etat;
+	std::string nom;
 
 public:
-	Valve(of o, string nom);
+	Valve(of o, std::string nom);
 	~Valve();
 	
+	std::string GetNom(){return nom;};
+	of getEtat(){return etat;};
 	void ChangerEtat();
-	string GetNom();
 
 };
 
