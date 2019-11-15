@@ -27,6 +27,11 @@ Pompe* Reservoir::GetPompe(int i){
 		return pompes[2];
 }*/
 
+void Reservoir::SetEtat(tank_etat _etat){
+	etat = _etat;
+}
+
+
 bool Reservoir::estVide(){
 	if(capacity){
 		std::cout << "Le Reservoir " << GetNum() << " est encore plein : " << GetCapacity() << "L" << std::endl;
