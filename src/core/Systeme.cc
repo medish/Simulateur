@@ -23,6 +23,7 @@ Systeme::Systeme(double cap){
 	for (int i = 0; i < 3; ++i)
 	{
 	   moteurs[i]->SetPompe(*(reservoirs[i]->GetPompe(0)));
+	   reservoirs[i]->GetPompe(0)->SetMoteur(*moteurs[i]);
 	}
 
 	//Ajout des vannes toutes dans l'état fermé
@@ -59,7 +60,7 @@ void Systeme::AfficherEtat(){
 	for (int i = 0; i < reservoirs.size();++i)
 	{
 		reservoirs[i]->GetPompe(0)->printInfos();
-		reservoirs[i]->GetPompe(1)->printInfos();
+		//reservoirs[i]->GetPompe(1)->printInfos();
 	}
 	for (int i = 0;  i < reservoirs.size(); ++i)
 	{
