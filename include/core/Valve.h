@@ -20,8 +20,9 @@ public:
 	~Valve();
 	
 	std::string GetNom(){return nom;};
-	of getEtat(){return etat;};
+	of GetEtat(){return etat;};
 	void ChangerEtat();
+	void printInfos();
 
 };
 

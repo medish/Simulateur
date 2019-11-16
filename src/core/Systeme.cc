@@ -59,7 +59,9 @@ void Systeme::AfficherEtat(){
 	}
 	for (int i = 0; i < 5; ++i)
 	{
-		//Ajouter l'affichage des vannes 
+		//vannes[i]->printInfos();
+		vannes[i]->ChangerEtat();
+		vannes[i]->printInfos();
 	}
 } 
 

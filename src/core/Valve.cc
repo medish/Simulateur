@@ -1,4 +1,4 @@
-
+#include <iostream>
 #include "../../include/core/Valve.h"
 
 Valve::Valve(of _etat, std::string _nom){
@@ -11,9 +11,9 @@ Valve::~Valve(){
 	
 
 void Valve::ChangerEtat(){
-	if(etat){
-		etat = FERME;
-	}else{
-		
-	}
+	etat = static_cast<of>(1-etat);
+}
+
+void Valve::printInfos(){
+	std::cout<<GetNom()<<"/"<<GetEtat()<<"/"<<std::endl;
 }
