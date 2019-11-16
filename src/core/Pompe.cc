@@ -31,6 +31,22 @@ void Pompe::SetReservoir(Reservoir& res){
 void Pompe::SetType(const nb _type){
 	type = _type;
 }  
+
+void Pompe::switchPanne(){
+	SetEtat(PANNE);
+	std::cout<<"Pompe:"<<GetNum()<<"dans l'état"<<GetEtat()<<std::endl;
+}
+
+bool Pompe::switchOnOff(){
+	if(etat != PANNE){
+		etat = static_cast<etat_t>(1-etat);
+		std::cout<<"Pompe:"<<GetNum()<<"dans l'état"<<GetEtat()<<std::endl;
+		return true;
+	}
+	std::cout<<"Pompe:"<<GetNum()<<"dans l'état"<<GetEtat()<<std::endl;
+	return false;
+}
+
 void Pompe::printInfos(){
 	std::cout << "Pompe: "<< GetNum() << "/" << GetEtat() << "/" << GetType() << "/"<<GetReservoir()->GetNum()<<"/" << GetMoteur()->GetNumero() << std::endl; 
 } 

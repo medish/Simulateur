@@ -43,6 +43,7 @@ public:
 	void SetEtat(tank_etat etat);
 	
 	// Others methods
+	void vidange();
 	bool estVide();
 	void printInfos(); //Debugger
 

@@ -5,7 +5,7 @@ Systeme::Systeme(double cap){
 
 	//Crée les 3 réservoirs avec la configuration de base	
 	reservoirs.push_back(new Reservoir(1, (2*cap/3)));
- 	reservoirs.push_back(new Reservoir(2, (1*cap/3)));
+ 	reservoirs.push_back(new Reservoir(2, (cap/3)));
  	reservoirs.push_back(new Reservoir(3, (2*cap/3)));
  
 
@@ -59,9 +59,9 @@ void Systeme::AfficherEtat(){
 	}
 	for (int i = 0; i < 5; ++i)
 	{
-		//vannes[i]->printInfos();
-		vannes[i]->ChangerEtat();
 		vannes[i]->printInfos();
+		//vannes[i]->ChangerEtat();
+		//vannes[i]->printInfos();
 	}
 } 
 

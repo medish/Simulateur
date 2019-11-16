@@ -58,6 +58,8 @@ public:
 	void SetReservoir(Reservoir& res);
 
 	//Other methods
+	void switchPanne();
+	bool switchOnOff();
 	void printInfos();
 };
 

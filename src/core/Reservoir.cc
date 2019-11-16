@@ -28,6 +28,16 @@ void Reservoir::SetEtat(tank_etat _etat){
 	etat = _etat;
 }
 
+void Reservoir::vidange(){
+	SetEtat(VIDANGE);
+	for (int i = 0; i < 2; ++i)
+	{	
+		if((pompes[i]->GetEtat()) == MARCHE){
+			pompes[i]->SetEtat(ARRET);
+			pompes[i]->GetMoteur()->SetEtat(ARRET);
+		}
+	}
+}
 
 bool Reservoir::estVide(){
 	if(capacity){

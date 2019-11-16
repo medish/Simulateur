@@ -2,8 +2,10 @@
 #define H_VALVE
 #pragma once
 
-
+#include <vector>
 #include <string>
+#include "Reservoir.h"
+#include "Moteur.h"
 
 enum of{
 	FERME = 0,
@@ -11,9 +13,10 @@ enum of{
 };
 
 class Valve{
-private: 
+protected: 
 	of etat;
 	std::string nom;
+
 
 public:
 	Valve(of o, std::string nom);
