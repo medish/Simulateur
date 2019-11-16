@@ -7,6 +7,8 @@
 #include "Moteur.h"
 #include "Valve.h"
 #include "Reservoir.h"
+#include "ValveRes.h"
+#include "ValveMR.h"
 
 #include <vector>
 #include <set>
@@ -18,7 +20,9 @@ class Pompe;
 class Moteur;
 class Valve;
 class Reservoir;
-
+class ValveMr;
+class ValveRes;
+ 
 class Systeme{
 private:
 	double cap_max;

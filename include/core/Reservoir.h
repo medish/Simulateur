@@ -37,12 +37,13 @@ public:
 	Pompe* GetPompe(int i){return pompes[i];};
 	std::vector<Pompe*> GetPompes(){return pompes;}
 	std::vector<Moteur*> GetMoteurs(){return moteurs;};
-
+	Pompe* GetDispoPompe();
 	// Setters
 	void SetCapacity(double c);
 	void SetEtat(tank_etat etat);
 	
 	// Others methods
+	friend void operator+(Reservoir& a, Reservoir& b);
 	void vidange();
 	bool estVide();
 	void printInfos(); //Debugger

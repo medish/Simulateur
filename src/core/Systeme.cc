@@ -18,20 +18,30 @@ Systeme::Systeme(double cap){
 	for (int i = 0; i < reservoirs.size() ; ++i) 
 	{
 	 	reservoirs[i]->GetPompe(0)->SetMoteur(*moteurs[i]);
-	}
+	}  
 
 	for (int i = 0; i < 3; ++i)
 	{
 	   moteurs[i]->SetPompe(*(reservoirs[i]->GetPompe(0)));
 	   reservoirs[i]->GetPompe(0)->SetMoteur(*moteurs[i]);
 	}
+	//On va creer les tableau de moteurs et de reservoirs
+	std::vector<Reservoir*> v_vt12 = {reservoirs[0], reservoirs[1]};
+	std::vector<Reservoir*> v_vt23 = {reservoirs[1], reservoirs[2]};
+	std::vector<Reservoir*> v_vt13 = {reservoirs[0], reservoirs[2]};
 
-	//Ajout des vannes toutes dans l'état fermé
-	vannes.push_back(new Valve(FERME, "VT12"));
-	vannes.push_back(new Valve(FERME, "VT23"));
-	vannes.push_back(new Valve(FERME, "V12"));
-	vannes.push_back(new Valve(FERME, "V13"));
-	vannes.push_back(new Valve(FERME, "V23"));
+	//Moteurs
+	std::vector<Moteur*> v_v12 = {moteurs[0], moteurs[1]};
+	std::vector<Moteur*> v_v23 = {moteurs[1], moteurs[2]};
+	std::vector<Moteur*> v_v13 = {moteurs[0], moteurs[2]};
+ 
+
+	//Ajout des vannes toutes dans l'état fermé 
+	vannes.push_back(new ValveRes("VT12", FERME, v_vt12));
+	vannes.push_back(new ValveRes("VT23", FERME, v_vt23));
+	vannes.push_back(new ValveMr("V12",FERME, v_vt12, v_v12));
+	vannes.push_back(new ValveMr("V23",FERME, v_vt23, v_v23));
+	vannes.push_back(new ValveMr("V13",FERME, v_vt13, v_v13));
 }
 
 
@@ -59,7 +69,7 @@ void Systeme::AfficherEtat(){
 	}
 	for (int i = 0; i < 5; ++i)
 	{
-		vannes[i]->printInfos();
+		vannes.at(i)->printInfos();
 		//vannes[i]->ChangerEtat();
 		//vannes[i]->printInfos();
 	}

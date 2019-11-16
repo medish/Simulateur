@@ -6,6 +6,7 @@
 #include <string>
 #include "Reservoir.h"
 #include "Moteur.h"
+#include <iostream>
 
 enum of{
 	FERME = 0,
@@ -25,7 +26,7 @@ public:
 	std::string GetNom(){return nom;};
 	of GetEtat(){return etat;};
 	void ChangerEtat();
-	void printInfos();
+	virtual void printInfos();
 
 };
 

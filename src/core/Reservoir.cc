@@ -24,6 +24,15 @@ Pompe* Reservoir::GetPompe(int i){
 		return pompes[2];
 }*/
 
+Pompe* Reservoir::GetDispoPompe(){
+	for (int i = 0; i < 2; ++i)
+	{
+		if(pompes[i]->GetEtat() == ARRET)
+			return pompes[i];
+	}
+	return NULL;
+}
+
 void Reservoir::SetEtat(tank_etat _etat){
 	etat = _etat;
 }
@@ -52,4 +61,17 @@ bool Reservoir::estVide(){
 
 void Reservoir::printInfos(){
 	estVide();
+}
+
+//Fonction amies
+void operator+(Reservoir& a, Reservoir& b){
+	double moyenne = 0;
+	if(a.capacity > 0 || b.capacity > 0){
+		moyenne = (a.capacity + b.capacity)/2;
+		a.capacity  = (moyenne);
+		b.capacity = (moyenne);
+	}
+	else{
+		std::cout << "Transfert impossible entre " << a.GetNum() << "et " << b.GetNum() << std::endl;
+	}
 }
