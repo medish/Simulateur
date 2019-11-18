@@ -35,7 +35,6 @@ private:
 public:
 	Systeme(double cap);
 	~Systeme();
-	void AfficherEtat();
 
 	//Getters
 	double GetCapacity(){return cap_max;};
@@ -47,6 +46,8 @@ public:
 	void setCapacity(double c);
 	
 		
-
+	//Operations
+	void AfficherEtat();
+	void updateconso();
 };
 #endif

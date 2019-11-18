@@ -58,6 +58,7 @@ void Systeme::AfficherEtat(){
 	{
 		reservoirs[i]->printInfos();
 	}
+	
 	for (int i = 0; i < reservoirs.size();++i)
 	{
 		reservoirs[i]->GetPompe(0)->printInfos();
@@ -73,5 +74,13 @@ void Systeme::AfficherEtat(){
 		//vannes[i]->ChangerEtat();
 		//vannes[i]->printInfos();
 	}
+	
 } 
 
+void Systeme::updateconso(){
+	for (int i = 0; i < moteurs.size(); ++i)
+	{
+		consomme(*(moteurs[i]->GetReservoir()), *moteurs[i]);
+	}
+}
+  

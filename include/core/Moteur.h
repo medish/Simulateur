@@ -8,9 +8,8 @@
 #include "Pompe.h"
 
 
-class Reservoir;
 class Pompe;
-
+class Reservoir;
 
 class Moteur{
 private:
@@ -32,10 +31,10 @@ public:
 	void SetEtat(const etat_t etat);
 	void SetPompe(Pompe& po);
 	void SetReservoir(Reservoir& res);
-	
+	friend void consomme( Reservoir& r, Moteur& m);
 	//Affiche information
  	void printInfos(); 
 };
 
-
+ 
 #endif

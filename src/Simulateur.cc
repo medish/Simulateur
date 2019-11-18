@@ -1,9 +1,16 @@
 #include <iostream>
+
 #include "../include/core/Systeme.h"
+#include "../include/states/State.h"
+#include "../include/states/StateManager.h"
+#include "../include/states/MainGState.h"
+
 int main(int argc, char const *argv[])
 {	
-	Systeme s(4000);
-	s.AfficherEtat();
+	StateManager sm ;
+	sm.PushState(new MainGState());
+
+	sm.GetCurrentState()->update();
 	
-	return 0;
-}
+	return 0; 
+} 

@@ -1,9 +1,10 @@
 #include <iostream>
+
 #include "../../include/core/Moteur.h"
 #include "../../include/core/Reservoir.h"
 #include "../../include/core/Pompe.h"
 
-const double conso = 1.9;
+const double consomation = 1.9;
 
 Moteur::Moteur(int _num, etat_t _etat, Reservoir& res){
 
@@ -29,3 +30,14 @@ void Moteur::SetReservoir(Reservoir& res){
 void Moteur::printInfos(){
 	std::cout << "Moteur: "<< GetNumero() << "/" << GetEtat() << "/" << GetReservoir()->GetNum() << "/" << GetPompe()->GetNum() << std::endl; 
 }  
+
+void consomme(Reservoir& r, Moteur& m){
+		if(r.GetCapacity() > 0 ){
+			//std::cout << "Debug " << consomation << std::endl;
+			double nvcap = r.GetCapacity() - consomation;
+			r.SetCapacity(nvcap);	
+		}
+		else{
+			r.SetCapacity(0.0);
+		}
+}   

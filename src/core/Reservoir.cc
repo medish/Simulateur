@@ -37,6 +37,10 @@ void Reservoir::SetEtat(tank_etat _etat){
 	etat = _etat;
 }
 
+void Reservoir::SetCapacity(double c){
+	capacity = c;
+}
+
 void Reservoir::vidange(){
 	SetEtat(VIDANGE);
 	for (int i = 0; i < 2; ++i)
