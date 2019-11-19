@@ -2,6 +2,7 @@
 #define H_MAINGSTATE
 
 #include <ctime>
+#include <unistd.h>
 
 #include "State.h"
 #include "../core/Systeme.h"

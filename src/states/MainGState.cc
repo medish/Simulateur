@@ -20,6 +20,9 @@ void MainGState::free(){
 }
 
 void MainGState::update(){
+	/**
+	 * Délplacer dans une classe
+	 */
 	time_t starttime;
 	time(&starttime);
 	time_t endtime;
@@ -30,9 +33,10 @@ void MainGState::update(){
 	sys->updateconso();
 	sys->AfficherEtat();
 
+	sleep(5);
 	time(&endtime);
 
 	std::cout << starttime << std::endl;
-	std::cout << "La simulation à duré "<< endtime - starttime << std::endl; 	
+	std::cout << "La simulation à duré "<< endtime - starttime << " Secondes" << std::endl; 	
 
 }
