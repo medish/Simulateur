@@ -12,7 +12,7 @@ link_directories(${GTKMM_LIBRARY_DIRS})
 file(
 	GLOB
 	SOURCES
-	"src/*.cc" "src/core/*.cc" "src/gui/*.cc"
+	"src/*.cc" "src/core/*.cc" "src/gui/*.cc" "src/states/*.cc"
 	)
 add_executable (Simulateur ${SOURCES}) 
 

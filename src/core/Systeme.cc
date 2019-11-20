@@ -58,6 +58,7 @@ void Systeme::AfficherEtat(){
 	{
 		reservoirs[i]->printInfos();
 	}
+	
 	for (int i = 0; i < reservoirs.size();++i)
 	{
 		reservoirs[i]->GetPompe(0)->printInfos();
@@ -73,5 +74,28 @@ void Systeme::AfficherEtat(){
 		//vannes[i]->ChangerEtat();
 		//vannes[i]->printInfos();
 	}
+	
 } 
+void Systeme::setCapacity(double c){
+	cap_max = c;
+}
 
+
+/*Met à jours la capacité de chaque réservoirs plus la capacité totale*/
+void Systeme::updateconso(){
+	for (int i = 0; i < moteurs.size(); ++i)
+	{
+		consomme(*(moteurs[i]->GetReservoir()), *moteurs[i]);
+	}
+	UpdateCapaciteMax();
+}
+
+void Systeme::UpdateCapaciteMax(){
+	double nouvellecapmax = 0;
+	for (int i = 0; i < reservoirs.size(); ++i)
+	{
+	 	nouvellecapmax = reservoirs[i]->GetCapacity();
+	}
+
+	setCapacity(nouvellecapmax);
+}
