@@ -41,13 +41,14 @@ public:
 	vector<Moteur *> GetMoteurs(){return moteurs;};
 	vector<Valve *> GetVannes(){return vannes;};
 	vector<Reservoir *> GetReservoirs(){return reservoirs;};
-	
 	//Setters
 	void setCapacity(double c);
 	
 		
 	//Operations
 	void AfficherEtat();
+	//Ajouter une mise à jour de la capacite max 
+	void UpdateCapaciteMax();
 	void updateconso();
 };
 #endif

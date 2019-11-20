@@ -4,7 +4,7 @@
 #include "../../include/core/Reservoir.h"
 #include "../../include/core/Pompe.h"
 
-const double consomation = 1.9;
+const double consomation = 1.6;
 
 Moteur::Moteur(int _num, etat_t _etat, Reservoir& res){
 

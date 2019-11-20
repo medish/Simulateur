@@ -53,7 +53,7 @@ void Reservoir::vidange(){
 }
 
 bool Reservoir::estVide(){
-	if(capacity){
+	if(capacity > 0){
 		std::cout << "Le Reservoir " << GetNum() << " est encore plein : " << GetCapacity() << "L" << std::endl;
 		return false;
 	} else{

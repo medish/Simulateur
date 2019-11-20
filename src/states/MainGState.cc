@@ -30,10 +30,15 @@ void MainGState::update(){
 	std::cout << starttime << std::endl;
 
 	sys->AfficherEtat();
-	sys->updateconso();
-	sys->AfficherEtat();
 
-	sleep(5);
+	//Boucle de jeu de la simulation (Ajouter le sortie forcée par l'utilisateur comme condition d'arrêt)	
+	while(sys->GetCapacity() > 0){
+		sys->updateconso();
+		sleep(1);//Consommation du moteur par seconde
+	}
+
+	sys->AfficherEtat();
+	
 	time(&endtime);
 
 	std::cout << starttime << std::endl;
