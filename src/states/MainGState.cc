@@ -1,6 +1,6 @@
 #include "../../include/core/Systeme.h"
 #include "../../include/states/MainGState.h"
-
+#include "../../include/gui/MainGui.h"
 
 MainGState::MainGState(){
 	init();
@@ -12,6 +12,7 @@ MainGState::~MainGState(){
 
 void MainGState::init(){
 	sys = new Systeme(400);
+	
 
 }
 

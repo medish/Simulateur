@@ -1,23 +1,23 @@
 cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
 project(Simulateur)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_BUILD_TYPE Debug)
 set(EXECUTABLE_OUTPUT_PATH ./bin/${CMAKE_BUILD_TYPE})
 
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
-find_package(PkgConfig)
-pkg_check_modules(GTKMM gtkmm-3.0 )
-include_directories( ${GTKMM_INCLUDE_DIRS} include/)  
-link_directories(${GTKMM_LIBRARY_DIRS})
+include_directories( ${Qt5Widgets_INCLUDES} include/)  
+
 file(
-	GLOB
+	GLOB_RECURSE
 	SOURCES
-	"src/*.cc" "src/core/*.cc" "src/gui/*.cc" "src/states/*.cc"
+	"src/*.cc"
 	)
 add_executable (Simulateur ${SOURCES}) 
 
 
-target_link_libraries(Simulateur ${GTKMM_LIBRARIES})	
+target_link_libraries(Simulateur ${Qt5Widgets_LIBRARIES})	
 
 
 #Crée l'archive du project
