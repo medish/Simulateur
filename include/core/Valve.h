@@ -1,6 +1,5 @@
 #ifndef H_VALVE
 #define H_VALVE
-#pragma once
 
 #include <vector>
 #include <string>

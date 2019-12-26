@@ -1,6 +1,5 @@
 #ifndef H_VALVERES
 #define H_VALVERES
-#pragma once
 
 #include "Valve.h"
 

@@ -1,6 +1,5 @@
 #ifndef H_RESERVOIR
 #define H_RESERVOIR
-#pragma once
 
 #include <vector>
 

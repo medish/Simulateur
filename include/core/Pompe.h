@@ -1,6 +1,5 @@
 #ifndef H_POMPE
 #define H_POMPE
-#pragma once
 
 #ifndef H_ETAT
 #define H_ETAT

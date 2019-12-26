@@ -1,6 +1,5 @@
 #ifndef H_VALVEMR
 #define H_VALVEMR
-#pragma once
 
 #include "Valve.h"
 

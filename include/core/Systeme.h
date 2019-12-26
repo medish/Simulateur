@@ -1,6 +1,5 @@
 #ifndef H_SYSTEME
 #define H_SYSTEME
-#pragma once
 
 
 #include "Pompe.h"

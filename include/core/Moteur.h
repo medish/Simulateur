@@ -1,7 +1,5 @@
-
 #ifndef H_MOTEUR
 #define H_MOTEUR
-#pragma once
 
 
 #include "Reservoir.h"
