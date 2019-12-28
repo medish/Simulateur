@@ -29,7 +29,7 @@ enum nb{
 
 
 class Pompe{
-
+    friend class PompeWidget;
 private:
 	int num;
 	nb type;

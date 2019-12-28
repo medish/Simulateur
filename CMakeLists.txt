@@ -14,7 +14,13 @@ file(
 	SOURCES
 	"src/*.cc"
 	)
-add_executable (Simulateur ${SOURCES}) 
+file(
+            GLOB_RECURSE
+            HEADERS
+            "include/*.h"
+            )
+
+add_executable (Simulateur ${SOURCES} ${HEADERS})
 
 
 target_link_libraries(Simulateur ${Qt5Widgets_LIBRARIES})	

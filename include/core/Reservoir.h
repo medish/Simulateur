@@ -17,12 +17,14 @@ enum tank_etat{
 };
 
 class Reservoir{
+    friend class TankWidget;
 private:
 	int num; //Le numéro du réservoir
 	double capacity; //La capacité du réservoir
 	tank_etat etat; //Vide ou plein
 	std::vector<Pompe*> pompes; //Les deux pompes de chaque réservoir
 	std::vector<Moteur*> moteurs;
+
 
 public:
 

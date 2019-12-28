@@ -10,6 +10,7 @@ class Pompe;
 class Reservoir;
 
 class Moteur{
+    friend class MoteurWidget;
 private:
 	int  num; //Numero du moteur
 	etat_t etat;

@@ -13,6 +13,7 @@ enum of{
 };
 
 class Valve{
+    friend class VWidget;
 protected: 
 	of etat;
 	std::string nom;
