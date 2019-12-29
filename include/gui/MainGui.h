@@ -11,13 +11,15 @@
 #include "MoteurWidget.h"
 #include "NavBarWidget.h"
 #include "VWidget.h"
+#include "../core/Systeme.h"
 
 class MainGui : public QWidget{
 private :
     QGridLayout  main_layout;
     QWidget * middle_w;
+    void init(std::vector<Reservoir*>, std::vector<Moteur*>, std::vector<Valve*>);
 public:
-    MainGui();
+    MainGui(Systeme *);
     ~MainGui();
 protected:
     void paintEvent(QPaintEvent *event);

@@ -18,6 +18,7 @@ enum tank_etat{
 
 class Reservoir{
     friend class TankWidget;
+    friend class MainGui;
 private:
 	int num; //Le numéro du réservoir
 	double capacity; //La capacité du réservoir

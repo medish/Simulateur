@@ -8,7 +8,7 @@ Reservoir::Reservoir(int _num, double c){
 	capacity = c;
 	etat = PLEIN;
 	pompes.push_back(new Pompe(1,*this,MARCHE, PRIMAIRE));
-	pompes.push_back(new Pompe(1,*this,ARRET, SECONDAIRE));
+    pompes.push_back(new Pompe(2,*this,ARRET, SECONDAIRE));
 }
 
 Reservoir::~Reservoir(){

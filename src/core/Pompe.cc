@@ -11,6 +11,7 @@ Pompe::Pompe(int _num, Reservoir &res, etat_t _etat, nb _type){
 	res_linked = &res;
 	etat = _etat;
 	type = _type;
+    mot_linked = nullptr;
 }
 
 Pompe::~Pompe(){

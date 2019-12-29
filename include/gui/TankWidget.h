@@ -20,9 +20,13 @@ private:
 
 public:
     TankWidget();
-    TankWidget(Reservoir &);
+    TankWidget(Reservoir *);
     ~TankWidget();
     void showInfos(int, int, double);
+
+public slots:
+    void setEtatColor(int = 0);
+    QString getEtatName(int);
 
 };
 #endif // TANKWIDGET_H

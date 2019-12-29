@@ -25,7 +25,7 @@ Systeme::Systeme(double cap){
 	   moteurs[i]->SetPompe(*(reservoirs[i]->GetPompe(0)));
 	   reservoirs[i]->GetPompe(0)->SetMoteur(*moteurs[i]);
 	}
-	//On va creer les tableau de moteurs et de reservoirs
+    //On va creer les tableau de moteurs et de reservoirs
 	std::vector<Reservoir*> v_vt12 = {reservoirs[0], reservoirs[1]};
 	std::vector<Reservoir*> v_vt23 = {reservoirs[1], reservoirs[2]};
 	std::vector<Reservoir*> v_vt13 = {reservoirs[0], reservoirs[2]};

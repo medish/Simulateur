@@ -23,6 +23,7 @@ class ValveMr;
 class ValveRes;
  
 class Systeme{
+    friend class MainGui;
 private:
 	double cap_max;
 

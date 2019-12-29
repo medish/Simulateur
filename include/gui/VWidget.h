@@ -6,10 +6,13 @@
 #include "../core/Valve.h"
 
 class VWidget : public QPushButton {
+    Q_OBJECT
 private:
 
 public:
-    VWidget(Valve &);
+    VWidget(Valve *);
     ~VWidget();
+public slots:
+    void setVanne(bool = false);
 };
 #endif

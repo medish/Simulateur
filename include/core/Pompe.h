@@ -34,7 +34,7 @@ private:
 	int num;
 	nb type;
 	etat_t etat;
-	Moteur* mot_linked; //Le moteur qu'elle alimente
+    Moteur* mot_linked; //Le moteur qu'elle alimente
 	Reservoir* res_linked; //Le reservoir auquel elle appartient 
 
 public:

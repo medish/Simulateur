@@ -8,7 +8,7 @@ class VMRWidget : public VWidget {
 private:
 
 public:
-    VMRWidget(ValveMr &);
+    VMRWidget(ValveMr *);
     ~VMRWidget();
 };
 

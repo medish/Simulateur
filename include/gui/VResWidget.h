@@ -8,7 +8,7 @@ class VResWidget : public VWidget {
 private:
 
 public:
-    VResWidget(ValveRes &);
+    VResWidget(ValveRes *);
     ~VResWidget();
 };
 
