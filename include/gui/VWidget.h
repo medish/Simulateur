@@ -8,7 +8,7 @@
 class VWidget : public QPushButton {
     Q_OBJECT
 private:
-
+    Valve * v;
 public:
     VWidget(Valve *);
     ~VWidget();

@@ -1,16 +1,20 @@
 #ifndef MOTEURWIDGET_H
 #define MOTEURWIDGET_H
 
-#include <QPushButton>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QComboBox>
+#include <QFormLayout>
 #include "../core/Moteur.h"
 
-class MoteurWidget : public QPushButton {
+class MoteurWidget : public QLabel {
     Q_OBJECT
 private:
+    Moteur * m;
     QVBoxLayout m_layout;
-    QLabel label_name, label_tank, label_pompe, label_etat;
+    QFormLayout f_layout;
+    QComboBox combo_t_p, combo_etat;
+    QLabel label_name;
     void init();
 
 public:
@@ -19,7 +23,6 @@ public:
     void showInfos(int, int, int, int);
 public slots:
     void setEtatColor(int = 0);
-    QString getEtatName(int);
 };
 
 #endif

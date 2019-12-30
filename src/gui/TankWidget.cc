@@ -1,14 +1,10 @@
 #include "../../include/gui/TankWidget.h"
 
-TankWidget::TankWidget(){
+
+TankWidget::TankWidget(Reservoir * _r){
+    r = _r;
     init();
-}
-
-TankWidget::TankWidget(Reservoir * r){
-    init();
-    showInfos(r->num, r->etat, r->capacity);
-
-
+    showInfos(_r->num, _r->etat, _r->capacity);
 
 }
 
@@ -19,8 +15,10 @@ TankWidget::~TankWidget(){
 void TankWidget::init(){
     //setStyleSheet("background-color:red; ");
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    setMaximumHeight(130);
+    setMaximumHeight(120);
+    setMinimumHeight(120);
     setLayout(&tank_layout);
+
 
     label_name.setAlignment(Qt::AlignCenter);
     label_name.setStyleSheet("font-weight: bold; font-size:16px;");
@@ -30,18 +28,27 @@ void TankWidget::init(){
     progress_c.setTextVisible(true);
     progress_c.setFormat("%p% (%v/%m)");
 
+
+    // Etat QTool button
+    combo_etat.addItem("VIDE");
+    combo_etat.addItem("PLEIN");
+    combo_etat.addItem("REMPLISSAGE");
+    combo_etat.addItem("VIDANGE");
+
+    // form layout
+    f_layout.addRow("Etat :", &combo_etat);
+
     // layout
     tank_layout.addWidget(&label_name);
     tank_layout.addWidget(&progress_c);
-    tank_layout.addWidget(&label_etat);
+    tank_layout.addLayout(&f_layout);
 }
 
 void TankWidget::showInfos(int num_t, int num_etat, double cap){
     QString title = "Reservoir "+ QString::number(num_t);
     label_name.setText(title);
-    QString etat = "Etat: "+ getEtatName(num_etat);
-    label_etat.setText(etat);
-     setEtatColor(num_etat);
+    combo_etat.setCurrentIndex(num_etat);
+    setEtatColor(num_etat);
     //progress_c.setValue();
     progress_c.setRange(0,(int)cap);
 
@@ -57,13 +64,10 @@ void TankWidget::setEtatColor(int e_color){
     }
 }
 
-QString TankWidget::getEtatName(int e_num){
-
-    switch (e_num) {
-        case VIDE: { return "VIDE";}
-        case PLEIN: {return "PLEIN";}
-        case VIDANGE: {return "VIDANGE";}
-        case REMPLISSAGE: {return "REMPLISSAGE";}
-        default: return "N/A";
-    }
-}
+//void TankWidget::paintEvent(QPaintEvent * ){
+//    qDebug("aa");
+//    QStyleOption opt;
+//    opt.init(this);
+//    QPainter p(this);
+//    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+//}

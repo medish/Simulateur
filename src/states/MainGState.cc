@@ -3,7 +3,7 @@
 #include "../../include/gui/MainGui.h"
 
 MainGState::MainGState(){
-	init();
+    init();
 }
 
 MainGState::~MainGState(){
@@ -27,11 +27,11 @@ void MainGState::update(){
 	 * Délplacer dans une classe
 	 */
     display();
-	time_t starttime;
-	time(&starttime);
-	time_t endtime;
+    //time_t starttime;
+    //time(&starttime);
+    //time_t endtime;
 
-	std::cout << starttime << std::endl;
+    //std::cout << starttime << std::endl;
 
     //sys->AfficherEtat();
 
@@ -43,10 +43,10 @@ void MainGState::update(){
 
     //sys->AfficherEtat();
 	
-	time(&endtime);
+    //time(&endtime);
 
-	std::cout << starttime << std::endl;
-	std::cout << "La simulation à duré "<< endtime - starttime << " Secondes" << std::endl; 	
+    //std::cout << starttime << std::endl;
+    //std::cout << "La simulation à duré "<< endtime - starttime << " Secondes" << std::endl;
 
 }
 

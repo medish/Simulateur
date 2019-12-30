@@ -2,12 +2,13 @@
 
 
 
-MoteurWidget::MoteurWidget(Moteur * m ){
+MoteurWidget::MoteurWidget(Moteur * _m ){
+    m = _m;
     init();
-    showInfos(m->num,
-              m->res_linked->GetNum(),
-              m->pompe_linked->GetNum(),
-              m->etat);
+    showInfos(_m->num,
+              _m->res_linked->GetNum(),
+              _m->pompe_linked->GetNum(),
+              _m->etat);
 }
 
 MoteurWidget::~MoteurWidget(){
@@ -18,31 +19,38 @@ void MoteurWidget::init(){
     setLayout(&m_layout);
     setStyleSheet("background-color: gray;");
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    setMaximumHeight(120);
+    setMaximumHeight(100);
+    setMinimumHeight(100);
 
 
     label_name.setAlignment(Qt::AlignCenter);
     label_name.setStyleSheet("font-weight: bold; font-size:16px; background-color: rgba(0,0,0,0)");
-    label_tank.setStyleSheet("background-color: rgba(0,0,0,0)");
-    label_pompe.setStyleSheet("background-color: rgba(0,0,0,0)");
-    label_etat.setStyleSheet("background-color: rgba(0,0,0,0)");
 
+    combo_t_p.addItem("N/A");
+    combo_t_p.addItem("Reservoir 1 Pompe 1", QVariant(QPoint(1,1)));
+    combo_t_p.addItem("Reservoir 1 Pompe 2", QVariant(QPoint(1,2)));
+    combo_t_p.addItem("Reservoir 2 Pompe 1", QVariant(QPoint(2,1)));
+    combo_t_p.addItem("Reservoir 2 Pompe 2", QVariant(QPoint(2,2)));
+    combo_t_p.addItem("Reservoir 3 Pompe 1", QVariant(QPoint(3,1)));
+    combo_t_p.addItem("Reservoir 3 Pompe 2", QVariant(QPoint(3,2)));
+
+    combo_etat.addItem("ARRET", QVariant(0));
+    combo_etat.addItem("MARCHE", QVariant(1));
+
+    //Form layout
+    f_layout.addRow("", &combo_t_p);
+    f_layout.addRow("Etat", &combo_etat);
 
     m_layout.addWidget(&label_name);
-    m_layout.addWidget(&label_tank);
-    m_layout.addWidget(&label_pompe);
-    m_layout.addWidget(&label_etat);
+    m_layout.addLayout(&f_layout);
 
 }
 void MoteurWidget::showInfos(int num_m, int num_r, int num_p, int num_etat ){
     QString title = "Moteur"+ QString::number(num_m);
     label_name.setText(title);
-    QString res = "Reservoir: "+ QString::number(num_r);
-    label_tank.setText(res);
-    QString pompe = "Pompe: "+ QString::number(num_p);
-    label_pompe.setText(pompe);
-    QString etat = "Etat: "+ getEtatName(num_etat);
-    label_etat.setText(etat);
+    QString curr_t_p = "Reservoir "+ QString::number(num_r)+" Pompe "+ QString::number(num_p);
+    combo_t_p.setCurrentText(curr_t_p);
+    combo_etat.setCurrentIndex(num_etat);
 
     setEtatColor(num_etat);
 }
@@ -55,12 +63,3 @@ void MoteurWidget::setEtatColor(int e_color){
     }
 }
 
-QString MoteurWidget::getEtatName(int e_num){
-
-    switch (e_num) {
-        case ARRET: { return "ARRET";}
-        case MARCHE: {return "MARCHE";}
-        case PANNE: {return "EN PANNE";}
-        default: return "N/A";
-    }
-}

@@ -1,15 +1,13 @@
 #include "../../include/gui/PompeWidget.h"
 
-PompeWidget::PompeWidget(){
 
-}
-
-PompeWidget::PompeWidget(Pompe * p){
+PompeWidget::PompeWidget(Pompe * _p){
+    p = _p;
     init();
-    if(p->mot_linked == nullptr)
-        showInfos(p->num, p->etat, -1);
+    if(_p->mot_linked == nullptr)
+        showInfos(_p->num, _p->etat, 0);
     else
-        showInfos(p->num, p->etat, p->mot_linked->GetNumero());
+        showInfos(_p->num, _p->etat, _p->mot_linked->GetNumero());
 
 }
 
@@ -19,38 +17,32 @@ PompeWidget::~PompeWidget(){
 
 void PompeWidget::init(){
     setLayout(&p_layout);
-    setMaximumHeight(70);
-    setStyleSheet("background-color:green;");
+    setMaximumHeight(80);
+    setMinimumSize(140,80);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QMenu *menu = new QMenu("Menu");
-    QAction *printAct = new QAction("aaa");
-    QAction *redoAct = new QAction("bbb");
-    menu->addAction(printAct);
-    menu->addAction(redoAct);
-    qbtn.setText("Action");
-    qbtn.setMenu(menu);
-    qbtn.setPopupMode(QToolButton::InstantPopup);
+    combo_m.addItem("N/A");
+    combo_m.addItem("1", QVariant(1));
+    combo_m.addItem("2", QVariant(2));
+    combo_m.addItem("3", QVariant(3));
 
 
-    //qbtn.setMinimumSize(20,20);
-    qbtn.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    combo_etat.addItem("ARRET");
+    combo_etat.addItem("MARCHE");
+    combo_etat.addItem("PANNE");
 
     label_name.setAlignment(Qt::AlignCenter);
     label_name.setStyleSheet("font-weight: bold; font-size:14px; background-color: rgba(0,0,0,0)");
     label_name.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    label_etat.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    label_etat.setStyleSheet("background-color: rgba(0,0,0,0)");
 
-    label_m.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    label_m.setStyleSheet("background-color: rgba(0,0,0,0)");
-
+    // Form layout
+    f_layout.addRow("Moteur", &combo_m);
+    f_layout.addRow("Etat", &combo_etat);
 
     p_layout.addWidget(&label_name);
-    p_layout.addWidget(&label_m);
-    p_layout.addWidget(&label_etat);
-    p_layout.addWidget(&qbtn);
+    p_layout.addLayout(&f_layout);
 
 
 }
@@ -59,11 +51,10 @@ void PompeWidget::showInfos(int num_p, int num_etat, int num_m){
     QString title = "Pompe "+ QString::number(num_p);
     label_name.setText(title);
 
-    QString etat = "Etat: "+ getEtatName(num_etat);
-    label_etat.setText(etat);
+    combo_m.setCurrentIndex(num_m);
+    //qDebug()<<"Moteur-"<<num_m<<" Pompe-"<<num_etat;
+    combo_etat.setCurrentIndex(num_etat);
 
-    QString moteur = "Moteur: "+ QString::number(num_m);
-    label_m.setText(moteur);
     setEtatColor(num_etat);
 
 }
@@ -76,12 +67,3 @@ void PompeWidget::setEtatColor(int e_color){
     }
 }
 
-QString PompeWidget::getEtatName(int e_num){
-
-    switch (e_num) {
-        case ARRET: { return "ARRET";}
-        case MARCHE: {return "MARCHE";}
-        case PANNE: {return "EN PANNE";}
-        default: return "N/A";
-    }
-}

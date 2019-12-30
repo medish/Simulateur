@@ -13,7 +13,7 @@ MainGui::~MainGui(){
 }
 
 void MainGui::init(std::vector<Reservoir*> tanks, std::vector<Moteur*> moteurs, std::vector<Valve*> vannes){
-    resize(1000,500);
+    resize(1000,600);
     setLayout(&main_layout);
 
     middle_w = new QWidget();
@@ -62,10 +62,11 @@ void MainGui::init(std::vector<Reservoir*> tanks, std::vector<Moteur*> moteurs, 
 
 }
 
-void MainGui::paintEvent(QPaintEvent* p){
-   QPainter painter(this);
+void MainGui::paintEvent(QPaintEvent*){
+
+  /* QPainter painter(this);
    QPoint one = main_layout.itemAtPosition(2,2)->widget()->pos();
    QPoint two = main_layout.itemAtPosition(2,3)->widget()->pos();
-   std::cout<<one.x()<<std::endl;
-   painter.drawLine(one, two);
+   std::cout<<one.y()<<std::endl;
+   painter.drawLine(one, two);*/
 }

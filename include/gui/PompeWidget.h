@@ -4,26 +4,26 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QLabel>
-#include <QPushButton>
-#include <QToolButton>
-#include <QMenu>
+#include <QComboBox>
+#include <QFormLayout>
+#include <QDebug>
 #include "../core/Pompe.h"
 
-class PompeWidget : public QPushButton{
+class PompeWidget : public QLabel{
     Q_OBJECT
 private:
+    Pompe * p;
     QVBoxLayout p_layout;
-    QToolButton qbtn;
-    QLabel label_name, label_etat, label_m;
+    QFormLayout f_layout;
+    QComboBox combo_etat, combo_m;
+    QLabel label_name;
     void init();
 public:
-    PompeWidget();
     PompeWidget(Pompe *);
     ~PompeWidget();
     void showInfos(int, int, int);
 public slots:
     void setEtatColor(int = 0);
-    QString getEtatName(int);
 };
 
 #endif

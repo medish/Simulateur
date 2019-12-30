@@ -4,29 +4,33 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include <QPushButton>
 #include <QProgressBar>
 #include <QLabel>
+#include <QFormLayout>
+#include <QComboBox>
+#include <QPainter>
 #include "../core/Reservoir.h"
-#include "PompeWidget.h"
 
-class TankWidget : public QWidget {
+class TankWidget : public QLabel {
+    Q_OBJECT
 private:
+    Reservoir * r;
     QVBoxLayout tank_layout;
     QHBoxLayout p_layout;
+    QFormLayout f_layout;
     QProgressBar progress_c;
-    QLabel label_name, label_etat;
+    QComboBox combo_etat;
+    QLabel label_name;
     void init();
 
 public:
-    TankWidget();
     TankWidget(Reservoir *);
     ~TankWidget();
     void showInfos(int, int, double);
 
 public slots:
     void setEtatColor(int = 0);
-    QString getEtatName(int);
+
 
 };
 #endif // TANKWIDGET_H

@@ -22,7 +22,7 @@ public:
     MainGui(Systeme *);
     ~MainGui();
 protected:
-    void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *);
 };
 
 

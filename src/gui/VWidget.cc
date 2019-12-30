@@ -3,12 +3,13 @@
 
 
 
-VWidget::VWidget(Valve * v)  {
+VWidget::VWidget(Valve * _v)  {
+    v = _v;
     setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     setMaximumSize(40,30);
-    setText(QString::fromStdString(v->nom));
+    setText(QString::fromStdString(_v->nom));
     setCheckable(true);
-    setVanne(v->etat);
+    setVanne(_v->etat);
     QObject::connect(this, SIGNAL(toggled(bool)), this, SLOT(setVanne(bool)));
 
 }
