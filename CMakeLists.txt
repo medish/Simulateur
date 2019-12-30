@@ -1,23 +1,29 @@
 cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
 project(Simulateur)
-
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_BUILD_TYPE Debug)
 set(EXECUTABLE_OUTPUT_PATH ./bin/${CMAKE_BUILD_TYPE})
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
+include_directories( ${Qt5Widgets_INCLUDES} include/ include/core include/gui include/states /usr/include)
+link_directories(/usr/lib)
 
-find_package(PkgConfig)
-pkg_check_modules(GTKMM gtkmm-3.0 )
-include_directories( ${GTKMM_INCLUDE_DIRS} include/)  
-link_directories(${GTKMM_LIBRARY_DIRS})
 file(
-	GLOB
+        GLOB_RECURSE
+        HEADERS
+        "include/*.h"
+)
+file(
+	GLOB_RECURSE
 	SOURCES
-	"src/*.cc" "src/core/*.cc" "src/gui/*.cc" "src/states/*.cc"
+	"src/*.cc"
 	)
-add_executable (Simulateur ${SOURCES}) 
+add_executable (Simulateur ${SOURCES} ${HEADERS})
 
 
-target_link_libraries(Simulateur ${GTKMM_LIBRARIES})	
+target_link_libraries(Simulateur ${Qt5Widgets_LIBRARIES} sqlite3)	
 
 
 #Crée l'archive du project
@@ -31,6 +37,6 @@ ADD_CUSTOM_TARGET(dist
 		  COMMAND rm -rf ${DIST_DIR}/build
   		  COMMAND tar --exclude="*~" --exclude="._*" --exclude="CMakeFiles" --exclude="cmake*" -zcvf ${DIST_DIR}.tar.gz ${DIST_DIR}
 		  COMMAND rm -rf  ${DIST_DIR}
-    	  WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+                  WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
 ADD_CUSTOM_TARGET(run COMMAND ./bin/Debug/Simulateur)

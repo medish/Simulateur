@@ -2,13 +2,16 @@
 #define H_STATEMANAGER 
 
 #include <stack>
-
+#include <QObject>
 #include "State.h"
 class State;
 
-class StateManager{
+class StateManager: public QObject{
+    Q_OBJECT
 private:
 	std::stack<State*> SStack;
+protected:
+    bool status;
 public:
 	StateManager();
 	~StateManager(); 
@@ -25,6 +28,7 @@ public:
 
 	//Retire l'état courant du sommet de la pile
 	void PopState();
+
 };
 
 #endif
