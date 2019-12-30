@@ -43,12 +43,12 @@ public:
 
 	// Setters
 	void SetCapacity(double c);
-	void SetEtat(tank_etat etat);
+    bool SetEtat(tank_etat etat);
 	
 	// Others methods
 	friend void operator+(Reservoir& a, Reservoir& b);
 	friend void consomme(Reservoir& r, Moteur& m);
-	void vidange();
+    void setPompes(const etat_t);
 	bool estVide();
 	void printInfos(); //Debugger
 

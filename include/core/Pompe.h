@@ -52,7 +52,7 @@ public:
 	
 	//Setters
 	void SetType(const nb nb);
-	void SetEtat(const etat_t etat);
+    bool SetEtat(const etat_t etat);
 	void SetMoteur(Moteur & m);
 	void SetReservoir(Reservoir& res);
 

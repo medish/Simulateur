@@ -23,8 +23,30 @@ Pompe::~Pompe(){
 void Pompe::SetMoteur(Moteur& m){
 	mot_linked = &m;
 } 
-void Pompe::SetEtat(const etat_t _etat){
-	etat = _etat;
+bool Pompe::SetEtat(const etat_t _etat){
+    switch (_etat) {
+    case ARRET:{
+        if(mot_linked != nullptr)
+            mot_linked->SetEtat(ARRET);
+        etat=_etat;
+        return true;
+    }
+    case MARCHE:{
+        if(res_linked->GetEtat() == PLEIN && mot_linked != nullptr){
+            mot_linked->SetEtat(MARCHE);
+            etat=_etat;
+            return true;
+        }
+        return false;
+    }
+    case PANNE:{
+        if(mot_linked != nullptr)
+            mot_linked->SetEtat(ARRET);
+        etat=_etat;
+        return true;
+    }
+    default: return false;
+    }
 }
 void Pompe::SetReservoir(Reservoir& res){
 	res_linked = &res;

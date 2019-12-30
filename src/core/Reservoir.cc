@@ -33,24 +33,50 @@ Pompe* Reservoir::GetDispoPompe(){
 	return NULL;
 }
 
-void Reservoir::SetEtat(tank_etat _etat){
-	etat = _etat;
+bool Reservoir::SetEtat(tank_etat _etat){
+    switch (_etat) {
+    case VIDE:{
+        capacity =0;
+        setPompes(ARRET);
+        etat=_etat;
+        return true;
+    }
+    case PLEIN:{
+        if(capacity == 0){
+            etat = VIDE;
+            return true;
+        }
+        setPompes(MARCHE);
+        etat = _etat;
+        return true;
+    }
+    case VIDANGE:{
+        setPompes(ARRET);
+        etat = _etat;
+        return true;
+    }
+    case REMPLISSAGE:{
+        setPompes(ARRET);
+        etat = _etat;
+        return true;
+    }
+    default: return false;
+    }
 }
 
 void Reservoir::SetCapacity(double c){
 	capacity = c;
 }
 
-void Reservoir::vidange(){
-	SetEtat(VIDANGE);
-	for (int i = 0; i < 2; ++i)
-	{	
-		if((pompes[i]->GetEtat()) == MARCHE){
-			pompes[i]->SetEtat(ARRET);
-			pompes[i]->GetMoteur()->SetEtat(ARRET);
-		}
-	}
+void Reservoir::setPompes(const etat_t _etat){
+    if(pompes[0]->GetEtat() == 1 - _etat)
+        pompes[0]->SetEtat(_etat);
+    if(pompes[1]->GetEtat() == 1 - _etat)
+        pompes[1]->SetEtat(_etat);
+
 }
+
+
 
 bool Reservoir::estVide(){
 	if(capacity > 0){

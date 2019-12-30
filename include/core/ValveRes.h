@@ -17,6 +17,7 @@ public:
 		Valve::printInfos();
 		std::cout << reservoirs[0]->GetNum() << "/" << reservoirs[1]->GetNum() << std::endl;
 	}
+    bool setEtat(const of);
 
 };
 

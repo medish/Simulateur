@@ -25,7 +25,7 @@ public:
 	
 	std::string GetNom(){return nom;};
 	of GetEtat(){return etat;};
-	void ChangerEtat();
+    virtual bool setEtat(const of);
 	virtual void printInfos();
 
 };

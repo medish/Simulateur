@@ -10,10 +10,6 @@ Valve::~Valve(){
 }
 	
 
-void Valve::ChangerEtat(){
-	etat = static_cast<of>(1-etat);
-}
-
 void Valve::printInfos(){
 	std::cout << GetNom()<<"/"<<GetEtat()<<"/";
 }
