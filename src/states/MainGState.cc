@@ -3,7 +3,7 @@
 
 
 MainGState::MainGState(){
-	init();
+    //init();
 }
 
 MainGState::~MainGState(){
@@ -33,15 +33,15 @@ void MainGState::update(){
 
 	//Boucle de jeu de la simulation (Ajouter le sortie forcée par l'utilisateur comme condition d'arrêt)	
 	while(sys->GetCapacity() > 0){
-		sys->updateconso();
-		sleep(1);//Consommation du moteur par seconde
+        sys->updateconso();
+        sleep(1);//Consommation du moteur par seconde
 	}
 
 	sys->AfficherEtat();
 	
 	time(&endtime);
 
-	std::cout << starttime << std::endl;
+    std::cout << endtime << std::endl;
 	std::cout << "La simulation à duré "<< endtime - starttime << " Secondes" << std::endl; 	
 
 }

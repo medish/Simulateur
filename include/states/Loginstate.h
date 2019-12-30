@@ -4,28 +4,35 @@
 #include <sqlite3.h>
 #include <iostream>
 #include <cstring>
+#include <QWidget>
+
 #include "State.h"
+#include "../gui/Logingui.h"
 
 class State;
+class Logingui;
 
-class Loginstate : public State {
+class Loginstate : public State{
+
 private:
-	sqlite3* db;
+    sqlite3* db;
 	//Informations récupérés depuis la base de donnée
 	char* Login;
-	char* Password;
-	//
-	
+	char* Password;	
 	//Ajouter le GUI
+    Logingui* gui;
+
 public:
 	Loginstate();
-	~Loginstate();
-	void init();
+    ~Loginstate();
+    void init();
 	void free();
 	void update();
-	void display();
+    void display();
 
-	bool checkcred();
+    bool isUser(QString, QString);
+
+    Logingui* getGui() const {return gui;}
 };
 
 #endif
