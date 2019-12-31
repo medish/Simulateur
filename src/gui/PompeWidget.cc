@@ -4,10 +4,11 @@
 PompeWidget::PompeWidget(Pompe * _p){
     p = _p;
     init();
-    if(_p->mot_linked == nullptr)
-        showInfos(_p->num, _p->etat, 0);
-    else
-        showInfos(_p->num, _p->etat, _p->mot_linked->GetNumero());
+    setEtatCombo(p->etat);
+    showInfos();
+    QObject::connect(&combo_etat, SIGNAL(currentIndexChanged(int)), this, SLOT(setEtatCombo(int)));
+    QObject::connect(&combo_m, SIGNAL(currentIndexChanged(int)), this, SLOT(setMoteurCombo(int)));
+
 
 }
 
@@ -47,23 +48,43 @@ void PompeWidget::init(){
 
 }
 
-void PompeWidget::showInfos(int num_p, int num_etat, int num_m){
-    QString title = "Pompe "+ QString::number(num_p);
+void PompeWidget::showInfos(){
+    QString title = "Pompe "+ QString::number(p->num);
     label_name.setText(title);
 
-    combo_m.setCurrentIndex(num_m);
+    if(p->mot_linked)
+        combo_m.setCurrentIndex(p->mot_linked->GetNumero());
+    else combo_m.setCurrentIndex(0);
     //qDebug()<<"Moteur-"<<num_m<<" Pompe-"<<num_etat;
-    combo_etat.setCurrentIndex(num_etat);
+    combo_etat.setCurrentIndex(p->etat);
 
-    setEtatColor(num_etat);
 
 }
 
-void PompeWidget::setEtatColor(int e_color){
-    switch (e_color) {
-        case ARRET: {setStyleSheet("background-color:red;"); break;}
-        case MARCHE: {setStyleSheet("background-color:green;"); break;}
-        case PANNE: {setStyleSheet("background-color:orange;"); break;}
+void PompeWidget::setEtatCombo(int etat){
+    if(p->SetEtat(static_cast<etat_t>(etat)))
+    switch (etat) {
+        case ARRET: {
+        setStyleSheet("background-color:red;");
+        showInfos();
+        break;
     }
+        case MARCHE: {setStyleSheet("background-color:green;");
+        showInfos();
+        break;
+    }
+        case PANNE: {
+        setStyleSheet("background-color:orange;");
+        showInfos();
+        break;
+    }
+    }
+    else
+        combo_etat.setCurrentIndex(p->etat);
+}
+
+void PompeWidget::setMoteurCombo(int){
+    //p->SetMoteur()
+
 }
 

@@ -3,27 +3,27 @@
 Systeme::Systeme(double cap){ 
 	cap_max = cap;
 
+    //Initialise les 3 moteurs
+    for (int i = 0; i < 3; ++i)
+    {
+        moteurs.push_back( new Moteur(i+1));
+    }
 	//Crée les 3 réservoirs avec la configuration de base	
-	reservoirs.push_back(new Reservoir(1, (2*cap/3)));
- 	reservoirs.push_back(new Reservoir(2, (cap/3)));
- 	reservoirs.push_back(new Reservoir(3, (2*cap/3)));
+    reservoirs.push_back(new Reservoir(1, (2*cap/3), moteurs[0]));
+    reservoirs.push_back(new Reservoir(2, (cap/3), moteurs[1]));
+    reservoirs.push_back(new Reservoir(3, (2*cap/3), moteurs[2]));
  
 
- 	//Initialise les 3 moteurs
-	for (int i = 0; i < 3; ++i) 
-	{	
-	 	moteurs.push_back( new Moteur(i+1,MARCHE,*reservoirs[i]));
-	}
 	//Relier les pompes avec leur réservoirs et moteurss
-	for (int i = 0; i < reservoirs.size() ; ++i) 
+    for (int i = 0; i < 3; ++i)
 	{
-	 	reservoirs[i]->GetPompe(0)->SetMoteur(*moteurs[i]);
+        reservoirs[i]->GetPompe(0)->SetMoteur(moteurs[i]);
 	}  
 
 	for (int i = 0; i < 3; ++i)
 	{
-	   moteurs[i]->SetPompe(*(reservoirs[i]->GetPompe(0)));
-	   reservoirs[i]->GetPompe(0)->SetMoteur(*moteurs[i]);
+       moteurs[i]->SetPompe(reservoirs[i]->GetPompe(0));
+       reservoirs[i]->GetPompe(0)->SetMoteur(moteurs[i]);
 	}
     //On va creer les tableau de moteurs et de reservoirs
 	std::vector<Reservoir*> v_vt12 = {reservoirs[0], reservoirs[1]};
@@ -54,17 +54,17 @@ Systeme::~Systeme(){
 
 void Systeme::AfficherEtat(){
 	
-	for (int i = 0; i  < reservoirs.size(); ++i)
+    for (int i = 0; i  < 3; ++i)
 	{
 		reservoirs[i]->printInfos();
 	}
 	
-	for (int i = 0; i < reservoirs.size();++i)
+    for (int i = 0; i < 3;++i)
 	{
 		reservoirs[i]->GetPompe(0)->printInfos();
 		//reservoirs[i]->GetPompe(1)->printInfos();
 	}
-	for (int i = 0;  i < reservoirs.size(); ++i)
+    for (int i = 0;  i < 3; ++i)
 	{
 		moteurs[i]->printInfos();
 	}
@@ -83,7 +83,7 @@ void Systeme::setCapacity(double c){
 
 /*Met à jours la capacité de chaque réservoirs plus la capacité totale*/
 void Systeme::updateconso(){
-	for (int i = 0; i < moteurs.size(); ++i)
+    for (int i = 0; i < 3; ++i)
 	{
 		consomme(*(moteurs[i]->GetReservoir()), *moteurs[i]);
 	}
@@ -92,7 +92,7 @@ void Systeme::updateconso(){
 
 void Systeme::UpdateCapaciteMax(){
 	double nouvellecapmax = 0;
-	for (int i = 0; i < reservoirs.size(); ++i)
+    for (int i = 0; i < 3; ++i)
 	{
 	 	nouvellecapmax = reservoirs[i]->GetCapacity();
 	}

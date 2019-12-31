@@ -5,10 +5,10 @@
 MoteurWidget::MoteurWidget(Moteur * _m ){
     m = _m;
     init();
-    showInfos(_m->num,
-              _m->res_linked->GetNum(),
-              _m->pompe_linked->GetNum(),
-              _m->etat);
+    setEtatCombo(m->etat);
+    showInfos();
+    QObject::connect(&combo_etat, SIGNAL(currentIndexChanged(int)), this, SLOT(setEtatCombo(int)));
+    QObject::connect(&combo_t_p, SIGNAL(currentIndexChanged(int)), this, SLOT(setRPCombo(int)));
 }
 
 MoteurWidget::~MoteurWidget(){
@@ -34,8 +34,8 @@ void MoteurWidget::init(){
     combo_t_p.addItem("Reservoir 3 Pompe 1", QVariant(QPoint(3,1)));
     combo_t_p.addItem("Reservoir 3 Pompe 2", QVariant(QPoint(3,2)));
 
-    combo_etat.addItem("ARRET", QVariant(0));
-    combo_etat.addItem("MARCHE", QVariant(1));
+    combo_etat.addItem("ARRET");
+    combo_etat.addItem("MARCHE");
 
     //Form layout
     f_layout.addRow("", &combo_t_p);
@@ -45,21 +45,31 @@ void MoteurWidget::init(){
     m_layout.addLayout(&f_layout);
 
 }
-void MoteurWidget::showInfos(int num_m, int num_r, int num_p, int num_etat ){
-    QString title = "Moteur"+ QString::number(num_m);
+void MoteurWidget::showInfos(){
+    QString title = "Moteur"+ QString::number(m->num);
     label_name.setText(title);
-    QString curr_t_p = "Reservoir "+ QString::number(num_r)+" Pompe "+ QString::number(num_p);
+    QString curr_t_p = "Reservoir "+ QString::number(m->res_linked->GetNum())+" Pompe "+ QString::number(m->pompe_linked->GetNum());
     combo_t_p.setCurrentText(curr_t_p);
-    combo_etat.setCurrentIndex(num_etat);
+    combo_etat.setCurrentIndex(m->etat);
 
-    setEtatColor(num_etat);
+
 }
 
-void MoteurWidget::setEtatColor(int e_color){
-    switch (e_color) {
-        case ARRET: {setStyleSheet("background-color:red;"); break;}
-        case MARCHE: {setStyleSheet("background-color:green;"); break;}
-        case PANNE: {setStyleSheet("background-color:orange;"); break;}
+void MoteurWidget::setEtatCombo(int etat){
+    if(m->SetEtat(static_cast<etat_t>(etat)))
+    switch (etat) {
+    case ARRET: {
+        setStyleSheet("background-color:red;");
+        showInfos(); break;
+    }
+    case MARCHE: {
+        setStyleSheet("background-color:green;");
+        showInfos(); break;}
+    case PANNE: {
+        combo_etat.setCurrentIndex(0); break;}
     }
 }
 
+void MoteurWidget::setRPCombo(int index){
+
+}

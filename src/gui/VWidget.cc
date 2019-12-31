@@ -1,4 +1,4 @@
-#include "../../include/gui/VWidget.h"
+﻿#include "../../include/gui/VWidget.h"
 
 
 
@@ -20,8 +20,19 @@ VWidget::~VWidget(){
 
 
 void VWidget::setVanne(bool etat){
-    if(etat == FERME)
-        setStyleSheet("background-color : red;");
-    else setStyleSheet("background-color : green;");
+    if(etat)
+        if(v->setEtat(OUVERT)){
+             setStyleSheet("background-color : green;");
+
+        }else {
+            setChecked(!etat);
+        }
+   else
+        if(v->setEtat(FERME)){
+             setStyleSheet("background-color : red;");
+        }else {
+           setChecked(!etat);
+        }
+
 }
 

@@ -4,7 +4,9 @@
 TankWidget::TankWidget(Reservoir * _r){
     r = _r;
     init();
-    showInfos(_r->num, _r->etat, _r->capacity);
+    showInfos();
+    setEtatCombo(r->etat);
+    QObject::connect(&combo_etat, SIGNAL(currentIndexChanged(int)), this, SLOT(setEtatCombo(int)));
 
 }
 
@@ -24,17 +26,16 @@ void TankWidget::init(){
     label_name.setStyleSheet("font-weight: bold; font-size:16px;");
 
     // Capacity progress bar
-    progress_c.setValue(50);
+
     progress_c.setTextVisible(true);
     progress_c.setFormat("%p% (%v/%m)");
-
+    progress_c.setRange(0,(int)r->capacity);
 
     // Etat QTool button
     combo_etat.addItem("VIDE");
     combo_etat.addItem("PLEIN");
     combo_etat.addItem("REMPLISSAGE");
     combo_etat.addItem("VIDANGE");
-
     // form layout
     f_layout.addRow("Etat :", &combo_etat);
 
@@ -44,24 +45,49 @@ void TankWidget::init(){
     tank_layout.addLayout(&f_layout);
 }
 
-void TankWidget::showInfos(int num_t, int num_etat, double cap){
-    QString title = "Reservoir "+ QString::number(num_t);
+void TankWidget::showInfos(){
+    QString title = "Reservoir "+ QString::number(r->num);
     label_name.setText(title);
-    combo_etat.setCurrentIndex(num_etat);
-    setEtatColor(num_etat);
+    combo_etat.setCurrentIndex(r->etat);
+    //setEtatCombo(r->etat);
     //progress_c.setValue();
-    progress_c.setRange(0,(int)cap);
+
+    progress_c.setValue(r->capacity);
 
 }
 
 
-void TankWidget::setEtatColor(int e_color){
-    switch (e_color) {
-        case VIDE: {setStyleSheet("background-color:red; "); break;}
-        case PLEIN: {setStyleSheet("background-color:green;"); break;}
-        case VIDANGE: {setStyleSheet("background-color:blue;"); break;}
-        case REMPLISSAGE: {setStyleSheet("background-color:orange;"); break;}
+void TankWidget::setEtatCombo(int etat){
+
+    if(r->SetEtat(static_cast<tank_etat>(etat)))
+    {
+        switch (etat) {
+        case VIDE: {
+
+            setStyleSheet("background-color:red; ");
+            showInfos();
+            break;
+        }
+        case PLEIN: {
+            setStyleSheet("background-color:green;");
+            showInfos();
+            break;
+        }
+        case VIDANGE:{
+            setStyleSheet("background-color:blue;");
+            showInfos();
+            break;
+        }
+        case REMPLISSAGE: {
+            setStyleSheet("background-color:orange;");
+            showInfos();
+            break;
+        }
+        }
+
     }
+    else
+        combo_etat.setCurrentIndex(r->etat);
 }
 
 //void TankWidget::paintEvent(QPaintEvent * ){

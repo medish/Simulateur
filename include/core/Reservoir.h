@@ -29,7 +29,7 @@ private:
 
 public:
 
-	Reservoir(int num, double c);
+    Reservoir(int num, double c, Moteur *);
 	~Reservoir();
 
 	// Getters

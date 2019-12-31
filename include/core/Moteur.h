@@ -19,7 +19,7 @@ private:
 	static const double consomation;
 
 public:
-	Moteur(int n, etat_t etat, Reservoir& r);
+    Moteur(int n);
 	~Moteur();
 	//Getters
 	int GetNumero(){return num;}; 
@@ -27,9 +27,9 @@ public:
 	Pompe* GetPompe(){return pompe_linked;};
 	Reservoir* GetReservoir(){return res_linked;};
 	//Setters
-	void SetEtat(const etat_t etat);
-	void SetPompe(Pompe& po);
-	void SetReservoir(Reservoir& res);
+    bool SetEtat(etat_t etat);
+    void SetPompe(Pompe * po);
+    void SetReservoir(Reservoir * res);
 	friend void consomme( Reservoir& r, Moteur& m);
 	//Affiche information
  	void printInfos(); 

@@ -5,8 +5,8 @@ bool ValveMr::alimente(Moteur& m,  Reservoir& r){
 	if(m.GetReservoir() != &r){ 
 		tmp =  r.GetDispoPompe();
 		if(tmp){
-			m.SetReservoir(r);
-			m.SetPompe(*(tmp));
+            m.SetReservoir(&r);
+            m.SetPompe(tmp);
 			return true;
 		}
 	}
@@ -15,21 +15,41 @@ bool ValveMr::alimente(Moteur& m,  Reservoir& r){
 
 
 bool ValveMr::setEtat(const of _etat){
+    switch (_etat) {
+        case FERME:{
+            if(moteurs[0]->GetEtat() == MARCHE
+                    && moteurs[0]->GetNumero() != moteurs[0]->GetReservoir()->GetNum())
+            {
+                moteurs[0]->GetPompe()->SetEtat(ARRET);
+            }
+            if(moteurs[1]->GetEtat() == MARCHE
+                    && moteurs[1]->GetNumero() != moteurs[1]->GetReservoir()->GetNum())
+            {
+                moteurs[1]->GetPompe()->SetEtat(ARRET);
+            }
 
-    // Verifier si Moteur est en ARRET , et S'il existe au moins une pompe en ARRET
-    if((moteurs[0]->GetEtat() == ARRET
-            && (reservoirs[1]->GetPompe(0)->GetEtat()== ARRET
-                || reservoirs[1]->GetPompe(1)->GetEtat() == ARRET)
-        )
-       || (moteurs[1]->GetEtat() == ARRET
-           && (reservoirs[0]->GetPompe(0)->GetEtat()== ARRET
-               || reservoirs[0]->GetPompe(1)->GetEtat() == ARRET)
-           )
-       )
-    {
-        return true;
-        etat = _etat;
+            etat = _etat;
+            return true;
+        }
+        case OUVERT:{
+            // Verifier si Moteur est en ARRET , et S'il existe au moins une pompe en ARRET
+            if((moteurs[0]->GetEtat() == ARRET
+                    && (reservoirs[1]->GetPompe(0)->GetEtat()== ARRET
+                        || reservoirs[1]->GetPompe(1)->GetEtat() == ARRET)
+                )
+               || (moteurs[1]->GetEtat() == ARRET
+                   && (reservoirs[0]->GetPompe(0)->GetEtat()== ARRET
+                       || reservoirs[0]->GetPompe(1)->GetEtat() == ARRET)
+                   )
+               )
+            {
+                etat = _etat;
+                return true;
+            }else
+                return false;
+        }
     }
+
     return false;
 }
 /*

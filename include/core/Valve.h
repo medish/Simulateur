@@ -3,9 +3,9 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 #include "Reservoir.h"
 #include "Moteur.h"
-#include <iostream>
 
 enum of{
 	FERME = 0,
@@ -20,8 +20,8 @@ protected:
 
 
 public:
-	Valve(of o, std::string nom);
-	~Valve();
+    Valve(of, std::string);
+    virtual ~Valve();
 	
 	std::string GetNom(){return nom;};
 	of GetEtat(){return etat;};

@@ -21,9 +21,10 @@ private:
 public:
     PompeWidget(Pompe *);
     ~PompeWidget();
-    void showInfos(int, int, int);
+    void showInfos();
 public slots:
-    void setEtatColor(int = 0);
+    void setEtatCombo(int);
+    void setMoteurCombo(int = 0);
 };
 
 #endif

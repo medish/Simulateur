@@ -40,7 +40,7 @@ private:
 public:
  
 	//Constructeur
-	Pompe(int num,Reservoir &r, etat_t _etat, nb type);
+    Pompe(int num,Reservoir &r, Moteur *, nb type);
 	~Pompe();
 	
 	//Getters
@@ -53,8 +53,8 @@ public:
 	//Setters
 	void SetType(const nb nb);
     bool SetEtat(const etat_t etat);
-	void SetMoteur(Moteur & m);
-	void SetReservoir(Reservoir& res);
+    void SetMoteur(Moteur * m);
+    void SetReservoir(Reservoir * res);
 
 	//Other methods
 	void switchPanne();

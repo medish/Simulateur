@@ -26,10 +26,10 @@ private:
 public:
     TankWidget(Reservoir *);
     ~TankWidget();
-    void showInfos(int, int, double);
+    void showInfos();
 
 public slots:
-    void setEtatColor(int = 0);
+    void setEtatCombo(int);
 
 
 };

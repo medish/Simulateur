@@ -20,9 +20,10 @@ private:
 public:
     MoteurWidget(Moteur *);
     ~MoteurWidget();
-    void showInfos(int, int, int, int);
+    void showInfos();
 public slots:
-    void setEtatColor(int = 0);
+    void setEtatCombo(int);
+    void setRPCombo(int);
 };
 
 #endif
