@@ -1,11 +1,17 @@
 cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
 project(Simulateur)
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_BUILD_TYPE Debug)
 set(EXECUTABLE_OUTPUT_PATH ./bin/${CMAKE_BUILD_TYPE})
+set(CMAKE_CXX_FLAGS "-lsqlite3")
+
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5Xml REQUIRED)
+
+
 
 include_directories( ${Qt5Widgets_INCLUDES} include/ include/core include/gui include/states /usr/include)
 link_directories(/usr/lib)
@@ -23,7 +29,7 @@ file(
 add_executable (Simulateur ${SOURCES} ${HEADERS})
 
 
-target_link_libraries(Simulateur ${Qt5Widgets_LIBRARIES} sqlite3)	
+target_link_libraries(Simulateur ${Qt5Widgets_LIBRARIES} Qt5::Xml sqlite3)
 
 
 #Crée l'archive du project
@@ -39,4 +45,4 @@ ADD_CUSTOM_TARGET(dist
 		  COMMAND rm -rf  ${DIST_DIR}
                   WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
-ADD_CUSTOM_TARGET(run COMMAND ./bin/Debug/Simulateur)
+ADD_CUSTOM_TARGET(run COMMAND cd bin/Debug && ./Simulateur)
