@@ -69,11 +69,9 @@ void MainGui::updateGui(){
     int count = main_layout.count();
     for (int i =0;i<count;i++) {
         QWidget * w = main_layout.itemAt(i)->widget();
-        MyQWidget * mw = (MyQWidget*)w;
+        MyQWidget * mw = dynamic_cast<MyQWidget*>(w);
         mw->showInfos();
-
     }
-
 }
 void MainGui::paintEvent(QPaintEvent*){
 
