@@ -10,8 +10,7 @@
 #include "MyQWidget.h"
 
 class MainGui;
-
-class MoteurWidget : public MyQWidget {
+class MoteurWidget : public QLabel , public MyQWidget{
     Q_OBJECT
 private:
     Moteur * m;
@@ -21,7 +20,6 @@ private:
     QComboBox combo_t_p, combo_etat;
     QLabel label_name;
     void init();
-
 
 public:
     MoteurWidget(MainGui *, Moteur *);

@@ -9,7 +9,7 @@
 
 class MainGui;
 
-class VWidget : virtual public QPushButton, virtual public MyQWidget {
+class VWidget :  public QPushButton, public MyQWidget {
     Q_OBJECT
 private:
     MainGui * mainGui;

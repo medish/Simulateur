@@ -15,7 +15,7 @@
 
 class MainGui;
 
-class TankWidget : virtual public QLabel, virtual public MyQWidget {
+class TankWidget : public QLabel, virtual public MyQWidget {
     Q_OBJECT
 private:
     MainGui * mainGui;

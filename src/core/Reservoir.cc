@@ -100,12 +100,12 @@ void Reservoir::printInfos(){
 //Fonction amies
 void operator+(Reservoir& a, Reservoir& b){
 	double moyenne = 0;
-	if(a.capacity > 0 || b.capacity > 0){
+    if(a.capacity > 0 || b.capacity > 0){
 		moyenne = (a.capacity + b.capacity)/2;
 		a.capacity  = (moyenne);
 		b.capacity = (moyenne);
 	}
 	else{
-		std::cout << "Transfert impossible entre " << a.GetNum() << "et " << b.GetNum() << std::endl;
+        std::cout << "Transfert impossible entre " << a.num << "et " << b.num << std::endl;
 	}
 }

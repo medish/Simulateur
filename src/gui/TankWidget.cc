@@ -1,7 +1,8 @@
 #include "../../include/gui/TankWidget.h"
 
 
-TankWidget::TankWidget(Reservoir * _r){
+TankWidget::TankWidget(MainGui * _mainGui, Reservoir * _r){
+    mainGui = _mainGui;
     r = _r;
     init();
     showInfos();
@@ -70,17 +71,17 @@ void TankWidget::setEtatCombo(int etat){
         }
         case PLEIN: {
             setStyleSheet("background-color:green;");
-            showInfos();
+            mainGui->updateGui();
             break;
         }
         case VIDANGE:{
             setStyleSheet("background-color:blue;");
-            showInfos();
+            mainGui->updateGui();
             break;
         }
         case REMPLISSAGE: {
             setStyleSheet("background-color:orange;");
-            showInfos();
+            mainGui->updateGui();
             break;
         }
         }
@@ -89,6 +90,7 @@ void TankWidget::setEtatCombo(int etat){
     else
         combo_etat.setCurrentIndex(r->etat);
 }
+
 
 //void TankWidget::paintEvent(QPaintEvent * ){
 //    qDebug("aa");

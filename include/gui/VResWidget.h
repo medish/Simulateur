@@ -11,6 +11,7 @@ private:
 public:
     VResWidget(MainGui *,ValveRes *);
     ~VResWidget();
+    void showInfos() override;
 };
 
 #endif

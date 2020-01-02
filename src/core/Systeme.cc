@@ -99,3 +99,5 @@ void Systeme::UpdateCapaciteMax(){
 
 	setCapacity(nouvellecapmax);
 }
+
+

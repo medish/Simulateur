@@ -10,6 +10,7 @@ private:
 public:
     VMRWidget(MainGui *, ValveMr *);
     ~VMRWidget();
+    void showInfos() override;
 };
 
 #endif

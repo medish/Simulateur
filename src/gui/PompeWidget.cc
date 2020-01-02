@@ -1,7 +1,8 @@
 #include "../../include/gui/PompeWidget.h"
 
 
-PompeWidget::PompeWidget(Pompe * _p){
+PompeWidget::PompeWidget(MainGui * _mainGui,Pompe * _p){
+    mainGui = _mainGui;
     p = _p;
     init();
     setEtatCombo(p->etat);
@@ -66,16 +67,16 @@ void PompeWidget::setEtatCombo(int etat){
     switch (etat) {
         case ARRET: {
         setStyleSheet("background-color:red;");
-        showInfos();
+        mainGui->updateGui();
         break;
     }
         case MARCHE: {setStyleSheet("background-color:green;");
-        showInfos();
+        mainGui->updateGui();
         break;
     }
         case PANNE: {
         setStyleSheet("background-color:orange;");
-        showInfos();
+        mainGui->updateGui();
         break;
     }
     }

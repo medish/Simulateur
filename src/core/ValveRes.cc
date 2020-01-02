@@ -1,8 +1,5 @@
 #include "../../include/core/ValveRes.h"
 
-void ValveRes::transfer(){
-	*reservoirs[0] + *reservoirs[1];
-}
 
 bool ValveRes::setEtat(const of _etat){
     etat = _etat;
@@ -13,9 +10,17 @@ bool ValveRes::setEtat(const of _etat){
         return true;
     }
     case OUVERT: {
-        reservoirs[0]->SetEtat(REMPLISSAGE);
-        reservoirs[1]->SetEtat(REMPLISSAGE);
+        if(reservoirs[0]->GetEtat() == VIDE || reservoirs[1]->GetEtat() == VIDE){
+            etat = _etat;
+            reservoirs[0]->SetEtat(REMPLISSAGE);
+            reservoirs[1]->SetEtat(REMPLISSAGE);
+            *reservoirs[0] + *reservoirs[1];
         return true;
+        }
+        else {
+            etat = FERME;
+            return false;
+        }
     }
     default: return true;
     }

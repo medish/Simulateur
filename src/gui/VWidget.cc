@@ -3,7 +3,8 @@
 
 
 
-VWidget::VWidget(Valve * _v)  {
+VWidget::VWidget(MainGui * _mainGui,Valve * _v) {
+    mainGui = _mainGui;
     v = _v;
     setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     setMaximumSize(40,30);
@@ -23,6 +24,7 @@ void VWidget::setVanne(bool etat){
     if(etat)
         if(v->setEtat(OUVERT)){
              setStyleSheet("background-color : green;");
+             mainGui->updateGui();
 
         }else {
             setChecked(!etat);
@@ -30,9 +32,14 @@ void VWidget::setVanne(bool etat){
    else
         if(v->setEtat(FERME)){
              setStyleSheet("background-color : red;");
+             mainGui->updateGui();
         }else {
            setChecked(!etat);
         }
 
+}
+
+void VWidget::showInfos(){
+    qDebug("vwidget");
 }
 

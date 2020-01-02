@@ -16,3 +16,7 @@ NavBarWidget::NavBarWidget(): btn1("Button1"), btn2("Button2"){
 NavBarWidget::~NavBarWidget(){
 
 }
+
+void NavBarWidget::showInfos(){
+    qDebug("navbar");
+}

@@ -17,7 +17,6 @@
 
 class MainGui : public QWidget{
 private :
-    QList<MyQWidget *> widgets;
     Systeme * sys;
     QGridLayout  main_layout;
     QWidget * middle_w;

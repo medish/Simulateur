@@ -1,6 +1,7 @@
 #ifndef POMPEWIDGET_H
 #define POMPEWIDGET_H
 
+#include <QWidget>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QComboBox>
@@ -12,7 +13,7 @@
 
 class MainGui;
 
-class PompeWidget : public MyQWidget{
+class PompeWidget : public QLabel, public MyQWidget{
     Q_OBJECT
 private:
     Pompe * p;

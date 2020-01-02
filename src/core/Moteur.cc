@@ -7,7 +7,6 @@
 const double consomation = 1.6;
 
 Moteur::Moteur(int _num){
-
     num = _num;
     etat = ARRET;
     res_linked = nullptr;
@@ -19,7 +18,11 @@ Moteur::~Moteur(){
 }
 
 void Moteur::SetPompe(Pompe * p){
+//    if(pompe_linked)
+//        if(pompe_linked != p)
+//            pompe_linked->SetMoteur(nullptr);
     pompe_linked = p;
+    res_linked = p ->GetReservoir();
 }
 bool Moteur::SetEtat(etat_t _etat){
     if(pompe_linked){

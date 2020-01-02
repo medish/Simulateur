@@ -42,7 +42,7 @@ public:
 	vector<Valve *> GetVannes(){return vannes;};
 	vector<Reservoir *> GetReservoirs(){return reservoirs;};
 	//Setters
-	void setCapacity(double c);
+    void setCapacity(double c);
 	
 		
 	//Operations

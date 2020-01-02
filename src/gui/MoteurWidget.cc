@@ -2,7 +2,8 @@
 
 
 
-MoteurWidget::MoteurWidget(Moteur * _m ){
+MoteurWidget::MoteurWidget(MainGui * _mainGui, Moteur * _m ){
+    mainGui = _mainGui;
     m = _m;
     init();
     setEtatCombo(m->etat);
@@ -27,12 +28,12 @@ void MoteurWidget::init(){
     label_name.setStyleSheet("font-weight: bold; font-size:16px; background-color: rgba(0,0,0,0)");
 
     combo_t_p.addItem("N/A");
-    combo_t_p.addItem("Reservoir 1 Pompe 1", QVariant(QPoint(1,1)));
-    combo_t_p.addItem("Reservoir 1 Pompe 2", QVariant(QPoint(1,2)));
-    combo_t_p.addItem("Reservoir 2 Pompe 1", QVariant(QPoint(2,1)));
-    combo_t_p.addItem("Reservoir 2 Pompe 2", QVariant(QPoint(2,2)));
-    combo_t_p.addItem("Reservoir 3 Pompe 1", QVariant(QPoint(3,1)));
-    combo_t_p.addItem("Reservoir 3 Pompe 2", QVariant(QPoint(3,2)));
+    combo_t_p.addItem("Reservoir 1 Pompe 1", QVariant(QPoint(0,0)));
+    combo_t_p.addItem("Reservoir 1 Pompe 2", QVariant(QPoint(0,1)));
+    combo_t_p.addItem("Reservoir 2 Pompe 1", QVariant(QPoint(1,0)));
+    combo_t_p.addItem("Reservoir 2 Pompe 2", QVariant(QPoint(1,1)));
+    combo_t_p.addItem("Reservoir 3 Pompe 1", QVariant(QPoint(2,0)));
+    combo_t_p.addItem("Reservoir 3 Pompe 2", QVariant(QPoint(2,1)));
 
     combo_etat.addItem("ARRET");
     combo_etat.addItem("MARCHE");
@@ -60,16 +61,19 @@ void MoteurWidget::setEtatCombo(int etat){
     switch (etat) {
     case ARRET: {
         setStyleSheet("background-color:red;");
-        showInfos(); break;
+        mainGui->updateGui(); break;
     }
     case MARCHE: {
         setStyleSheet("background-color:green;");
-        showInfos(); break;}
+        mainGui->updateGui(); break;}
     case PANNE: {
         combo_etat.setCurrentIndex(0); break;}
     }
 }
 
 void MoteurWidget::setRPCombo(int index){
+    QPoint tp = combo_t_p.itemData(index).toPoint();
+    m->SetPompe(mainGui->getSysteme()->GetReservoirs()[tp.rx()]->GetPompe(tp.ry()));
+
 
 }
