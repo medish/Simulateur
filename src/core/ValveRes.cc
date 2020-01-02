@@ -2,15 +2,19 @@
 
 
 bool ValveRes::setEtat(const of _etat){
-    etat = _etat;
+
     switch (_etat) {
     case FERME: {
-        reservoirs[0]->SetEtat(PLEIN);
-        reservoirs[1]->SetEtat(PLEIN);
-        return true;
+
+            etat = _etat;
+            reservoirs[0]->SetEtat(PLEIN);
+            reservoirs[1]->SetEtat(PLEIN);
+            return true;
+
     }
     case OUVERT: {
         if(reservoirs[0]->GetEtat() == VIDE || reservoirs[1]->GetEtat() == VIDE){
+
             etat = _etat;
             reservoirs[0]->SetEtat(REMPLISSAGE);
             reservoirs[1]->SetEtat(REMPLISSAGE);

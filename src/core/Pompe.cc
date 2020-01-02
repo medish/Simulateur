@@ -9,6 +9,7 @@
 Pompe::Pompe(int _num, Reservoir &res, Moteur * m, nb _type){
 	num = _num;
 	res_linked = &res;
+    mot_linked = nullptr;
     SetMoteur(m);
     type = _type;
 }
@@ -22,15 +23,23 @@ Pompe::~Pompe(){
 void Pompe::SetMoteur(Moteur * m){
     if(m){
         if(m->GetEtat() == ARRET){
+            if(m->GetPompe())
+                m->GetPompe()->SetMoteur(nullptr);
             mot_linked = m;
             SetEtat(MARCHE);
             m->SetPompe(this);
+        }else {
+
         }
     }else{
+        if(mot_linked)
+            if(mot_linked->GetPompe())
+                mot_linked->SetPompe(nullptr);
         mot_linked = nullptr;
         SetEtat(ARRET);
+        }
     }
-} 
+
 bool Pompe::SetEtat(const etat_t _etat){
     switch (_etat) {
     case ARRET:{

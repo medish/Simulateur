@@ -20,7 +20,7 @@ private :
     Systeme * sys;
     QGridLayout  main_layout;
     QWidget * middle_w;
-    void init(std::vector<Reservoir*>, std::vector<Moteur*>, std::vector<Valve*>);
+    void init();
 public:
     MainGui(Systeme *);
     ~MainGui();

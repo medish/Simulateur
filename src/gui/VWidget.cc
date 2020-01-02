@@ -28,6 +28,7 @@ void VWidget::setVanne(bool etat){
 
         }else {
             setChecked(!etat);
+            mainGui->updateGui();
         }
    else
         if(v->setEtat(FERME)){
@@ -35,11 +36,12 @@ void VWidget::setVanne(bool etat){
              mainGui->updateGui();
         }else {
            setChecked(!etat);
+           mainGui->updateGui();
         }
 
 }
 
 void VWidget::showInfos(){
-    qDebug("vwidget");
+   // qDebug("vwidget");
 }
 

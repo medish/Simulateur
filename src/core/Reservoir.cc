@@ -38,6 +38,7 @@ Pompe* Reservoir::GetDispoPompe(){
 }
 
 bool Reservoir::SetEtat(tank_etat _etat){
+
     switch (_etat) {
     case VIDE:{
         capacity =0;
@@ -54,12 +55,12 @@ bool Reservoir::SetEtat(tank_etat _etat){
         etat = _etat;
         return true;
     }
-    case VIDANGE:{
+    case REMPLISSAGE:{
         setPompes(ARRET);
         etat = _etat;
         return true;
     }
-    case REMPLISSAGE:{
+    case VIDANGE:{
         setPompes(ARRET);
         etat = _etat;
         return true;

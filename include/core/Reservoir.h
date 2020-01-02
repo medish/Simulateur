@@ -47,7 +47,7 @@ public:
 
     // Others methods
     friend void operator+(Reservoir& a, Reservoir& b);
-    friend void consomme(Reservoir& r, Moteur& m);
+    friend void consomme(Reservoir&);
     void setPompes(const etat_t);
     bool estVide();
     void printInfos(); //Debugger

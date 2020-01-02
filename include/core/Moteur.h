@@ -30,7 +30,7 @@ public:
     bool SetEtat(etat_t etat);
     void SetPompe(Pompe * po);
     void SetReservoir(Reservoir * res);
-	friend void consomme( Reservoir& r, Moteur& m);
+    void consomme( Reservoir& r);
 	//Affiche information
  	void printInfos(); 
 };

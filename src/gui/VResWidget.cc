@@ -10,5 +10,5 @@ VResWidget::~VResWidget(){
 }
 
 void VResWidget::showInfos(){
-    qDebug("vreswidget");
+   // qDebug("vreswidget");
 }

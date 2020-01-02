@@ -35,8 +35,8 @@ void TankWidget::init(){
     // Etat QTool button
     combo_etat.addItem("VIDE");
     combo_etat.addItem("PLEIN");
-    combo_etat.addItem("REMPLISSAGE");
     combo_etat.addItem("VIDANGE");
+    combo_etat.addItem("REMPLISSAGE");
     // form layout
     f_layout.addRow("Etat :", &combo_etat);
 
@@ -66,7 +66,7 @@ void TankWidget::setEtatCombo(int etat){
         case VIDE: {
 
             setStyleSheet("background-color:red; ");
-            showInfos();
+             mainGui->updateGui();
             break;
         }
         case PLEIN: {
@@ -75,12 +75,12 @@ void TankWidget::setEtatCombo(int etat){
             break;
         }
         case VIDANGE:{
-            setStyleSheet("background-color:blue;");
+            setStyleSheet("background-color:orange;");
             mainGui->updateGui();
             break;
         }
         case REMPLISSAGE: {
-            setStyleSheet("background-color:orange;");
+            setStyleSheet("background-color:blue;");
             mainGui->updateGui();
             break;
         }

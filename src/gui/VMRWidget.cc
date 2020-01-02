@@ -10,5 +10,5 @@ VMRWidget::~VMRWidget(){
 }
 
 void VMRWidget::showInfos(){
-    qDebug("vmrwidget");
+   // qDebug("vmrwidget");
 }

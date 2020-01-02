@@ -18,5 +18,5 @@ NavBarWidget::~NavBarWidget(){
 }
 
 void NavBarWidget::showInfos(){
-    qDebug("navbar");
+    //qDebug("navbar");
 }
