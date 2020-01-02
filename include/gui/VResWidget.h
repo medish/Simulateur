@@ -6,9 +6,10 @@
 
 class VResWidget : public VWidget {
 private:
+
     ValveRes * vres;
 public:
-    VResWidget(ValveRes *);
+    VResWidget(MainGui *,ValveRes *);
     ~VResWidget();
 };
 

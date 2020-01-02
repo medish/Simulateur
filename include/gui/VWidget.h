@@ -4,14 +4,20 @@
 #include <QWidget>
 #include <QPushButton>
 #include "../core/Valve.h"
+#include "MainGui.h"
+#include "MyQWidget.h"
 
-class VWidget : public QPushButton {
+class MainGui;
+
+class VWidget : virtual public QPushButton, virtual public MyQWidget {
     Q_OBJECT
 private:
+    MainGui * mainGui;
     Valve * v;
 public:
-    VWidget(Valve *);
+    VWidget(MainGui *, Valve *);
     ~VWidget();
+    void showInfos() override;
 public slots:
     void setVanne(bool = false);
 };

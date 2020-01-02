@@ -1,27 +1,31 @@
 #ifndef POMPEWIDGET_H
 #define POMPEWIDGET_H
 
-#include <QWidget>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QComboBox>
 #include <QFormLayout>
 #include <QDebug>
 #include "../core/Pompe.h"
+#include "MainGui.h"
+#include "MyQWidget.h"
 
-class PompeWidget : public QLabel{
+class MainGui;
+
+class PompeWidget : public MyQWidget{
     Q_OBJECT
 private:
     Pompe * p;
+    MainGui * mainGui;
     QVBoxLayout p_layout;
     QFormLayout f_layout;
     QComboBox combo_etat, combo_m;
     QLabel label_name;
     void init();
 public:
-    PompeWidget(Pompe *);
+    PompeWidget(MainGui *,Pompe *);
     ~PompeWidget();
-    void showInfos();
+    void showInfos() override;
 public slots:
     void setEtatCombo(int);
     void setMoteurCombo(int = 0);

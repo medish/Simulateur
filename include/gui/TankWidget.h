@@ -10,10 +10,15 @@
 #include <QComboBox>
 #include <QPainter>
 #include "../core/Reservoir.h"
+#include "MainGui.h"
+#include "MyQWidget.h"
 
-class TankWidget : public QLabel {
+class MainGui;
+
+class TankWidget : virtual public QLabel, virtual public MyQWidget {
     Q_OBJECT
 private:
+    MainGui * mainGui;
     Reservoir * r;
     QVBoxLayout tank_layout;
     QHBoxLayout p_layout;
@@ -24,12 +29,13 @@ private:
     void init();
 
 public:
-    TankWidget(Reservoir *);
+    TankWidget(MainGui *, Reservoir *);
     ~TankWidget();
-    void showInfos();
+    void showInfos() override;
 
 public slots:
     void setEtatCombo(int);
+
 
 
 };

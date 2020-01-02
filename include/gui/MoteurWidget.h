@@ -6,21 +6,27 @@
 #include <QComboBox>
 #include <QFormLayout>
 #include "../core/Moteur.h"
+#include "MainGui.h"
+#include "MyQWidget.h"
 
-class MoteurWidget : public QLabel {
+class MainGui;
+
+class MoteurWidget : public MyQWidget {
     Q_OBJECT
 private:
     Moteur * m;
+    MainGui * mainGui;
     QVBoxLayout m_layout;
     QFormLayout f_layout;
     QComboBox combo_t_p, combo_etat;
     QLabel label_name;
     void init();
 
+
 public:
-    MoteurWidget(Moteur *);
+    MoteurWidget(MainGui *, Moteur *);
     ~MoteurWidget();
-    void showInfos();
+    void showInfos() override;
 public slots:
     void setEtatCombo(int);
     void setRPCombo(int);
