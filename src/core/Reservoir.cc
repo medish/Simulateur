@@ -7,12 +7,13 @@ Reservoir::Reservoir(int _num, double c, Moteur * m){
 	num= _num;
 	capacity = c;
 	etat = PLEIN;
-    moteurs.push_back(m);
-    m->SetReservoir(this);
-    moteurs.push_back(nullptr);
+  moteurs.push_back(m);
+  m->SetReservoir(this);
+  moteurs.push_back(nullptr);
 
-    pompes.push_back(new Pompe(1,*this,moteurs[0], PRIMAIRE));
-    pompes.push_back(new Pompe(2,*this,moteurs[1], SECONDAIRE));
+  pompes.push_back(new Pompe(1,*this,moteurs[0], PRIMAIRE));
+  pompes.push_back(new Pompe(2,*this,moteurs[1], SECONDAIRE));
+
 }
 
 Reservoir::~Reservoir(){

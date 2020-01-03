@@ -36,10 +36,12 @@ void MainGState::update(){
     //sys->AfficherEtat();
 
 	//Boucle de jeu de la simulation (Ajouter le sortie forcée par l'utilisateur comme condition d'arrêt)	
+
     /*while(sys->GetCapacity() > 0){
 		sys->updateconso();
 		sleep(1);//Consommation du moteur par seconde
     }*/
+
 
     //sys->AfficherEtat();
 	

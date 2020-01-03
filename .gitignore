@@ -1,4 +1,4 @@
-# Prerequisites
+ Prerequisites
 *.d
 
 # Compiled Object files
@@ -110,3 +110,5 @@ compile_commands.json
 
 # QtCreator local machine specific files for imported projects
 *creator.user*
+#Automoc generated files
+Simulateur_autogen
