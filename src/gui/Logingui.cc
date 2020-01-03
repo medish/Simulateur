@@ -52,19 +52,22 @@ bool Logingui::checkcred(){
    QString password = this->getPassword()->text();
     if(!login.isEmpty() && !password.isEmpty()){
        if(state->isUser(login, password)){
-            std::cout << "Mot de passe validé" << std::endl;
-            MainGState* ms = new MainGState();
+           // std::cout << "Mot de passe validé" << std::endl;
+            MainGState* ms = new MainGState(state->GetManager()->GetFile());
             state->GetManager()->PopState();
             state->GetManager()->PushState(ms);
             state->GetManager()->GetCurrentState()->update();
-            std::cout << "NewState" << state->GetManager()->GetCurrentState() << std::endl;
+           // std::cout << "NewState" << state->GetManager()->GetCurrentState() << std::endl;
             return true;
         }else{
-            std::cout << "Retour à l'état de connexion" << std::endl;
-            return false;
+          //  std::cout << "Retour à l'état de connexion" << std::endl;
+           QMessageBox::warning(this, "Erreur d'accès à la base de donnée", "Le pilote n'existe pas.");
+          return false;
         }
+        QMessageBox::warning(this, "Erreur d'accès à la base de donnée", "Le pilote n'existe pas.");
        return false;
     }
+     QMessageBox::warning(this, "Erreur d'accès à la base de donnée", "Le pilote n'existe pas.");
     return false;
  }
 

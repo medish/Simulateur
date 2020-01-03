@@ -7,23 +7,25 @@
 #include "State.h"
 #include "../core/Systeme.h"
 #include "../gui/MainGui.h"
+#include "../include/utils/xmlparser.h"
 
 class State;
 
 class MainGState : public State {
 private:
-	Systeme* sys;
+    Systeme* sys;
     MainGui * mainGui;
 public:
 
-	MainGState();
+  MainGState(const char*);
 	~MainGState();
     //Getters
     MainGui * getMainGui(){return mainGui;}
-	void init();
-	void free();
+    void init();
+    void init(const char *);
+    void free();
     void display();
-	void update();
+    void update();
 };
 
 

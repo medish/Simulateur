@@ -3,12 +3,11 @@
 
 Loginstate::Loginstate(){
     gui = new Logingui(this);
-    status = false;
-    //init();
+    init();
 }
 
 Loginstate::~Loginstate(){
-	free();
+free();
     delete gui;
 }
 
@@ -17,7 +16,7 @@ void Loginstate::init(){
     int code  = sqlite3_open("../../simulateur.db", &db);
     //Debug
     //std::cout <<"Code retour Sqlite3 open" <<  code << std::endl;
-   // std::cout << db << std::endl;
+   // std::cout <<"Init: " << db << std::endl;
     if(code != SQLITE_OK){
         std::cerr << "Erreur Sqlite3 :" << sqlite3_errmsg(db) << std::endl;
         std::cerr << "Impossible d'acceder à la base de donnée, fermeture duprogramme" << std::endl;
@@ -43,10 +42,11 @@ void Loginstate::display(){
 
 bool Loginstate::isUser(QString login, QString password){
     sqlite3_stmt* resultat;
-    QString sql = "SELECT * FROM Pilotes WHERE Login = '"+ login +"' AND Password = '"+ password +"';";
+    QString sql = "SELECT * FROM Pilotes WHERE Login = '"+ login +"' AND Password = '"+ password +"' ;";
     //Debug
     // std::cout << sql.toStdString() << std::endl;
-    int coderetour = sqlite3_prepare_v2(db, sql.toStdString().data(), -1, &resultat,NULL);
+    std::cout << db << std::endl;
+    int coderetour = sqlite3_prepare_v2(db, sql.toStdString().data(), -1, &resultat,0);
     //Debug
     //std::cout <<"Code retour sqlite3 prepare:  " << coderetour << std::endl;
     //std::cout <<"Accès à la base de donnée: " << this->db << std::endl;

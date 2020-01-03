@@ -2,8 +2,8 @@
 #include "../../include/states/MainGState.h"
 #include "../../include/gui/MainGui.h"
 
-MainGState::MainGState(){
-    init();
+MainGState::MainGState(const char* infile){
+    init(infile);
 }
 
 MainGState::~MainGState(){
@@ -11,7 +11,15 @@ MainGState::~MainGState(){
 }
 
 void MainGState::init(){
-	sys = new Systeme(400);
+  sys = new Systeme(400);
+  mainGui = new MainGui(sys);
+}
+
+void MainGState::init(const char* infile){
+    //Appel au Parser pour charger un fichier
+    xmlparser parser("../../assets/pannes/pannes1.xml");
+    parser.parseXmlFile();
+    sys = new Systeme(400);
     mainGui = new MainGui(sys);
     //mainGui->show();
 

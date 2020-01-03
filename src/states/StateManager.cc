@@ -1,8 +1,8 @@
 #include "../../include/states/State.h"
 #include "../../include/states/StateManager.h"
 #include "../../include/states/MainGState.h"
-StateManager::StateManager(){
-
+StateManager::StateManager(const char* file){
+  infile = file;
 }
 
 StateManager::~StateManager(){
