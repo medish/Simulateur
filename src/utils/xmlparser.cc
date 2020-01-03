@@ -7,7 +7,7 @@ xmlparser::xmlparser(){
 
 xmlparser::xmlparser(const char* filepath){
     file = new QFile(filepath);
-    if(!file->open(QIODevice::ReadOnly)){
+    if(!(file->open(QIODevice::ReadOnly))){
          QMessageBox::warning(this, "Erreur à l'ouverture du document XML", "Le document XML n'a pas pu être ouvert.");
     }
     dom = new QDomDocument();

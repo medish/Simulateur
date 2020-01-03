@@ -2,21 +2,20 @@
 #define H_STATEMANAGER 
 
 #include <stack>
-#include <QObject>
+
 #include "State.h"
 class State;
 
-class StateManager: public QObject{
-    Q_OBJECT
+class StateManager {
 private:
 	std::stack<State*> SStack;
-protected:
-    bool status;
+	const char* infile;
 public:
-	StateManager();
+	StateManager(const char* file);
 	~StateManager(); 
 	
-	//Getters 
+	//Getters
+	const char* GetFile() const {return infile;};
 	//Retoune le sommet de la pile
 	State* GetCurrentState() { return ( !SStack.empty() ) ? SStack.top() : NULL; }
  	

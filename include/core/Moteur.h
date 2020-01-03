@@ -16,21 +16,22 @@ private:
 	etat_t etat;
 	Reservoir* res_linked; //Nom du réservoir qui l'alimente
 	Pompe* pompe_linked; //Pompe qui lui envoie du carburant
-	static const double consomation;
+	double consomation;
 
 public:
-    Moteur(int n);
+	Moteur(int n, double c);
 	~Moteur();
 	//Getters
 	int GetNumero(){return num;}; 
 	etat_t GetEtat(){return etat;};
 	Pompe* GetPompe(){return pompe_linked;};
 	Reservoir* GetReservoir(){return res_linked;};
+	double GetConsomation() const {return consomation;};
 	//Setters
-    bool SetEtat(etat_t etat);
-    void SetPompe(Pompe * po);
-    void SetReservoir(Reservoir * res);
-    void consomme( Reservoir& r);
+	bool SetEtat(etat_t etat);
+	void SetPompe(Pompe * po);
+	void SetReservoir(Reservoir * res);
+	friend void consomme(Reservoir& r, Moteur& m);
 	//Affiche information
  	void printInfos(); 
 };

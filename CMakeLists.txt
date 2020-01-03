@@ -46,3 +46,4 @@ ADD_CUSTOM_TARGET(dist
                   WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
 ADD_CUSTOM_TARGET(run COMMAND cd bin/Debug && ./Simulateur)
+ADD_CUSTOM_TARGET(runfile COMMAND cd bin/Debug && ./Simulateur ../../assets/pannes/pannes1.xml)
