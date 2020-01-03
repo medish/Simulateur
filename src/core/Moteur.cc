@@ -6,11 +6,11 @@
 
 const double consomation = 1.6;
 
-Moteur::Moteur(int _num, etat_t _etat, Reservoir& res){
-
-	etat = _etat;
-	res_linked = &res;
-	num = _num;
+Moteur::Moteur(int _num){
+    num = _num;
+    etat = ARRET;
+    res_linked = nullptr;
+    pompe_linked = nullptr;
 } 
 
 Moteur::~Moteur(){
@@ -18,23 +18,40 @@ Moteur::~Moteur(){
 	delete pompe_linked;
 }
 
-void Moteur::SetPompe(Pompe& p){ 
-	pompe_linked = &p;
+void Moteur::SetPompe(Pompe * p){
+    if(p){
+        if(pompe_linked && p != pompe_linked)
+            pompe_linked->SetMoteur(nullptr);
+        pompe_linked = p;
+        res_linked = p->GetReservoir();
+    }else {
+
+        pompe_linked = nullptr;
+        res_linked = nullptr;
+
+
+    }
+
 }
-void Moteur::SetEtat(const etat_t _etat){
-	etat = _etat;
+bool Moteur::SetEtat(etat_t _etat){
+    if(pompe_linked){
+        etat = _etat;
+        return true;
+    }
+    etat = ARRET;
+    return true;
 }
-void Moteur::SetReservoir(Reservoir& res){
-	res_linked = &res;
+void Moteur::SetReservoir(Reservoir * res){
+    res_linked = res;
 }
 void Moteur::printInfos(){
 	std::cout << "Moteur: "<< GetNumero() << "/" << GetEtat() << "/" << GetReservoir()->GetNum() << "/" << GetPompe()->GetNum() << std::endl; 
 }  
 
-void consomme(Reservoir& r, Moteur& m){
+void consomme(Reservoir& r){
 		if(r.GetCapacity() > 0 ){
 			//std::cout << "Debug " << consomation << std::endl;
-			double nvcap = r.GetCapacity() - consomation;
+            double nvcap = r.GetCapacity() - consomation;
 			r.SetCapacity(nvcap);	
 		}
 		else{

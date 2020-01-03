@@ -13,6 +13,7 @@ find_package(Qt5Xml REQUIRED)
 
 
 
+
 include_directories( ${Qt5Widgets_INCLUDES} include/ include/core include/gui include/states /usr/include)
 link_directories(/usr/lib)
 
@@ -26,10 +27,9 @@ file(
 	SOURCES
 	"src/*.cc"
 	)
+
 add_executable (Simulateur ${SOURCES} ${HEADERS})
-
-
-target_link_libraries(Simulateur ${Qt5Widgets_LIBRARIES} Qt5::Xml sqlite3)
+target_link_libraries(Simulateur ${Qt5Widgets_LIBRARIES} Qt5::Xml sqlite3)	
 
 
 #Crée l'archive du project

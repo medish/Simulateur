@@ -1,5 +1,5 @@
+#include <iostream>
 #include <QApplication>
-
 #include "../include/core/Systeme.h"
 #include "../include/states/State.h"
 #include "../include/states/StateManager.h"

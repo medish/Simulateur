@@ -1,7 +1,5 @@
-
 #ifndef H_MOTEUR
 #define H_MOTEUR
-#pragma once
 
 
 #include "Reservoir.h"
@@ -12,6 +10,7 @@ class Pompe;
 class Reservoir;
 
 class Moteur{
+    friend class MoteurWidget;
 private:
 	int  num; //Numero du moteur
 	etat_t etat;
@@ -20,7 +19,7 @@ private:
 	static const double consomation;
 
 public:
-	Moteur(int n, etat_t etat, Reservoir& r);
+    Moteur(int n);
 	~Moteur();
 	//Getters
 	int GetNumero(){return num;}; 
@@ -28,10 +27,10 @@ public:
 	Pompe* GetPompe(){return pompe_linked;};
 	Reservoir* GetReservoir(){return res_linked;};
 	//Setters
-	void SetEtat(const etat_t etat);
-	void SetPompe(Pompe& po);
-	void SetReservoir(Reservoir& res);
-	friend void consomme( Reservoir& r, Moteur& m);
+    bool SetEtat(etat_t etat);
+    void SetPompe(Pompe * po);
+    void SetReservoir(Reservoir * res);
+    void consomme( Reservoir& r);
 	//Affiche information
  	void printInfos(); 
 };

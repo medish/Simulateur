@@ -1,6 +1,5 @@
 #ifndef H_SYSTEME
 #define H_SYSTEME
-#pragma once
 
 
 #include "Pompe.h"
@@ -24,6 +23,7 @@ class ValveMr;
 class ValveRes;
  
 class Systeme{
+    friend class MainGui;
 private:
 	double cap_max;
 
@@ -42,7 +42,7 @@ public:
 	vector<Valve *> GetVannes(){return vannes;};
 	vector<Reservoir *> GetReservoirs(){return reservoirs;};
 	//Setters
-	void setCapacity(double c);
+    void setCapacity(double c);
 	
 		
 	//Operations
