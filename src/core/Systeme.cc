@@ -1,6 +1,6 @@
 #include "../../include/core/Systeme.h"
 
-Systeme::Systeme(double cap, double dur , double consomation){
+Systeme::Systeme(double cap, int dur , double consomation){
 	cap_max = cap;
 	duree =dur;
     //Initialise les 3 moteurs

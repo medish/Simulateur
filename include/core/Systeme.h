@@ -34,7 +34,7 @@ private:
 
 public:
 	Systeme(double cap);
-	Systeme(double cap, double dur , double consomation);
+	Systeme(double cap, int dur , double consomation);
 	~Systeme();
 
 	//Getters
