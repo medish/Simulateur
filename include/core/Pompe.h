@@ -1,6 +1,5 @@
 #ifndef H_POMPE
 #define H_POMPE
-#pragma once
 
 #ifndef H_ETAT
 #define H_ETAT
@@ -30,18 +29,18 @@ enum nb{
 
 
 class Pompe{
-
+    friend class PompeWidget;
 private:
 	int num;
 	nb type;
 	etat_t etat;
-	Moteur* mot_linked; //Le moteur qu'elle alimente
+    Moteur* mot_linked; //Le moteur qu'elle alimente
 	Reservoir* res_linked; //Le reservoir auquel elle appartient 
 
 public:
  
 	//Constructeur
-	Pompe(int num,Reservoir &r, etat_t _etat, nb type);
+    Pompe(int num,Reservoir &r, Moteur *, nb type);
 	~Pompe();
 	
 	//Getters
@@ -53,9 +52,9 @@ public:
 	
 	//Setters
 	void SetType(const nb nb);
-	void SetEtat(const etat_t etat);
-	void SetMoteur(Moteur & m);
-	void SetReservoir(Reservoir& res);
+    bool SetEtat(const etat_t etat);
+    void SetMoteur(Moteur * m);
+    void SetReservoir(Reservoir * res);
 
 	//Other methods
 	void switchPanne();

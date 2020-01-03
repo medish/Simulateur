@@ -7,6 +7,7 @@ set(CMAKE_BUILD_TYPE Debug)
 set(EXECUTABLE_OUTPUT_PATH ./bin/${CMAKE_BUILD_TYPE})
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
+
 include_directories( ${Qt5Widgets_INCLUDES} include/ include/core include/gui include/states /usr/include)
 link_directories(/usr/lib)
 
@@ -20,9 +21,8 @@ file(
 	SOURCES
 	"src/*.cc"
 	)
+
 add_executable (Simulateur ${SOURCES} ${HEADERS})
-
-
 target_link_libraries(Simulateur ${Qt5Widgets_LIBRARIES} sqlite3)	
 
 

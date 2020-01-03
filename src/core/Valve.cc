@@ -5,14 +5,15 @@ Valve::Valve(of _etat, std::string _nom){
 	etat = _etat;
 	nom = _nom;
 }
+
 Valve::~Valve(){
 
 }
-	
-
-void Valve::ChangerEtat(){
-	etat = static_cast<of>(1-etat);
+bool Valve::setEtat(of){
+    std::cout<<"setEtat from Valve class"<<std::endl;
+    return false;
 }
+	
 
 void Valve::printInfos(){
 	std::cout << GetNom()<<"/"<<GetEtat()<<"/";

@@ -12,7 +12,6 @@ StateManager::~StateManager(){
 void StateManager::PushState(State* state )
 {   state->SetStateManager((*this)); 
     SStack.push(state);
-    SStack.top()->init();
 }
  
 void StateManager::SetState(State* state )

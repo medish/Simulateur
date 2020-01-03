@@ -6,11 +6,12 @@
  
 //Initialise une pompe (avec un type un moteur un tank et un état )
 //Dans le cas ou c'est une pompe de secours pas de moteur assigné etat arret et type secondaire
-Pompe::Pompe(int _num, Reservoir &res, etat_t _etat, nb _type){
+Pompe::Pompe(int _num, Reservoir &res, Moteur * m, nb _type){
 	num = _num;
 	res_linked = &res;
-	etat = _etat;
-	type = _type;
+    mot_linked = nullptr;
+    SetMoteur(m);
+    type = _type;
 }
 
 Pompe::~Pompe(){
@@ -19,14 +20,57 @@ Pompe::~Pompe(){
 }
 
   
-void Pompe::SetMoteur(Moteur& m){
-	mot_linked = &m;
-} 
-void Pompe::SetEtat(const etat_t _etat){
-	etat = _etat;
+void Pompe::SetMoteur(Moteur * m){
+    if(m){
+        if(m->GetEtat() == ARRET){
+            if(m->GetPompe())
+                m->GetPompe()->SetMoteur(nullptr);
+            mot_linked = m;
+            SetEtat(MARCHE);
+            m->SetPompe(this);
+        }else {
+
+        }
+    }else{
+        if(mot_linked)
+            if(mot_linked->GetPompe())
+                mot_linked->SetPompe(nullptr);
+        mot_linked = nullptr;
+        SetEtat(ARRET);
+        }
+    }
+
+bool Pompe::SetEtat(const etat_t _etat){
+    switch (_etat) {
+    case ARRET:{
+        if( etat == PANNE)
+            return false;
+        if(mot_linked != nullptr)
+            mot_linked->SetEtat(ARRET);
+        etat=_etat;
+        return true;
+    }
+    case MARCHE:{
+
+        if(etat != PANNE && res_linked->GetEtat() == PLEIN && mot_linked != nullptr){
+            mot_linked->SetEtat(MARCHE);
+            etat=_etat;
+            return true;
+        }
+        SetEtat(ARRET);
+        return false;
+    }
+    case PANNE:{
+        if(mot_linked != nullptr)
+            mot_linked->SetEtat(ARRET);
+        etat=_etat;
+        return true;
+    }
+    default: return false;
+    }
 }
-void Pompe::SetReservoir(Reservoir& res){
-	res_linked = &res;
+void Pompe::SetReservoir(Reservoir * res){
+    res_linked = res;
 }
 void Pompe::SetType(const nb _type){
 	type = _type;
