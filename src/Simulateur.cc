@@ -15,6 +15,7 @@ int main(int argc, char  *argv[]){
     QApplication app(argc, argv);
     StateManager sm(argv[1]);
     Loginstate* ls = new Loginstate();
+    //MainGState * m = new MainGState("");
     sm.PushState(ls);
     sm.GetCurrentState()->update();
 
