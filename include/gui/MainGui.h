@@ -7,6 +7,8 @@
 #include <QGridLayout>
 #include <QPainter>
 #include <QList>
+#include <QTimer>
+#include <QTime>
 #include <QtConcurrent/QtConcurrent>
 #include "TankWidget.h"
 #include "PompeWidget.h"
@@ -17,20 +19,25 @@
 #include "MyQWidget.h"
 
 class MainGui : public QWidget{
+    Q_OBJECT
 private :
     Systeme * sys;
     QGridLayout  main_layout;
     QWidget * middle_w;
+    QTimer timer;
+    QTime time;
     void init();
 public:
     MainGui(Systeme *);
     ~MainGui();
     void updateGui();
-    void updateGuiThread();
-    void updateConsommation();
+    void startSimulation();
     Systeme * getSysteme(){return sys;}
-protected:
-    void paintEvent(QPaintEvent *);
+    QString getTime(){return time.toString("hh:mm:ss");}
+public slots:
+    void updateConsommation();
+    void stopSimulation();
+
 };
 
 

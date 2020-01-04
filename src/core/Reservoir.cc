@@ -71,7 +71,9 @@ bool Reservoir::SetEtat(tank_etat _etat){
 }
 
 void Reservoir::SetCapacity(double c){
-	capacity = c;
+    if(c == 0)
+     SetEtat(VIDE);
+    capacity = c;
 }
 
 void Reservoir::setPompes(const etat_t _etat){

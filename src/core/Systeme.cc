@@ -1,6 +1,7 @@
 #include "../../include/core/Systeme.h"
 
 Systeme::Systeme(double cap, int dur , double consomation){
+
 	cap_max = cap;
 	duree = dur;
 	//Initialise les 3 moteurs
@@ -111,8 +112,9 @@ void Systeme::setCapacity(double c){
 /*Met à jours la capacité de chaque réservoirs plus la capacité totale*/
 void Systeme::updateconso(){
     for (int i = 0; i < 3; ++i)
-	{
-	consomme(*(moteurs[i]->GetReservoir()), *moteurs[i]);
+    {
+        if(moteurs[i]->GetEtat() == MARCHE)
+            consomme(*(moteurs[i]->GetReservoir()), *moteurs[i]);
 	}
 	UpdateCapaciteMax();
 }
@@ -124,8 +126,10 @@ void Systeme::UpdateCapaciteMax(){
 
 		nouvellecapmax += reservoirs[i]->GetCapacity();
 	}
-
-	setCapacity(nouvellecapmax);
+    if( nouvellecapmax > 1)
+        setCapacity(nouvellecapmax);
+    else
+        setCapacity(0);
 }
 
 

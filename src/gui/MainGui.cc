@@ -5,7 +5,12 @@ MainGui::MainGui(Systeme * _sys){
     sys = _sys;
 
     init();
-    updateGuiThread();
+
+    //updateGuiThread();
+
+
+
+    //timer.setInterval(150);
 }
 
 MainGui::~MainGui(){
@@ -15,6 +20,12 @@ MainGui::~MainGui(){
 void MainGui::init(){
     resize(1000,600);
     setLayout(&main_layout);
+
+
+    // Time
+    time.setHMS(0,0,0);
+    time = time.addSecs(sys->duree);
+    //timer.start(1000);
 
     middle_w = new QWidget();
     middle_w->setMinimumHeight(200);
@@ -39,7 +50,7 @@ void MainGui::init(){
     main_layout.addWidget(new VWidget(this, sys->vannes[1]), 0, 5);
 
     // Navigateur de droit
-    main_layout.addWidget(new NavBarWidget(), 0, 8 ,4, 1);
+    main_layout.addWidget(new NavBarWidget(this), 0, 8 ,4, 1);
 
     // Vannes moteurs-pompes
     main_layout.addWidget(middle_w, 2, 0, 1, 8);
@@ -61,6 +72,7 @@ void MainGui::init(){
     main_layout.setColumnStretch(8,2);
 
     // Connect signals
+    QObject::connect(&timer, SIGNAL(timeout()), this, SLOT(updateConsommation()));
 
 }
 
@@ -74,22 +86,23 @@ void MainGui::updateGui(){
 }
 
 void MainGui::updateConsommation(){
-    while(sys->cap_max > 0){
-                std::cout<<"debug::while_boucle "<<sys->GetCapacity()<<std::endl;
-                sys->updateconso();
-                QThread::sleep(1);
-                updateGui();
-
+    time = time.addSecs(-1);
+    if(sys->cap_max >0){
+        sys->updateconso();
+        updateGui();
+        return;
     }
+    sys->updateconso();
+    updateGui();
+    timer.stop();
 }
-void MainGui::updateGuiThread(){
-    QFuture<void> loopConso = QtConcurrent::run(this, &MainGui::updateConsommation);
+void MainGui::startSimulation(){
+    timer.singleShot(QTime(0,0).secsTo(time), this, SLOT(stopSimulation()));
+    timer.start(1000);
 }
-void MainGui::paintEvent(QPaintEvent*){
 
-  /* QPainter painter(this);
-   QPoint one = main_layout.itemAtPosition(2,2)->widget()->pos();
-   QPoint two = main_layout.itemAtPosition(2,3)->widget()->pos();
-   std::cout<<one.y()<<std::endl;
-   painter.drawLine(one, two);*/
+void MainGui::stopSimulation(){
+    timer.setSingleShot(false);
+    timer.stop();
+    qDebug("stopped");
 }

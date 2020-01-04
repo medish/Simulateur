@@ -28,6 +28,7 @@ class Systeme{
     friend class MainGui;
 private:
 	double cap_max;
+    double conso_mot;
 	int duree; //Durée de la simulation en secondes
 	vector<Moteur*> moteurs;
 	vector<Reservoir*> reservoirs;
@@ -40,6 +41,7 @@ public:
 
 	//Getters
 	double GetCapacity(){return cap_max;};
+    double getConsoMot(){return moteurs[0]->GetConsomation();}
 	vector<Moteur *> GetMoteurs(){return moteurs;};
 	vector<Valve *> GetVannes(){return vannes;};
 	vector<Reservoir *> GetReservoirs(){return reservoirs;};
