@@ -7,7 +7,7 @@ MainGState::MainGState(const char* infile){
 }
 
 MainGState::~MainGState(){
-	free();
+        free();
 }
 
 void MainGState::init(){
@@ -17,16 +17,17 @@ void MainGState::init(){
 
 void MainGState::init(const char* infile){
     //Appel au Parser pour charger un fichier
-    xmlparser parser("../../assets/pannes/pannes1.xml");
+   // std::cout << "DEBUG: Loading simulation file" << std::endl;
+    xmlparser parser(infile);
     parser.parseXmlFile();
-    sys = new Systeme(400);
+    sys = parser.GetSysteme();
     mainGui = new MainGui(sys);
     //mainGui->show();
 
 }
 
 void MainGState::free(){
-	delete sys;
+        delete sys;
     delete mainGui;
 }
 
@@ -43,16 +44,16 @@ void MainGState::update(){
 
     //sys->AfficherEtat();
 
-	//Boucle de jeu de la simulation (Ajouter le sortie forcée par l'utilisateur comme condition d'arrêt)	
+        //Boucle de jeu de la simulation (Ajouter le sortie forcée par l'utilisateur comme condition d'arrêt)
 
     /*while(sys->GetCapacity() > 0){
-		sys->updateconso();
-		sleep(1);//Consommation du moteur par seconde
+                sys->updateconso();
+                sleep(1);//Consommation du moteur par seconde
     }*/
 
 
     //sys->AfficherEtat();
-	
+
     //time(&endtime);
 
     //std::cout << starttime << std::endl;
