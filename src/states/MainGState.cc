@@ -2,6 +2,7 @@
 #include "../../include/states/MainGState.h"
 #include "../../include/gui/MainGui.h"
 
+
 MainGState::MainGState(const char* infile){
     init(infile);
 }
@@ -28,7 +29,7 @@ void MainGState::init(const char* infile){
 
 void MainGState::free(){
         delete sys;
-    delete mainGui;
+        delete mainGui;
 }
 
 void MainGState::update(){
@@ -46,10 +47,12 @@ void MainGState::update(){
 
         //Boucle de jeu de la simulation (Ajouter le sortie forcée par l'utilisateur comme condition d'arrêt)
 
-    /*while(sys->GetCapacity() > 0){
+    while(sys->GetCapacity() > 0){
+                std::cout<<"debug::while_boucle "<<sys->GetCapacity()<<std::endl;
                 sys->updateconso();
+                mainGui->updateGui();
                 sleep(1);//Consommation du moteur par seconde
-    }*/
+    }
 
 
     //sys->AfficherEtat();

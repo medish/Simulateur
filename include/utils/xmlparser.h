@@ -8,6 +8,7 @@
 #include <QFile>
 #include <QMessageBox>
 #include <QWidget>
+#include <QDebug>
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomNode>
 #include <QtXml/QDomElement>

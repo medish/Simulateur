@@ -8,15 +8,17 @@ xmlparser::xmlparser(){
 xmlparser::xmlparser(const char* filepath){
     file = new QFile(filepath);
     if(!(file->open(QIODevice::ReadOnly))){
-         QMessageBox::warning(this, "Erreur à l'ouverture du document XML", "Le document XML n'a pas pu être ouvert.");
+         QMessageBox::warning(this, "Erreur à l'ouverture du document XML",
+                              "Le document XML n'a pas pu être ouvert.");
     }
     dom = new QDomDocument();
+    QString errorStr;
+    int errorLine;
+    int errorColumn;
     //Récuperation des éléments du fichiers XML
-    if(!dom->setContent(file)){
-         file->close();
-         QMessageBox::warning(this, "Erreur à la lecture du document XML", "Le document XML n'a pas pu être lu.");
+    if (!dom->setContent(file, false, &errorStr, &errorLine, &errorColumn))
+            qDebug() << errorStr << errorLine << errorColumn;
     }
-}
 
 xmlparser::~xmlparser(){
     file->close();
@@ -27,7 +29,9 @@ void xmlparser::parseXmlFile(){
       int tab[7];
       int i = 0;
       QDomElement docElem = dom->documentElement();//Simulateur
-      sys = new Systeme(std::stod(docElem.attributeNode("consomation").value().toStdString()),std::stod(docElem.attributeNode("consomation").value().toStdString()), std::stod(docElem.attributeNode("consomation").value().toStdString()));
+      sys = new Systeme(std::stod(docElem.attributeNode("capacite").value().toStdString()),
+                        std::stod(docElem.attributeNode("duree").value().toStdString()),
+                        std::stod(docElem.attributeNode("consomation").value().toStdString()));
 
       QDomNode n = docElem.firstChild();//Pannes
       QDomNode nn = n.firstChild(); //Panne
@@ -59,7 +63,9 @@ void xmlparser::parseXmlFile(){
 
           nn = nn.nextSibling();
       }
-     for (int z= 0; z < 7; z++) {
+     /*for (int z= 0; z < 7; z++) {
             std::cout << tab[z] << std::endl;
         }
+
+*/
 }

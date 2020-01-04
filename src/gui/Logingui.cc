@@ -31,9 +31,11 @@ Logingui::Logingui(Loginstate* st): QWidget(){
     mainlayout->addWidget(logo);
     mainlayout->addLayout(form);
     mainlayout->addLayout(buttonlayout);
+
     //Connection du bouton quitter à l'action correspondante
     QObject::connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
     QObject::connect(connect, SIGNAL(clicked()), this, SLOT(checkcred()));
+
 }
 
 Logingui::~Logingui(){
@@ -50,7 +52,14 @@ Logingui::~Logingui(){
 bool Logingui::checkcred(){
    QString login = this->getLogin()->text();
    QString password = this->getPassword()->text();
-    if(!login.isEmpty() && !password.isEmpty()){
+   /* just for test */
+   MainGState* ms = new MainGState(state->GetManager()->GetFile());
+   state->GetManager()->PopState();
+   state->GetManager()->PushState(ms);
+   state->GetManager()->GetCurrentState()->update();
+   return true;
+   /* ********************** */
+    /*if(!login.isEmpty() && !password.isEmpty()){
        if(state->isUser(login, password)){
            // std::cout << "Mot de passe validé" << std::endl;
             MainGState* ms = new MainGState(state->GetManager()->GetFile());
@@ -68,7 +77,7 @@ bool Logingui::checkcred(){
        return false;
     }
      QMessageBox::warning(this, "Erreur d'accès à la base de donnée", "Le pilote n'existe pas.");
-    return false;
+    return false;*/
  }
 
 

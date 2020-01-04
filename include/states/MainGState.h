@@ -16,7 +16,6 @@ private:
     Systeme* sys;
     MainGui * mainGui;
 public:
-
   MainGState(const char*);
 	~MainGState();
     //Getters
