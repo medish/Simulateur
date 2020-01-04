@@ -5,6 +5,7 @@ MainGui::MainGui(Systeme * _sys){
     sys = _sys;
 
     init();
+    updateGuiThread();
 }
 
 MainGui::~MainGui(){
@@ -70,6 +71,19 @@ void MainGui::updateGui(){
         if(MyQWidget * mw = dynamic_cast<MyQWidget*>(w))
             mw->showInfos();
     }
+}
+
+void MainGui::updateConsommation(){
+    while(sys->cap_max > 0){
+                std::cout<<"debug::while_boucle "<<sys->GetCapacity()<<std::endl;
+                sys->updateconso();
+                QThread::sleep(1);
+                updateGui();
+
+    }
+}
+void MainGui::updateGuiThread(){
+    QFuture<void> loopConso = QtConcurrent::run(this, &MainGui::updateConsommation);
 }
 void MainGui::paintEvent(QPaintEvent*){
 

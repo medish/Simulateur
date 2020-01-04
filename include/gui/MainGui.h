@@ -7,6 +7,7 @@
 #include <QGridLayout>
 #include <QPainter>
 #include <QList>
+#include <QtConcurrent/QtConcurrent>
 #include "TankWidget.h"
 #include "PompeWidget.h"
 #include "MoteurWidget.h"
@@ -25,6 +26,8 @@ public:
     MainGui(Systeme *);
     ~MainGui();
     void updateGui();
+    void updateGuiThread();
+    void updateConsommation();
     Systeme * getSysteme(){return sys;}
 protected:
     void paintEvent(QPaintEvent *);

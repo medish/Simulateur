@@ -121,7 +121,7 @@ void Systeme::UpdateCapaciteMax(){
 	double nouvellecapmax = 0;
     for (int i = 0; i < 3; ++i)
 	{
-	 	nouvellecapmax = reservoirs[i]->GetCapacity();
+        nouvellecapmax += reservoirs[i]->GetCapacity();
 	}
 
 	setCapacity(nouvellecapmax);
