@@ -63,7 +63,9 @@ void xmlparser::parseXmlFile(){
 
           nn = nn.nextSibling();
       }
-     for (int z= 0; z < 7; z++) {
+     /*for (int z= 0; z < 7; z++) {
             std::cout << tab[z] << std::endl;
         }
+
+*/
 }

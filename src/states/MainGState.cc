@@ -29,7 +29,7 @@ void MainGState::init(const char* infile){
 
 void MainGState::free(){
         delete sys;
-    delete mainGui;
+        delete mainGui;
 }
 
 void MainGState::update(){

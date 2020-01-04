@@ -50,7 +50,7 @@ void Moteur::printInfos(){
 
 void consomme(Reservoir& r, Moteur& m){
 		if(r.GetCapacity() > 0 ){
-			//std::cout << "Debug " << consomation << std::endl;
+	 std::cout << "DEBUG: Qte Carburant Reservoir " << r.GetCapacity() << std::endl;
 	    double nvcap = r.GetCapacity() - m.GetConsomation();
 			r.SetCapacity(nvcap);	
 		}
