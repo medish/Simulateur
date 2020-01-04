@@ -8,6 +8,7 @@
 #include "Reservoir.h"
 #include "ValveRes.h"
 #include "ValveMR.h"
+#include "../utils/panne.h"
 
 #include <vector>
 #include <set>
@@ -21,6 +22,7 @@ class Valve;
 class Reservoir;
 class ValveMr;
 class ValveRes;
+class panne;
  
 class Systeme{
     friend class MainGui;
@@ -31,7 +33,6 @@ private:
 	vector<Reservoir*> reservoirs;
  	vector<Valve*> vannes;
  	
-
 public:
 	Systeme(double cap);
 	Systeme(double cap, int dur , double consomation);
@@ -44,12 +45,12 @@ public:
 	vector<Reservoir *> GetReservoirs(){return reservoirs;};
 	//Setters
 	void setCapacity(double c);
-	
-		
 	//Operations
 	void AfficherEtat();
 	//Ajouter une mise à jour de la capacite max 
 	void UpdateCapaciteMax();
 	void updateconso();
+	//Injecter une panne dans le systeme
+	friend void apply(Systeme &s);
 };
 #endif

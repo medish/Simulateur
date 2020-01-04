@@ -1,12 +1,12 @@
-<Simulateur duree="3" capacite ="4000" consomation = "2.6">
+<Simulateur duree="3" tmpsactuel = "00" capacite ="4000" consomation = "2.6">
     <Pannes>
-       <Panne id="42">
-            <Piece>1</Piece>
-            <nbPiece>2</nbPiece>
-            <Note>00</Note>
-            <Temps>05</Temps>
-            <Passe>00</Passe>
-       </Panne>
+        <Panne id="1" idparent="1">
+         <Piece>1</Piece>
+         <nbPiece>2</nbPiece>
+         <Note>00</Note>
+         <Temps>05</Temps>
+         <Passe>00</Passe>
+         </Panne>
        <Panne id="2">
             <Piece>0</Piece>
             <nbPiece>1</nbPiece>
