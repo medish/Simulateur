@@ -23,7 +23,7 @@ public:
 	//Ajoute un nouvel état à la pile
 	void PushState(State* state);
 	//Lie un etat au gestionnaire d'etat
-	void SetState(State* state );
+	void SetState(State* state);
 
 	//Retire l'état courant du sommet de la pile
 	void PopState();
