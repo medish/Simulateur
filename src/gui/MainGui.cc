@@ -1,6 +1,5 @@
 #include "../../include/gui/MainGui.h"
 
-
 MainGui::MainGui(Systeme * _sys){
     sys = _sys;
 
@@ -21,7 +20,6 @@ void MainGui::init(){
     resize(1000,600);
     setLayout(&main_layout);
 
-
     // Time
     time.setHMS(0,0,0);
     time = time.addSecs(sys->duree - sys->tempsactuel);
@@ -30,7 +28,7 @@ void MainGui::init(){
     middle_w = new QWidget();
     middle_w->setMinimumHeight(200);
     middle_w->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-   // middle_w->setStyleSheet("background-color:yellow;");
+    // middle_w->setStyleSheet("background-color:yellow;");
 
     // Reservoirs
     main_layout.addWidget(new TankWidget(this, sys->reservoirs[0]), 0, 0 , 1, 2);

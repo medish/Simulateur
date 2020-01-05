@@ -16,8 +16,8 @@ private:
     Systeme* sys;
     MainGui * mainGui;
 public:
-  MainGState(const char*);
-	~MainGState();
+    MainGState(const char*);
+    ~MainGState();
     //Getters
     MainGui * getMainGui(){return mainGui;}
     void init();

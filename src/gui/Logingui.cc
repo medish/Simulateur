@@ -39,7 +39,7 @@ Logingui::Logingui(Loginstate* st): QWidget(){
 }
 
 Logingui::~Logingui(){
-     delete mainlayout;
+    delete mainlayout;
     delete buttonlayout;
     delete connect;
     delete quit;
@@ -49,25 +49,20 @@ Logingui::~Logingui(){
     delete logo;
     delete state;
 }
+
+
 bool Logingui::checkcred(){
    QString login = this->getLogin()->text();
    QString password = this->getPassword()->text();
-   /* just for test */
-   MainGState* ms = new MainGState(state->GetManager()->GetFile());
-   state->GetManager()->PopState();
-   state->GetManager()->PushState(ms);
-   state->GetManager()->GetCurrentState()->update();
-   return true;
-   /* ********************** */
-    /*if(!login.isEmpty() && !password.isEmpty()){
+    if(!login.isEmpty() && !password.isEmpty()){
        if(state->isUser(login, password)){
-           // std::cout << "Mot de passe validé" << std::endl;
-            MainGState* ms = new MainGState(state->GetManager()->GetFile());
-            state->GetManager()->PopState();
-            state->GetManager()->PushState(ms);
-            state->GetManager()->GetCurrentState()->update();
+            // std::cout << "Mot de passe validé" << std::endl;
+           MenuState * ms = new MenuState();
+           state->GetManager()->PopState();
+           state->GetManager()->PushState(ms);
+           state->GetManager()->GetCurrentState()->update();
            // std::cout << "NewState" << state->GetManager()->GetCurrentState() << std::endl;
-            return true;
+           return true;
         }else{
           //  std::cout << "Retour à l'état de connexion" << std::endl;
            QMessageBox::warning(this, "Erreur d'accès à la base de donnée", "Le pilote n'existe pas.");
@@ -77,7 +72,7 @@ bool Logingui::checkcred(){
        return false;
     }
      QMessageBox::warning(this, "Erreur d'accès à la base de donnée", "Le pilote n'existe pas.");
-    return false;*/
+    return false;
  }
 
 
