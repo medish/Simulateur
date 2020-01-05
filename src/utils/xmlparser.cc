@@ -30,8 +30,9 @@ void xmlparser::parseXmlFile(){
       int i = 0;
       QDomElement docElem = dom->documentElement();//Simulateur
       sys = new Systeme(docElem.attributeNode("capacite").value().toDouble(),
+                        docElem.attributeNode("consomation").value().toDouble(),
                         docElem.attributeNode("duree").value().toInt(),
-                        docElem.attributeNode("consomation").value().toDouble());
+                        docElem.attributeNode("tempsactuel").value().toInt());
 
       QDomNode n = docElem.firstChild();//Pannes
       QDomNode nn = n.firstChild(); //Panne

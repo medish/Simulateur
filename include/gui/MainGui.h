@@ -24,18 +24,18 @@ private :
     Systeme * sys;
     QGridLayout  main_layout;
     QWidget * middle_w;
-    QTimer timer;
+    QTimer timerSim, timerRept;
     QTime time;
     void init();
 public:
     MainGui(Systeme *);
     ~MainGui();
     void updateGui();
-    void startSimulation();
     Systeme * getSysteme(){return sys;}
     QString getTime(){return time.toString("hh:mm:ss");}
 public slots:
     void updateConsommation();
+    void startSimulation();
     void stopSimulation();
 
 };

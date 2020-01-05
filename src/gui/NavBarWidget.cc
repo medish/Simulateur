@@ -37,7 +37,7 @@ void NavBarWidget::init(){
     v_layout.addWidget(&btnPause);
 
     QObject::connect(&btnPause, SIGNAL(clicked()), mainGui, SLOT(stopSimulation()));
-    QObject::connect(&btnStart, SIGNAL(clicked()), mainGui, SLOT(updateConsommation()));
+    QObject::connect(&btnStart, SIGNAL(clicked()), mainGui, SLOT(startSimulation()));
 }
 void NavBarWidget::showInfos(){
     qDebug()<<mainGui->getTime();

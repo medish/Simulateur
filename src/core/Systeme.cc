@@ -1,9 +1,10 @@
 #include "../../include/core/Systeme.h"
 
-Systeme::Systeme(double cap, int dur , double consomation){
+Systeme::Systeme(double cap, double consomation, int _duree, int tactuel){
 
 	cap_max = cap;
-	duree = dur;
+    duree = _duree;
+    tempsactuel = tactuel;
 	//Initialise les 3 moteurs
 	for (int i = 0; i < 3; ++i){
 	    moteurs.push_back( new Moteur(i+1, consomation));

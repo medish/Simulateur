@@ -10,7 +10,7 @@ MainGui::MainGui(Systeme * _sys){
 
 
 
-    //timer.setInterval(150);
+    //timerSim.setInterval(150);
 }
 
 MainGui::~MainGui(){
@@ -24,8 +24,8 @@ void MainGui::init(){
 
     // Time
     time.setHMS(0,0,0);
-    time = time.addSecs(sys->duree);
-    //timer.start(1000);
+    time = time.addSecs(sys->duree - sys->tempsactuel);
+    //timerSim.start(1000);
 
     middle_w = new QWidget();
     middle_w->setMinimumHeight(200);
@@ -72,7 +72,9 @@ void MainGui::init(){
     main_layout.setColumnStretch(8,2);
 
     // Connect signals
-    QObject::connect(&timer, SIGNAL(timeout()), this, SLOT(updateConsommation()));
+    QObject::connect(&timerRept, SIGNAL(timeout()), this, SLOT(updateConsommation()));
+    QObject::connect(&timerSim, SIGNAL(timeout()), this, SLOT(stopSimulation()));
+
 
 }
 
@@ -94,15 +96,16 @@ void MainGui::updateConsommation(){
     }
     sys->updateconso();
     updateGui();
-    timer.stop();
+    stopSimulation();
 }
 void MainGui::startSimulation(){
-    timer.singleShot(QTime(0,0).secsTo(time), this, SLOT(stopSimulation()));
-    timer.start(1000);
+    timerSim.setSingleShot(true);
+    timerSim.start(QTime(0,0).msecsTo(time));
+    timerRept.start(1000);
 }
 
 void MainGui::stopSimulation(){
-    timer.setSingleShot(false);
-    timer.stop();
+    timerSim.stop();
+    timerRept.stop();
     qDebug("stopped");
 }
