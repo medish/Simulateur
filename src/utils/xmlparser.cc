@@ -60,7 +60,7 @@ void xmlparser::parseXmlFile(){
                panelem = panelem.nextSibling();
              }
 
-           pannes.push_back(new panne(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5]) );
+           pannes.push_back(new panne(tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6]));
 
           nn = nn.nextSibling();
       }

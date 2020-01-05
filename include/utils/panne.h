@@ -24,7 +24,7 @@ public:
 	//Construit une panne aléatoire
     panne(int, int);
 	//Construit une panne depuis le fichier de configuration
-	panne(int _id, int _idp, int _p, int _ido,int _note, int _duree);
+	panne(int _id, int _idp, int _p, int _ido,int _note, int _duree, int _passe);
 	~panne();
 	void affiche() const;
 	void apply(Systeme& s);
