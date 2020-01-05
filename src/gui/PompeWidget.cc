@@ -67,16 +67,16 @@ void PompeWidget::setEtatCombo(int etat){
     switch (etat) {
         case ARRET: {
         setStyleSheet("background-color:red;");
-        mainGui->updateGui();
+       // mainGui->updateGui();
         break;
     }
         case MARCHE: {setStyleSheet("background-color:green;");
-        mainGui->updateGui();
+       // mainGui->updateGui();
         break;
     }
         case PANNE: {
         setStyleSheet("background-color:orange;");
-        mainGui->updateGui();
+       // mainGui->updateGui();
         break;
     }
     }
@@ -93,7 +93,7 @@ void PompeWidget::setMoteurCombo(int index){
         p->SetMoteur(mainGui->getSysteme()->GetMoteurs()[index-1]);
     }
 
-    mainGui->updateGui();
+    //mainGui->updateGui();
 
 
 }

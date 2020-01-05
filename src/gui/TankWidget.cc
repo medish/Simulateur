@@ -66,22 +66,22 @@ void TankWidget::setEtatCombo(int etat){
         case VIDE: {
 
             setStyleSheet("background-color:red; ");
-             mainGui->updateGui();
+             //mainGui->updateGui();
             break;
         }
         case PLEIN: {
             setStyleSheet("background-color:green;");
-            mainGui->updateGui();
+            //mainGui->updateGui();
             break;
         }
         case VIDANGE:{
             setStyleSheet("background-color:orange;");
-            mainGui->updateGui();
+           // mainGui->updateGui();
             break;
         }
         case REMPLISSAGE: {
             setStyleSheet("background-color:blue;");
-            mainGui->updateGui();
+            //mainGui->updateGui();
             break;
         }
         }

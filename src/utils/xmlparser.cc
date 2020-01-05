@@ -29,9 +29,10 @@ void xmlparser::parseXmlFile(){
       int tab[7];
       int i = 0;
       QDomElement docElem = dom->documentElement();//Simulateur
-      sys = new Systeme(std::stod(docElem.attributeNode("capacite").value().toStdString()),
-                        std::stod(docElem.attributeNode("duree").value().toStdString()),
-                        std::stod(docElem.attributeNode("consomation").value().toStdString()));
+      sys = new Systeme(docElem.attributeNode("capacite").value().toDouble(),
+                        docElem.attributeNode("consomation").value().toDouble(),
+                        docElem.attributeNode("duree").value().toInt(),
+                        docElem.attributeNode("tempsactuel").value().toInt());
 
       QDomNode n = docElem.firstChild();//Pannes
       QDomNode nn = n.firstChild(); //Panne

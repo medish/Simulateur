@@ -11,6 +11,7 @@ Moteur::Moteur(int _num, double _consomation){
     res_linked = nullptr;
     pompe_linked = nullptr;
     consomation = _consomation;
+
 } 
 
 Moteur::~Moteur(){
@@ -49,12 +50,15 @@ void Moteur::printInfos(){
 }  
 
 void consomme(Reservoir& r, Moteur& m){
-		if(r.GetCapacity() > 0 ){
-	 std::cout << "DEBUG: Qte Carburant Reservoir " << r.GetCapacity() << std::endl;
+
+        if(r.GetCapacity() > 0 ){
+
 	    double nvcap = r.GetCapacity() - m.GetConsomation();
 			r.SetCapacity(nvcap);	
+            std::cout << "DEBUG: Qte Carburant Reservoir " << r.GetCapacity() << std::endl;
 		}
 		else{
-			r.SetCapacity(0.0);
+            r.SetCapacity(0);
+
 		}
 }   

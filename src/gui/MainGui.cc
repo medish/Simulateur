@@ -5,6 +5,12 @@ MainGui::MainGui(Systeme * _sys){
     sys = _sys;
 
     init();
+
+    //updateGuiThread();
+
+
+
+    //timerSim.setInterval(150);
 }
 
 MainGui::~MainGui(){
@@ -14,6 +20,12 @@ MainGui::~MainGui(){
 void MainGui::init(){
     resize(1000,600);
     setLayout(&main_layout);
+
+
+    // Time
+    time.setHMS(0,0,0);
+    time = time.addSecs(sys->duree - sys->tempsactuel);
+    //timerSim.start(1000);
 
     middle_w = new QWidget();
     middle_w->setMinimumHeight(200);
@@ -38,7 +50,7 @@ void MainGui::init(){
     main_layout.addWidget(new VWidget(this, sys->vannes[1]), 0, 5);
 
     // Navigateur de droit
-    main_layout.addWidget(new NavBarWidget(), 0, 8 ,4, 1);
+    main_layout.addWidget(new NavBarWidget(this), 0, 8 ,4, 1);
 
     // Vannes moteurs-pompes
     main_layout.addWidget(middle_w, 2, 0, 1, 8);
@@ -60,6 +72,9 @@ void MainGui::init(){
     main_layout.setColumnStretch(8,2);
 
     // Connect signals
+    QObject::connect(&timerRept, SIGNAL(timeout()), this, SLOT(updateConsommation()));
+    QObject::connect(&timerSim, SIGNAL(timeout()), this, SLOT(stopSimulation()));
+
 
 }
 
@@ -71,11 +86,26 @@ void MainGui::updateGui(){
             mw->showInfos();
     }
 }
-void MainGui::paintEvent(QPaintEvent*){
 
-  /* QPainter painter(this);
-   QPoint one = main_layout.itemAtPosition(2,2)->widget()->pos();
-   QPoint two = main_layout.itemAtPosition(2,3)->widget()->pos();
-   std::cout<<one.y()<<std::endl;
-   painter.drawLine(one, two);*/
+void MainGui::updateConsommation(){
+    time = time.addSecs(-1);
+    if(sys->cap_max >0){
+        sys->updateconso();
+        updateGui();
+        return;
+    }
+    sys->updateconso();
+    updateGui();
+    stopSimulation();
+}
+void MainGui::startSimulation(){
+    timerSim.setSingleShot(true);
+    timerSim.start(QTime(0,0).msecsTo(time));
+    timerRept.start(1000);
+}
+
+void MainGui::stopSimulation(){
+    timerSim.stop();
+    timerRept.stop();
+    qDebug("stopped");
 }

@@ -28,18 +28,21 @@ class Systeme{
     friend class MainGui;
 private:
 	double cap_max;
+    double conso_mot;
 	int duree; //Durée de la simulation en secondes
+    int tempsactuel;
 	vector<Moteur*> moteurs;
 	vector<Reservoir*> reservoirs;
  	vector<Valve*> vannes;
  	
 public:
-	Systeme(double cap);
-	Systeme(double cap, int dur , double consomation);
+    Systeme(double);
+    Systeme(double, double, int, int);
 	~Systeme();
 
 	//Getters
 	double GetCapacity(){return cap_max;};
+    double getConsoMot(){return moteurs[0]->GetConsomation();}
 	vector<Moteur *> GetMoteurs(){return moteurs;};
 	vector<Valve *> GetVannes(){return vannes;};
 	vector<Reservoir *> GetReservoirs(){return reservoirs;};

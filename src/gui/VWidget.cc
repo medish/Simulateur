@@ -24,19 +24,19 @@ void VWidget::setVanne(bool etat){
     if(etat)
         if(v->setEtat(OUVERT)){
              setStyleSheet("background-color : green;");
-             mainGui->updateGui();
+             //mainGui->updateGui();
 
         }else {
             setChecked(!etat);
-            mainGui->updateGui();
+            //mainGui->updateGui();
         }
    else
         if(v->setEtat(FERME)){
              setStyleSheet("background-color : red;");
-             mainGui->updateGui();
+            // mainGui->updateGui();
         }else {
            setChecked(!etat);
-           mainGui->updateGui();
+           //mainGui->updateGui();
         }
 
 }
