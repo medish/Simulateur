@@ -14,5 +14,12 @@
             <Temps>8</Temps>
             <Passe>0</Passe>
        </Panne>
+       <Panne id="3" idparent="-1">
+            <Piece>0</Piece>
+            <nbPiece>1</nbPiece>
+            <Note>0</Note>
+            <Temps>8</Temps>
+            <Passe>0</Passe>
+       </Panne>
     </Pannes>
 </Simulateur>

@@ -22,7 +22,7 @@ void MainGState::init(const char* infile){
     xmlparser parser(infile);
     parser.parseXmlFile();
     sys = parser.GetSysteme();
-    mainGui = new MainGui(sys);
+    mainGui = new MainGui(sys, parser.getPannes());
     //mainGui->show();
 
 }

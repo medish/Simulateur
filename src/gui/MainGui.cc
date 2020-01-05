@@ -1,7 +1,12 @@
 #include "../../include/gui/MainGui.h"
 
-MainGui::MainGui(Systeme * _sys){
+
+MainGui::MainGui(Systeme * _sys, std::vector<panne*> * _pannes){
     sys = _sys;
+    pannes = _pannes;
+    qDebug()<<"Pannes _"<<_pannes;
+    qDebug()<<"Pannes "<<_pannes;
+
 
     init();
 
@@ -72,7 +77,7 @@ void MainGui::init(){
     // Connect signals
     QObject::connect(&timerRept, SIGNAL(timeout()), this, SLOT(updateConsommation()));
     QObject::connect(&timerSim, SIGNAL(timeout()), this, SLOT(stopSimulation()));
-
+    QObject::connect(&timerPanne, SIGNAL(timeout()), this, SLOT(applyPanne()));
 
 }
 
@@ -100,10 +105,17 @@ void MainGui::startSimulation(){
     timerSim.setSingleShot(true);
     timerSim.start(QTime(0,0).msecsTo(time));
     timerRept.start(1000);
+    timerPanne.start(2000);
 }
 
 void MainGui::stopSimulation(){
     timerSim.stop();
     timerRept.stop();
     qDebug("stopped");
+}
+
+void MainGui::applyPanne(){
+
+   // qDebug()<<"Pannes apply"<<pannes;
+    //qDebug()<<"Pannes "<<pannes;
 }

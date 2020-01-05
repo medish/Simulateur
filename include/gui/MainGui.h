@@ -22,13 +22,14 @@ class MainGui : public QWidget{
     Q_OBJECT
 private :
     Systeme * sys;
+    std::vector<panne*> * pannes;
     QGridLayout  main_layout;
     QWidget * middle_w;
-    QTimer timerSim, timerRept;
+    QTimer timerSim, timerRept, timerPanne;
     QTime time;
     void init();
 public:
-    MainGui(Systeme *);
+    MainGui(Systeme *, std::vector<panne*> * = nullptr);
     ~MainGui();
     void updateGui();
     Systeme * getSysteme(){return sys;}
@@ -37,6 +38,7 @@ public slots:
     void updateConsommation();
     void startSimulation();
     void stopSimulation();
+    void applyPanne();
 
 };
 
