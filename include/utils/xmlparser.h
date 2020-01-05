@@ -5,6 +5,7 @@
 #include "panne.h"
 #include <iostream>
 #include <vector>
+#include <QVector>
 #include <QFile>
 #include <QMessageBox>
 #include <QWidget>
@@ -30,6 +31,6 @@ public:
     std::vector<panne*> * getPannes()  {return &pannes;};
     //Retourne un systeme initialisé et une structure de stockage des pannes
     void parseXmlFile();
-    static std::vector<panne*> GetRandomPannes(int nb, int duree);
+    static panne* GetRandomPannes(int nb, int duree);
 };
 #endif

@@ -3,8 +3,8 @@
 #include "../../include/gui/MainGui.h"
 
 
-MainGState::MainGState(double cap, double consomation, int _duree, int tactuel){
-    init(cap, consomation, _duree, tactuel);
+MainGState::MainGState(double cap, double consomation, int _duree, int tactuel, int nbpannes){
+    init(cap, consomation, _duree, tactuel, nbpannes);
 }
 MainGState::MainGState(QString infile){
     init(infile);
@@ -14,9 +14,13 @@ MainGState::~MainGState(){
         free();
 }
 
-void MainGState::init(double cap, double consomation, int _duree, int tactuel){
+void MainGState::init(double cap, double consomation, int _duree, int tactuel, int nbpannes){
   sys = new Systeme(cap, consomation, _duree, tactuel);
   mainGui = new MainGui(sys);
+  QVector<panne*> pannes;
+  for(int i=0; i < nbpannes; i++){
+     pannes.push_back(xmlparser::GetRandomPannes(i, _duree));
+   }
 }
 
 void MainGState::init(QString infile){
