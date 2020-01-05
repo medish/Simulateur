@@ -16,14 +16,14 @@ panne::panne(int i, int duree){
     duree = getNumberInRange(duree);
     isdone = false;
 }
-panne::panne(int _id ,int _idp,int _p, int _ido,int _note, int _duree) {
+panne::panne(int _id ,int _idp,int _p, int _ido,int _note, int _duree, int _passe) {
 	id = _id;
 	parent = _idp;
 	note = _note;
 	duree = _duree;
 	idobjet = _ido;
 	piece = _p;
-	isdone = false;
+	isdone = _passe;
 }
 
 panne::~panne(){
