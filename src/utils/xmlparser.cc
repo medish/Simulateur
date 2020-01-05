@@ -44,7 +44,7 @@ void xmlparser::parseXmlFile(){
  *     std::cout << "DEBUG: " <<docElem.attributeNode("duree").value().toStdString() << std::endl;
  *     std::cout << "DEBUG: " <<docElem.attributeNode("capacite").value().toStdString() << std::endl;
 */
-      while (!nn.isNull() ) {
+      while (!nn.isNull()) {
           QDomNode panelem = nn.firstChild();
           i = 2;
            while(!panelem.isNull()){

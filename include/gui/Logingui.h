@@ -2,7 +2,8 @@
 #define H_LOGINGUI
 
 #include "../states/Loginstate.h"
- #include "../states/MainGState.h"
+#include "../states/MenuState.h"
+
 
 #include <iostream>
 #include <string>
@@ -20,6 +21,7 @@
 #include <QPushButton>
 #include <QPixmap>
 #include <QMessageBox>
+
 
 class Loginstate;
 

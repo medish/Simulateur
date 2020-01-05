@@ -7,7 +7,7 @@ Loginstate::Loginstate(){
 }
 
 Loginstate::~Loginstate(){
-free();
+    free();
     delete gui;
 }
 
