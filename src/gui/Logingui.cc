@@ -58,7 +58,7 @@ bool Logingui::checkcred(){
     if(!login.isEmpty() && !password.isEmpty()){
        if(state->isUser(login, password)){
             // std::cout << "Mot de passe validé" << std::endl;
-       MenuState * menu = new MenuState();
+            MenuState * menu = new MenuState();
            state->GetManager()->PopState();
            state->GetManager()->PushState(menu);
            state->GetManager()->GetCurrentState()->update();

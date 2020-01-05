@@ -10,6 +10,7 @@
 #include <QPushButton>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QInputDialog>
 
 class MenuState;
 

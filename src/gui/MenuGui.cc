@@ -21,7 +21,7 @@ MenuGui::MenuGui(MenuState* state): QWidget(){
     //Connecter les signaux
     QObject::connect(newgame, SIGNAL(clicked()), this, SLOT(GenerateFromFile()));
     QObject::connect(charger, SIGNAL(clicked()), this, SLOT(GenerateFromFile()));
-  //  QObject::connect(quit, SIGNAL(clicked()), this, SLOT(quit()));
+    QObject::connect(libre, SIGNAL(clicked()), this, SLOT(GenerateRandom()));
     QObject::connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
 }
 
@@ -50,5 +50,32 @@ void MenuGui::GenerateFromFile(){
 }
 
 void MenuGui::GenerateRandom(){
+    QString diff = QInputDialog::getText(this, "Selection de la difficulté", "Veuillez séléction la difficulté [0-2]");
+    if(diff > 3 && diff < 0){
+         QMessageBox::warning(this, "Erreur choix difficulté", "La difficulté doit être comprise entre 0 et 2 ");
+    }
+    switch(diff.toInt()){
+    case 0:{ //Difficulté facile
+        MainGState * ms = new MainGState(4000.0, 2,15*60,0);
+        menu->GetManager()->PopState();
+        menu->GetManager()->PushState(ms);
+        menu->GetManager()->GetCurrentState()->update();
+        break;
+    }
+    case 1:{
+        MainGState * ms = new MainGState(3500.0, 3, 8*60, 0);
+        menu->GetManager()->PopState();
+        menu->GetManager()->PushState(ms);
+        menu->GetManager()->GetCurrentState()->update();
+       break;
+    }case 2:{
+        MainGState * ms = new MainGState(2000.0,4,6*60,0);
+        menu->GetManager()->PopState();
+        menu->GetManager()->PushState(ms);
+        menu->GetManager()->GetCurrentState()->update();
+        break;
+    }
+    default: break;
+    }
 
 }
