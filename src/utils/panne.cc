@@ -32,11 +32,11 @@ panne::~panne(){
 
 
 void panne::affiche() const {
-    std::cout << id<< std::endl;
+    std::cout << id<<" idpanne"<< std::endl;
     std::cout << piece << std::endl;
     std::cout << idobjet << std::endl;
     std::cout << note << std::endl;
-    std::cout << duree << std::endl;
+    std::cout << duree << " idduree"<<std::endl;
     std::cout << isdone << std::endl;
 
 }

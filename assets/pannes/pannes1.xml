@@ -1,4 +1,4 @@
-<Simulateur duree="15" tempsactuel = "5" capacite ="1000" consomation = "2.6">
+<Simulateur duree="15" tempsactuel = "0" capacite ="1000" consomation = "2.6">
     <Pannes>
         <Panne id="1" idparent="1">
             <Piece>1</Piece>
@@ -14,5 +14,12 @@
             <Temps>8</Temps>
             <Passe>0</Passe>
        </Panne>
-    <Pannes>
+       <Panne id="3" idparent="-1">
+            <Piece>0</Piece>
+            <nbPiece>1</nbPiece>
+            <Note>0</Note>
+            <Temps>8</Temps>
+            <Passe>0</Passe>
+       </Panne>
+    </Pannes>
 </Simulateur>

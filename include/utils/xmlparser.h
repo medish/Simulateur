@@ -25,9 +25,9 @@ public:
     xmlparser(const char* filepath);
     ~xmlparser();
     //Getters
-    Systeme* GetSysteme() const{return this->sys;}
+    Systeme* GetSysteme() {return sys;}
     //Retourner le tableau de pannes
-    std::vector<panne*> getPannes() const {return this->pannes;};
+    std::vector<panne*> * getPannes()  {return &pannes;};
     //Retourne un systeme initialisé et une structure de stockage des pannes
     void parseXmlFile();
 };
