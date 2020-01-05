@@ -16,12 +16,13 @@ private:
     Systeme* sys;
     MainGui * mainGui;
 public:
-    MainGState(const char*);
+    MainGState(QString);
     ~MainGState();
     //Getters
     MainGui * getMainGui(){return mainGui;}
+    //void init(){};
     void init();
-    void init(const char *);
+    void init(QString);
     void free();
     void display();
     void update();

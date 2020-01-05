@@ -1,9 +1,6 @@
 #ifndef H_LOGINGUI
 #define H_LOGINGUI
 
-#include "../states/Loginstate.h"
-#include "../states/MenuState.h"
-
 
 #include <iostream>
 #include <string>
@@ -22,8 +19,12 @@
 #include <QPixmap>
 #include <QMessageBox>
 
+#include "../states/Loginstate.h"
+#include "../states/MenuState.h"
 
+class MenuState;
 class Loginstate;
+
 
 class Logingui : public QWidget{
     Q_OBJECT

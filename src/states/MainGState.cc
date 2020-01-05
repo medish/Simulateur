@@ -3,7 +3,7 @@
 #include "../../include/gui/MainGui.h"
 
 
-MainGState::MainGState(const char* infile){
+MainGState::MainGState(QString infile){
     init(infile);
 }
 
@@ -16,7 +16,7 @@ void MainGState::init(){
   mainGui = new MainGui(sys);
 }
 
-void MainGState::init(const char* infile){
+void MainGState::init(QString infile){
     //Appel au Parser pour charger un fichier
    // std::cout << "DEBUG: Loading simulation file" << std::endl;
     xmlparser parser(infile);

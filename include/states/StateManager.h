@@ -9,13 +9,11 @@ class State;
 class StateManager {
 private:
 	std::stack<State*> SStack;
-	const char* infile;
+
 public:
-	StateManager(const char* file);
+    StateManager();
 	~StateManager(); 
 	
-	//Getters
-	const char* GetFile() const {return infile;};
 	//Retoune le sommet de la pile
 	State* GetCurrentState() { return ( !SStack.empty() ) ? SStack.top() : NULL; }
  	

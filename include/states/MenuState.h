@@ -1,10 +1,11 @@
-#ifndef H_LOGINSTATE
-#define H_LOGINSTATE
+#ifndef H_MENUSTATE
+#define H_MENUSTATE
 
 #include "State.h"
 #include "../gui/MenuGui.h"
 
 class State;
+class MenuGui;
 
 class MenuState: public State{
 private:

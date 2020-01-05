@@ -22,7 +22,7 @@ private:
     std::vector<panne*> pannes;
 public:
     xmlparser();
-    xmlparser(const char* filepath);
+    xmlparser(QString filepath);
     ~xmlparser();
     //Getters
     Systeme* GetSysteme() {return sys;}
@@ -30,5 +30,6 @@ public:
     std::vector<panne*> * getPannes()  {return &pannes;};
     //Retourne un systeme initialisé et une structure de stockage des pannes
     void parseXmlFile();
+    static std::vector<panne*> GetRandomPannes(int nb, int duree);
 };
 #endif
