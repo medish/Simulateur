@@ -22,6 +22,7 @@ Logingui::Logingui(Loginstate* st): QWidget(){
     form = new QFormLayout();
     login = new QLineEdit();
     password = new QLineEdit();
+    password->setEchoMode(QLineEdit::Password);
     form->addRow("Login", login);
     form->addRow("Password", password);
     //Creation du layout H de bouttons
@@ -47,37 +48,33 @@ Logingui::~Logingui(){
     delete login;
     delete password;
     delete logo;
-    delete state;
+
 }
 
 
 bool Logingui::checkcred(){
    QString login = this->getLogin()->text();
    QString password = this->getPassword()->text();
-   MainGState * ms = new MainGState(state->GetManager()->GetFile());
+    if(!login.isEmpty() && !password.isEmpty()){
+       if(state->isUser(login, password)){
+            // std::cout << "Mot de passe validé" << std::endl;
+            MenuState * menu = new MenuState();
            state->GetManager()->PopState();
-           state->GetManager()->PushState(ms);
+           state->GetManager()->PushState(menu);
            state->GetManager()->GetCurrentState()->update();
-           return true;
-//    if(!login.isEmpty() && !password.isEmpty()){
-//       if(state->isUser(login, password)){
-//            // std::cout << "Mot de passe validé" << std::endl;
-//           MenuState * ms = new MenuState();
-//           state->GetManager()->PopState();
-//           state->GetManager()->PushState(ms);
-//           state->GetManager()->GetCurrentState()->update();
-//           // std::cout << "NewState" << state->GetManager()->GetCurrentState() << std::endl;
-//           return true;
-//        }else{
-//          //  std::cout << "Retour à l'état de connexion" << std::endl;
-//           QMessageBox::warning(this, "Erreur d'accès à la base de donnée", "Le pilote n'existe pas.");
-//          return false;
-//        }
-//        QMessageBox::warning(this, "Erreur d'accès à la base de donnée", "Le pilote n'existe pas.");
-//       return false;
-//    }
-//     QMessageBox::warning(this, "Erreur d'accès à la base de donnée", "Le pilote n'existe pas.");
-//    return false;
+ 
+
+        return true;
+        }else{
+          //  std::cout << "Retour à l'état de connexion" << std::endl;
+           QMessageBox::warning(this, "Erreur d'accès à la base de donnée", "Le pilote n'existe pas.");
+          return false;
+        }
+        QMessageBox::warning(this, "Erreur d'accès à la base de donnée", "Le pilote n'existe pas.");
+       return false;
+    }
+     QMessageBox::warning(this, "Erreur d'accès à la base de donnée", "Le pilote n'existe pas.");
+    return false;
  }
 
 

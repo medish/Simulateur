@@ -3,7 +3,7 @@
 
 #include <ctime>
 #include <unistd.h>
-
+#include <QVector>
 #include "State.h"
 #include "../core/Systeme.h"
 #include "../gui/MainGui.h"
@@ -16,12 +16,14 @@ private:
     Systeme* sys;
     MainGui * mainGui;
 public:
-    MainGState(const char*);
+    MainGState(double cap, double consomation, int _duree, int tactuel, int nbpannes);
+    MainGState(QString);
     ~MainGState();
     //Getters
     MainGui * getMainGui(){return mainGui;}
-    void init();
-    void init(const char *);
+    void init(){};
+    void init(double cap, double consomation, int _duree, int tactuel, int nbpannes);
+    void init(QString);
     void free();
     void display();
     void update();

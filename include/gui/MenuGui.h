@@ -1,26 +1,16 @@
 #ifndef H_MENUGUI
 #define H_MENUGUI
 
-#include "../states/Loginstate.h"
-#include "../states/MainGState.h"
-#include "../states/MenuState.h"
+#include "MenuState.h"
+#include "MainGState.h"
 
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <QObject>
-#include <QCursor>
-#include <QApplication>
 #include <QWidget>
-#include <QIcon>
-#include <QLabel>
-#include <QFormLayout>
-#include <QLineEdit>
 #include <QVBoxLayout>
-#include <QHBoxLayout>
+#include <QApplication>
 #include <QPushButton>
-#include <QPixmap>
+#include <QFileDialog>
 #include <QMessageBox>
+#include <QInputDialog>
 
 class MenuState;
 
@@ -36,6 +26,10 @@ class MenuGui: public QWidget{
   public:
     MenuGui(MenuState* state);
     ~MenuGui();
+
+  public slots:
+     void GenerateFromFile();
+     void GenerateRandom();
 
 };
 

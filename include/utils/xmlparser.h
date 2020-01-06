@@ -5,6 +5,7 @@
 #include "panne.h"
 #include <iostream>
 #include <vector>
+#include <QVector>
 #include <QFile>
 #include <QMessageBox>
 #include <QWidget>
@@ -22,7 +23,7 @@ private:
     QVector<panne*> pannes;
 public:
     xmlparser();
-    xmlparser(const char* filepath);
+    xmlparser(QString filepath);
     ~xmlparser();
     //Getters
     Systeme* GetSysteme() {return sys;}
@@ -30,5 +31,6 @@ public:
     QVector<panne*> * getPannes() {return &pannes;};
     //Retourne un systeme initialisé et une structure de stockage des pannes
     void parseXmlFile();
+    static panne* GetRandomPannes(int nb, int duree);
 };
 #endif

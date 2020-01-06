@@ -5,7 +5,7 @@ xmlparser::xmlparser(){
 
 }
 
-xmlparser::xmlparser(const char* filepath){
+xmlparser::xmlparser(QString filepath){
     file = new QFile(filepath);
     if(!(file->open(QIODevice::ReadOnly))){
          QMessageBox::warning(this, "Erreur à l'ouverture du document XML",
@@ -69,4 +69,8 @@ void xmlparser::parseXmlFile(){
         }
 
 */
+}
+
+panne* xmlparser::GetRandomPannes(int nb, int duree){
+    return new panne(nb, duree);
 }

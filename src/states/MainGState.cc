@@ -3,7 +3,10 @@
 #include "../../include/gui/MainGui.h"
 
 
-MainGState::MainGState(const char* infile){
+MainGState::MainGState(double cap, double consomation, int _duree, int tactuel, int nbpannes){
+    init(cap, consomation, _duree, tactuel, nbpannes);
+}
+MainGState::MainGState(QString infile){
     init(infile);
 }
 
@@ -11,12 +14,17 @@ MainGState::~MainGState(){
         free();
 }
 
-void MainGState::init(){
-  //sys = new Systeme(400);
-  //mainGui = new MainGui(sys);
+
+void MainGState::init(double cap, double consomation, int _duree, int tactuel, int nbpannes){
+  sys = new Systeme(cap, consomation, _duree, tactuel);
+  mainGui = new MainGui(sys);
+  QVector<panne*> pannes;
+  for(int i=0; i < nbpannes; i++){
+     pannes.push_back(xmlparser::GetRandomPannes(i, _duree));
+   }
 }
 
-void MainGState::init(const char* infile){
+void MainGState::init(QString infile){
     //Appel au Parser pour charger un fichier
    // std::cout << "DEBUG: Loading simulation file" << std::endl;
     xmlparser parser(infile);
