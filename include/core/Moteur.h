@@ -19,9 +19,11 @@ private:
 	double consomation;
 
 public:
+
 	Moteur(int n, double c);
-	~Moteur();
+         ~Moteur();
 	//Getters
+
 	int GetNumero(){return num;}; 
 	etat_t GetEtat(){return etat;};
 	Pompe* GetPompe(){return pompe_linked;};
