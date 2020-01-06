@@ -5,10 +5,12 @@
 #include <ctime>
 #include <cstdlib>
 #include "../core/Systeme.h"
+#include "xmlparser.h"
 class Systeme;
 
 class panne{
     friend class MainGui;
+    friend class xmlparser;
 private:
         int id; //Numéro de panne
         int parent; //Dans le cas d'une pompe numéro de réservoir sinon numéro de piece

@@ -1,0 +1,25 @@
+<Simulateur duree="15" tempsactuel="7" capacite="1000" consomation="0">
+ <Pannes>
+  <Panne id="0" idparent="0">
+   <piece/>
+   <nbPiece/>
+   <Note/>
+   <Temps/>
+   <Passe/>
+  </Panne>
+  <Panne id="0" idparent="0">
+   <piece/>
+   <nbPiece/>
+   <Note/>
+   <Temps/>
+   <Passe/>
+  </Panne>
+  <Panne id="0" idparent="0">
+   <piece/>
+   <nbPiece/>
+   <Note/>
+   <Temps/>
+   <Passe/>
+  </Panne>
+ </Pannes>
+</Simulateur>

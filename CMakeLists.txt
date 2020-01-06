@@ -74,6 +74,8 @@ ADD_CUSTOM_TARGET(dist
 		  COMMAND rm -rf  ${DIST_DIR}
                   WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
-ADD_CUSTOM_TARGET(run COMMAND cd bin/Debug && ./Simulateur)
+ADD_CUSTOM_TARGET(run COMMAND cd bin/Release && ./Simulateur)
+ADD_CUSTOM_TARGET(rundebug COMMAND cd bin/Debug && ./Simulateur)
 ADD_CUSTOM_TARGET(doc COMMAND doxygen docs/Doxyfile)
 ADD_CUSTOM_TARGET(release COMMAND cmake -DCMAKE_BUILD_TYPE=Release && make)
+ADD_CUSTOM_TARGET(debug COMMAND cmake -DCMAKE_BUILD_TYPE=Debug && make)

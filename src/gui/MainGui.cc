@@ -157,7 +157,11 @@ void MainGui::retourarriere(){
     default: break;
    }
 }
-
 void MainGui::save(){
-    std::cout << state->GetManager()->getLogin().toStdString() << std::endl;
+    //std::cout << state->GetManager()->getLogin().toStdString() << std::endl;
+    QTime timestamp;
+    //std::cout << timestamp.currentTime().toString().toStdString() << std::endl;
+    QFile filename("../../assets/pannes/" + state->GetManager()->getLogin() + timestamp.currentTime().toString() + ".xml");
+    std::cout << state->GetManager()->getLogin().toStdString() + timestamp.currentTime().toString().toStdString() << std::endl;
+    xmlparser::WriteinXmlFile(&filename,sys,pannes);
 }

@@ -18,8 +18,12 @@
 #include "../core/Systeme.h"
 #include "MyQWidget.h"
 #include "../states/MainGState.h"
+#include "../utils/xmlparser.h"
+#include "../utils/panne.h"
 
 class MainGState;
+class xmlparser;
+class panne;
 
 class MainGui : public QWidget{
     Q_OBJECT
