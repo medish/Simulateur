@@ -182,3 +182,16 @@ void MainGui::save(){
     std::cout << state->GetManager()->getLogin().toStdString() + timestamp.currentTime().toString().toStdString() << std::endl;
     xmlparser::WriteinXmlFile(&filename,sys,pannes);
 }
+
+void MainGui::afficherNote(){
+    stopSimulation();
+    QString notes = "Notes";
+    int somme =0 ;
+    for (auto p : pannes){
+        somme += p->note;
+        notes = notes +"\n" + "Panne: "+QString::number(p->id)+" => "+QString::number(p->note);
+    }
+    int note = 10*somme/pannes.size();
+    notes = notes + "\n \n"+"Note totale: "+QString::number(note)+"/10";
+    QMessageBox::information(this, "Notes", notes);
+}
