@@ -25,7 +25,7 @@ void StateManager::PopState()
 {
     if ( !SStack.empty() )
     {
-        SStack.top()->free();
+        //SStack.top()->free();
         SStack.pop();
     }
 } 

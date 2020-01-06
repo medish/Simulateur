@@ -14,7 +14,7 @@ private:
     QVBoxLayout v_layout;
     QFormLayout f_layout;
     QLCDNumber label_conso, label_cap, label_time;
-    QPushButton btnStart, btnPause;
+    QPushButton btnStart, btnPause, btnquitter;
     MainGui * mainGui;
 
     void init();

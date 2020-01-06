@@ -1,11 +1,12 @@
 #include "../../include/gui/MainGui.h"
 
 
-MainGui::MainGui(Systeme * _sys, QVector<panne *> * _pannes){
+MainGui::MainGui(Systeme * _sys, QVector<panne *> * _pannes, MainGState* _st){
     sys = _sys;
     pannes = *_pannes;
     _pannes = &pannes;
     size_p_vector = pannes.size();
+    state = _st;
     init();
 }
 
@@ -130,4 +131,12 @@ void MainGui::preparePanne(){
     }
     if(size_p_vector > 0)
         timerPanne.start(QTime(0,0).msecsTo(time) - pannes.first()->duree*1000);
+}
+
+void MainGui::retourarriere(){
+    hide();
+    state->GetManager()->PopState();
+    state->GetManager()->GetCurrentState()->display();
+    state->GetManager()->GetCurrentState()->update();
+
 }
