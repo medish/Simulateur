@@ -12,8 +12,8 @@ MainGState::~MainGState(){
 }
 
 void MainGState::init(){
-  sys = new Systeme(400);
-  mainGui = new MainGui(sys);
+  //sys = new Systeme(400);
+  //mainGui = new MainGui(sys);
 }
 
 void MainGState::init(const char* infile){

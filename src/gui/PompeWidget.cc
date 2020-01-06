@@ -14,7 +14,8 @@ PompeWidget::PompeWidget(MainGui * _mainGui,Pompe * _p){
 }
 
 PompeWidget::~PompeWidget(){
-
+    delete mainGui;
+    delete p;
 }
 
 void PompeWidget::init(){

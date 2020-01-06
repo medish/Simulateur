@@ -6,7 +6,7 @@ VResWidget::VResWidget(MainGui * _mainGui, ValveRes * v): VWidget(_mainGui, v){
 }
 
 VResWidget::~VResWidget(){
-
+    delete vres;
 }
 
 void VResWidget::showInfos(){

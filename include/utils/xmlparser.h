@@ -19,7 +19,7 @@ private:
     QDomDocument* dom;
     Systeme* sys;
     //Ajouter le tableau de pannes
-    std::vector<panne*> pannes;
+    QVector<panne*> pannes;
 public:
     xmlparser();
     xmlparser(const char* filepath);
@@ -27,7 +27,7 @@ public:
     //Getters
     Systeme* GetSysteme() {return sys;}
     //Retourner le tableau de pannes
-    std::vector<panne*> * getPannes()  {return &pannes;};
+    QVector<panne*> * getPannes() {return &pannes;};
     //Retourne un systeme initialisé et une structure de stockage des pannes
     void parseXmlFile();
 };

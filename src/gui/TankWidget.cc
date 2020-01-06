@@ -12,7 +12,8 @@ TankWidget::TankWidget(MainGui * _mainGui, Reservoir * _r){
 }
 
 TankWidget::~TankWidget(){
-
+    delete mainGui;
+    delete r;
 }
 
 void TankWidget::init(){

@@ -1,24 +1,16 @@
 #include "../../include/gui/MainGui.h"
 
 
-MainGui::MainGui(Systeme * _sys, std::vector<panne*> * _pannes){
+MainGui::MainGui(Systeme * _sys, QVector<panne *> * _pannes){
     sys = _sys;
-    pannes = _pannes;
-    qDebug()<<"Pannes _"<<_pannes;
-    qDebug()<<"Pannes "<<_pannes;
-
-
+    pannes = *_pannes;
+    _pannes = &pannes;
+    size_p_vector = pannes.size();
     init();
-
-    //updateGuiThread();
-
-
-
-    //timerSim.setInterval(150);
 }
 
 MainGui::~MainGui(){
-
+    delete sys;
 }
 
 void MainGui::init(){
@@ -28,13 +20,13 @@ void MainGui::init(){
     // Time
     time.setHMS(0,0,0);
     time = time.addSecs(sys->duree - sys->tempsactuel);
-    //timerSim.start(1000);
+    timerPanne.setTimerType(Qt::PreciseTimer);
 
+    //timerSim.start(1000);
     middle_w = new QWidget();
     middle_w->setMinimumHeight(200);
     middle_w->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     // middle_w->setStyleSheet("background-color:yellow;");
-
     // Reservoirs
     main_layout.addWidget(new TankWidget(this, sys->reservoirs[0]), 0, 0 , 1, 2);
     main_layout.addWidget(new TankWidget(this, sys->reservoirs[1]), 0, 3 , 1 , 2);
@@ -91,6 +83,7 @@ void MainGui::updateGui(){
 }
 
 void MainGui::updateConsommation(){
+    //qDebug()<<"Pannes apply"<<&pannes;
     time = time.addSecs(-1);
     if(sys->cap_max >0){
         sys->updateconso();
@@ -104,18 +97,37 @@ void MainGui::updateConsommation(){
 void MainGui::startSimulation(){
     timerSim.setSingleShot(true);
     timerSim.start(QTime(0,0).msecsTo(time));
+    preparePanne();
     timerRept.start(1000);
-    timerPanne.start(2000);
 }
 
 void MainGui::stopSimulation(){
     timerSim.stop();
     timerRept.stop();
+    timerPanne.stop();
     qDebug("stopped");
 }
 
 void MainGui::applyPanne(){
+    if(size_p_vector > 0)
+        pannes.first()->apply(sys);
 
-   // qDebug()<<"Pannes apply"<<pannes;
-    //qDebug()<<"Pannes "<<pannes;
+    if(size_p_vector > 1){
+        pannes.move(0,pannes.size()-1);
+        timerPanne.start(QTime(0,0).msecsTo(time) - pannes.first()->duree*1000);
+        size_p_vector--;
+        return;
+    }
+    //qDebug("Timer panne stopped");
+
+}
+
+void MainGui::preparePanne(){
+    while(size_p_vector > 0 &&
+          pannes.first()->duree*1000 > QTime(0,0).msecsTo(time)){
+        pannes.move(0,pannes.size()-1);
+        size_p_vector--;
+    }
+    if(size_p_vector > 0)
+        timerPanne.start(QTime(0,0).msecsTo(time) - pannes.first()->duree*1000);
 }

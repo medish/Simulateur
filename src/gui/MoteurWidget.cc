@@ -13,7 +13,8 @@ MoteurWidget::MoteurWidget(MainGui * _mainGui, Moteur * _m ){
 }
 
 MoteurWidget::~MoteurWidget(){
-
+    delete m;
+    delete mainGui;
 }
 
 void MoteurWidget::init(){
