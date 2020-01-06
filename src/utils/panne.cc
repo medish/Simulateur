@@ -1,19 +1,19 @@
 #include "../../include/utils/panne.h"
 
-panne::panne(int i, int duree){
-    srand(time(NULL));
+panne::panne(int i, int _duree){
     id = i;
-    piece = getNumberInRange(2);
+    piece = getNumberInRange(2) -1;
      if(piece == 0){
-           idobjet = 1 + getNumberInRange(3);
+           idobjet = getNumberInRange(3);
            parent = -1;
      }
      else{
-           idobjet = 1 + getNumberInRange(2);
-           parent = 1 + getNumberInRange(3);
+           idobjet = getNumberInRange(2);
+           parent = getNumberInRange(3);
      }
     note = 0;
-    duree = getNumberInRange(duree);
+    duree = getNumberInRange(_duree-1);
+
     isdone = false;
 }
 panne::panne(int _id ,int _idp,int _p, int _ido,int _note, int _duree, int _passe) {
@@ -33,12 +33,12 @@ panne::~panne(){
 
 void panne::affiche() const {
     std::cout << id<<" idpanne"<< std::endl;
-    std::cout << piece << std::endl;
-    std::cout << idobjet << std::endl;
-    std::cout << note << std::endl;
-    std::cout << duree << " idduree"<<std::endl;
-    std::cout << isdone << std::endl;
-
+    std::cout << piece <<" piece"<< std::endl;
+    std::cout << idobjet <<" idobjet"<< std::endl;
+    std::cout << note <<" note"<< std::endl;
+    std::cout << duree <<" idduree"<<std::endl;
+    std::cout << isdone <<" isdone"<< std::endl;
+    std::cout << "****************"<<std::endl;
 }
 
 void panne::apply(Systeme *s){
@@ -53,5 +53,6 @@ void panne::apply(Systeme *s){
 }
 
 int panne::getNumberInRange(int max){
-    return (rand()%max);
+
+    return rand()%max+1;
 }

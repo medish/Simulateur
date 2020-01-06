@@ -131,3 +131,4 @@ void MainGui::preparePanne(){
     if(size_p_vector > 0)
         timerPanne.start(QTime(0,0).msecsTo(time) - pannes.first()->duree*1000);
 }
+

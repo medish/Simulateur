@@ -56,7 +56,7 @@ void MenuGui::GenerateRandom(){
     }
     switch(diff.toInt()){
     case 0:{ //Difficulté facile
-        MainGState * ms = new MainGState(4000.0, 2,15*60,0, 5);
+        MainGState * ms = new MainGState(4000.0, 2,60,0, 5);
         menu->GetManager()->PopState();
         menu->GetManager()->PushState(ms);
         menu->GetManager()->GetCurrentState()->update();

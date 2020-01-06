@@ -74,3 +74,14 @@ void xmlparser::parseXmlFile(){
 panne* xmlparser::GetRandomPannes(int nb, int duree){
     return new panne(nb, duree);
 }
+
+
+QVector<panne*> * xmlparser::sortedPannes(QVector<panne*> * p){
+    auto sortRule = [] (panne* p1, panne* p2)-> bool{
+        return p1->duree > p2->duree;
+    };
+
+    std::sort(p->begin(), p->end(), sortRule);
+
+    return p;
+}
