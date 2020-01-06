@@ -10,11 +10,16 @@
 #include <QMessageBox>
 #include <QWidget>
 #include <QDebug>
+#include <QVector>
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomNode>
 #include <QtXml/QDomElement>
+#include <QTextStream>
+class panne;
+class Systeme;
 
 class xmlparser: public QWidget{
+
 private:
     QFile* file;
     QDomDocument* dom;
@@ -33,5 +38,6 @@ public:
     //Retourne un systeme initialisé et une structure de stockage des pannes
     void parseXmlFile();
     static panne* GetRandomPannes(int nb, int duree);
+    static void WriteinXmlFile(QFile*, Systeme*, QVector<panne*>);
 };
 #endif

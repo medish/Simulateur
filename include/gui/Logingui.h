@@ -17,6 +17,7 @@
 #include <QPushButton>
 #include <QPixmap>
 #include <QMessageBox>
+#include <QTime>
 
 #include "../states/Loginstate.h"
 #include "../states/MenuState.h"

@@ -17,10 +17,18 @@
 #include "VWidget.h"
 #include "../core/Systeme.h"
 #include "MyQWidget.h"
+#include "../states/MainGState.h"
+#include "../utils/xmlparser.h"
+#include "../utils/panne.h"
+
+class MainGState;
+class xmlparser;
+class panne;
 
 class MainGui : public QWidget{
     Q_OBJECT
 private :
+    MainGState* state;
     Systeme * sys;
     QVector<panne*>  pannes;
     int size_p_vector;
@@ -30,7 +38,7 @@ private :
     QTime time;
     void init();
 public:
-    MainGui(Systeme *, QVector<panne *> *);
+    MainGui(Systeme *, QVector<panne *> *, MainGState*);
     ~MainGui();
     void updateGui();
     void preparePanne();
@@ -42,6 +50,8 @@ public slots:
     void startSimulation();
     void stopSimulation();
     void applyPanne();
+    void retourarriere();
+    void save();
 
 };
 

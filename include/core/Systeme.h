@@ -9,6 +9,7 @@
 #include "ValveRes.h"
 #include "ValveMR.h"
 #include "../utils/panne.h"
+#include "../utils/xmlparser.h"
 
 #include <vector>
 #include <set>
@@ -26,6 +27,7 @@ class panne;
  
 class Systeme{
     friend class MainGui;
+    friend class xmlparser;
 private:
 	double cap_max;
     double conso_mot;

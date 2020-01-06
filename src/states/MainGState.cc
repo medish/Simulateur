@@ -23,10 +23,8 @@ void MainGState::init(double cap, double consomation, int _duree, int tactuel, i
    }
 
   xmlparser::sortedPannes(&pannes);
-//  for(auto p : pannes)
-//      p->affiche();
+  mainGui = new MainGui(sys, &pannes, this);
 
-  mainGui = new MainGui(sys, &pannes);
 }
 
 void MainGState::init(QString infile){
@@ -35,8 +33,7 @@ void MainGState::init(QString infile){
     xmlparser parser(infile);
     parser.parseXmlFile();
     sys = parser.GetSysteme();
-    mainGui = new MainGui(sys, xmlparser::sortedPannes(parser.getPannes()));
-    //mainGui->show();
+    mainGui = new MainGui(sys, xmlparser::sortedPannes(parser.getPannes()), this);
 }
 
 void MainGState::free(){

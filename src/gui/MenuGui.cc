@@ -41,7 +41,8 @@ void MenuGui::GenerateFromFile(){
 
       if(fileName.toStdString().substr(fileName.toStdString().find_last_of(".") + 1) == "xml") {
                     MainGState * ms = new MainGState(fileName);
-                    menu->GetManager()->PopState();
+                  //  menu->GetManager()->PopState();
+                    hide();
                     menu->GetManager()->PushState(ms);
                     menu->GetManager()->GetCurrentState()->update();
       } else {
@@ -56,21 +57,25 @@ void MenuGui::GenerateRandom(){
     }
     switch(diff.toInt()){
     case 0:{ //Difficulté facile
-        MainGState * ms = new MainGState(4000.0, 2,60,0, 5);
-        menu->GetManager()->PopState();
+       
+        MainGState * ms = new MainGState(4000.0, 2,15*60,0, 5);
+        hide();
+       menu->GetManager()->PopState();
         menu->GetManager()->PushState(ms);
         menu->GetManager()->GetCurrentState()->update();
         break;
     }
     case 1:{
         MainGState * ms = new MainGState(3500.0, 3, 8*60,0, 8);
-        menu->GetManager()->PopState();
+        //menu->GetManager()->PopState();
+        hide();
         menu->GetManager()->PushState(ms);
         menu->GetManager()->GetCurrentState()->update();
        break;
     }case 2:{
         MainGState * ms = new MainGState(2000.0,4,6*60,0,10);
-        menu->GetManager()->PopState();
+       // menu->GetManager()->PopState();
+        hide();
         menu->GetManager()->PushState(ms);
         menu->GetManager()->GetCurrentState()->update();
         break;

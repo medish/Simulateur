@@ -1,11 +1,12 @@
 #include "../../include/gui/MainGui.h"
 
 
-MainGui::MainGui(Systeme * _sys, QVector<panne *> * _pannes){
+MainGui::MainGui(Systeme * _sys, QVector<panne *> * _pannes, MainGState* _st){
     sys = _sys;
     pannes = *_pannes;
     _pannes = &pannes;
     size_p_vector = pannes.size();
+    state = _st;
     init();
 }
 
@@ -16,7 +17,7 @@ MainGui::~MainGui(){
 void MainGui::init(){
     resize(1000,600);
     setLayout(&main_layout);
-
+    setWindowIcon(QIcon("../../assets/simulator.png"));
     // Time
     time.setHMS(0,0,0);
     time = time.addSecs(sys->duree - sys->tempsactuel);
@@ -148,3 +149,35 @@ void MainGui::evaluatePanne(){
     }
 }
 
+void MainGui::retourarriere(){
+   int reponse = QMessageBox::question(this, "Sauvegarde", "Etes vous sur de vouloir quitter la simulation ?", QMessageBox ::Yes | QMessageBox::No | QMessageBox::Cancel);
+   switch (reponse) {
+   case QMessageBox::Yes:{
+        save();
+        hide();
+        state->GetManager()->PopState();
+        state->GetManager()->GetCurrentState()->display();
+        state->GetManager()->GetCurrentState()->update();
+        break;
+   }
+   case QMessageBox::No:{
+       hide();
+       state->GetManager()->PopState();
+       state->GetManager()->GetCurrentState()->display();
+       state->GetManager()->GetCurrentState()->update();
+       break;
+     }
+   case QMessageBox::Cancel:{
+        break;
+    }
+    default: break;
+   }
+}
+void MainGui::save(){
+    //std::cout << state->GetManager()->getLogin().toStdString() << std::endl;
+    QTime timestamp;
+    //std::cout << timestamp.currentTime().toString().toStdString() << std::endl;
+    QFile filename("../../assets/pannes/" + state->GetManager()->getLogin() + timestamp.currentTime().toString() + ".xml");
+    std::cout << state->GetManager()->getLogin().toStdString() + timestamp.currentTime().toString().toStdString() << std::endl;
+    xmlparser::WriteinXmlFile(&filename,sys,pannes);
+}

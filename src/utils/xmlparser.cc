@@ -84,4 +84,60 @@ QVector<panne*> * xmlparser::sortedPannes(QVector<panne*> * p){
     std::sort(p->begin(), p->end(), sortRule);
 
     return p;
+    }
+void xmlparser::WriteinXmlFile(QFile* file, Systeme* sys, QVector<panne*> pannes){
+    if(!file->open(QIODevice::WriteOnly))
+    {
+        file->close();
+        //QMessageBox::warning(this,"Erreur","Impossible d'écrire dans le document XML");
+        return;
+    }
+     //Création de la balise simulation
+     QDomDocument document;
+     QDomElement sim = document.createElement("Simulateur");
+     sim.setAttribute("tempsactuel", sys->tempsactuel);
+     sim.setAttribute("duree", sys->duree);
+     sim.setAttribute("capacite", sys->GetCapacity());
+     sim.setAttribute("consomation", sys->conso_mot);
+     document.appendChild(sim);
+     //Creation de la balise panne
+     QDomElement ps = document.createElement("Pannes");
+     sim.appendChild(ps);
+     for(int i = 0; i < pannes.size(); i++){
+      QDomElement panne = document.createElement("Panne");
+      panne.setAttribute("idparent", pannes[i]->parent);
+      panne.setAttribute("id", pannes[i]->id);
+      ps.appendChild(panne);
+      QDomElement piece = document.createElement("Piece");
+      QDomElement nbPiece = document.createElement("nbPiece");
+      QDomElement Note = document.createElement("Note");
+      QDomElement Temps = document.createElement("Temps");
+      QDomElement Passe = document.createElement("Passe");
+
+      QDomText text = document.createTextNode(QString::number(pannes[i]->piece));
+      piece.appendChild(text);
+      panne.appendChild(piece);
+       //---------------------------//
+       text = document.createTextNode(QString::number(pannes[i]->idobjet));
+       nbPiece.appendChild(text);
+       panne.appendChild(nbPiece);
+       //---------------------------//
+       text = document.createTextNode(QString::number(pannes[i]->note));
+       Note.appendChild(text);
+       panne.appendChild(Note);
+       //-----------------------------//
+       text = document.createTextNode(QString::number(pannes[i]->duree));
+       Temps.appendChild(text);
+       panne.appendChild(Temps);
+       //-----------------------------//
+       text = document.createTextNode(QString::number(pannes[i]->isdone));
+       Passe.appendChild(text);
+       panne.appendChild(Passe);
+       //-----------------------------//
+     }
+
+     QTextStream stream(file);
+     stream << document.toString();
+       file->close();
+       return;
 }

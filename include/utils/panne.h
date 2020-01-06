@@ -5,6 +5,7 @@
 #include <ctime>
 #include <cstdlib>
 #include "../core/Systeme.h"
+#include "xmlparser.h"
 class Systeme;
 
 class panne{
