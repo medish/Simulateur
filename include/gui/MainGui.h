@@ -52,6 +52,7 @@ public slots:
     void applyPanne();
     void retourarriere();
     void save();
+    void afficherNote();
 
 };
 

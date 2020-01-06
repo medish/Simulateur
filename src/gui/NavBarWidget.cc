@@ -21,8 +21,9 @@ void NavBarWidget::init(){
 
     btnStart.setText("Start");
     btnPause.setText("Pause");
-    btnquitter.setText("Retour");
     btnsave.setText("Sauvegarde");
+    btnNote.setText("Afficher notes");
+    btnquitter.setText("Retour");
     label_time.setDigitCount(8);
     label_time.setMinimumHeight(50);
 
@@ -32,19 +33,21 @@ void NavBarWidget::init(){
     v_layout.addWidget(&label_time);
     f_layout.addRow("Capacité", &label_cap);
     f_layout.addRow("Consommation",&label_conso);
-
     v_layout.addLayout(&f_layout);
     v_layout.addWidget(&btnStart);
     v_layout.addWidget(&btnPause);
-    v_layout.addWidget(&btnquitter);
     v_layout.addWidget(&btnsave);
+    v_layout.addWidget(&btnNote);
+    v_layout.addWidget(&btnquitter);
     QObject::connect(&btnsave, SIGNAL(clicked()), mainGui, SLOT(save()));
     QObject::connect(&btnquitter, SIGNAL(clicked()), mainGui, SLOT(retourarriere()));
     QObject::connect(&btnPause, SIGNAL(clicked()), mainGui, SLOT(stopSimulation()));
     QObject::connect(&btnStart, SIGNAL(clicked()), mainGui, SLOT(startSimulation()));
+    QObject::connect(&btnNote, SIGNAL(clicked()), mainGui, SLOT(afficherNote()));
 }
 void NavBarWidget::showInfos(){
     label_time.display(mainGui->getTime());
     label_cap.display(mainGui->getSysteme()->GetCapacity());
     label_conso.display(mainGui->getSysteme()->getConsoMot());
+
 }
