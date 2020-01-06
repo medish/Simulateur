@@ -21,8 +21,8 @@ void NavBarWidget::init(){
 
     btnStart.setText("Start");
     btnPause.setText("Pause");
-    btnquitter.setText("Retour");
     btnsave.setText("Sauvegarde");
+    btnquitter.setText("Retour");
     label_time.setDigitCount(8);
     label_time.setMinimumHeight(50);
 
@@ -36,8 +36,8 @@ void NavBarWidget::init(){
     v_layout.addLayout(&f_layout);
     v_layout.addWidget(&btnStart);
     v_layout.addWidget(&btnPause);
-    v_layout.addWidget(&btnquitter);
     v_layout.addWidget(&btnsave);
+    v_layout.addWidget(&btnquitter);
     QObject::connect(&btnsave, SIGNAL(clicked()), mainGui, SLOT(save()));
     QObject::connect(&btnquitter, SIGNAL(clicked()), mainGui, SLOT(retourarriere()));
     QObject::connect(&btnPause, SIGNAL(clicked()), mainGui, SLOT(stopSimulation()));
