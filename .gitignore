@@ -104,7 +104,10 @@ target_wrapper.*
 
 # QtCreator CMake
 CMakeLists.txt.user*
-
+CMakeDoxygen*
+docs/html/*
+*.in
+docs/html
 # QtCreator 4.8< compilation database 
 compile_commands.json
 
