@@ -28,7 +28,7 @@ if (DOXYGEN_FOUND)
     # note the option ALL which allows to build the docs together with the application
     add_custom_target( doc_doxygen ALL
         COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-        WORKING_DIRECTORY .
+        WORKING_DIRECTORY src/* include/*
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM )
 else (DOXYGEN_FOUND)
@@ -70,4 +70,4 @@ ADD_CUSTOM_TARGET(dist
 
 ADD_CUSTOM_TARGET(run COMMAND cd bin/Debug && ./Simulateur)
 ADD_CUSTOM_TARGET(doc COMMAND doxygen docs/Doxyfile)
-ADD_CUSTOM_TARGET(release COMMAND cmake . -DCMAKE_BUILD_TYPE=Release && make doc)
+ADD_CUSTOM_TARGET(release COMMAND cmake . -DCMAKE_BUILD_TYPE=Release && make doc && make)
