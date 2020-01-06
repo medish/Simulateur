@@ -17,11 +17,11 @@ MainGState::~MainGState(){
 
 void MainGState::init(double cap, double consomation, int _duree, int tactuel, int nbpannes){
   sys = new Systeme(cap, consomation, _duree, tactuel);
-  mainGui = new MainGui(sys);
   QVector<panne*> pannes;
   for(int i=0; i < nbpannes; i++){
      pannes.push_back(xmlparser::GetRandomPannes(i, _duree));
    }
+  mainGui = new MainGui(sys, &pannes);
 }
 
 void MainGState::init(QString infile){
