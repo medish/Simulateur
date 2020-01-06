@@ -41,13 +41,13 @@ void panne::affiche() const {
 
 }
 
-void panne::apply(Systeme& s){
+void panne::apply(Systeme *s){
   if(piece == 0){ // Dans le cas d'une panne réservoir
-    s.GetReservoirs()[idobjet-1]->SetEtat(VIDANGE);
+    s->GetReservoirs()[idobjet-1]->SetEtat(VIDANGE);
     }
   if(piece == 1){ //Dans le cas d'une panne pompe
       if(parent != -1){
-        s.GetReservoirs()[parent-1]->GetPompe(idobjet-1)->SetEtat(PANNE);
+        s->GetReservoirs()[parent-1]->GetPompe(idobjet-1)->SetEtat(PANNE);
       }
     }
 }

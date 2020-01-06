@@ -1,7 +1,6 @@
 #ifndef H_LOGINGUI
 #define H_LOGINGUI
 
-
 #include <iostream>
 #include <string>
 #include <cstring>

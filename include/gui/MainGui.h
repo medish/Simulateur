@@ -22,16 +22,18 @@ class MainGui : public QWidget{
     Q_OBJECT
 private :
     Systeme * sys;
-    std::vector<panne*> * pannes;
+    QVector<panne*>  pannes;
+    int size_p_vector;
     QGridLayout  main_layout;
     QWidget * middle_w;
     QTimer timerSim, timerRept, timerPanne;
     QTime time;
     void init();
 public:
-    MainGui(Systeme *, std::vector<panne*> * = nullptr);
+    MainGui(Systeme *, QVector<panne *> *);
     ~MainGui();
     void updateGui();
+    void preparePanne();
     Systeme * getSysteme(){return sys;}
     QString getTime(){return time.toString("hh:mm:ss");}
 public slots:

@@ -8,6 +8,7 @@
 class Systeme;
 
 class panne{
+    friend class MainGui;
 private:
         int id; //Numéro de panne
         int parent; //Dans le cas d'une pompe numéro de réservoir sinon numéro de piece
@@ -27,6 +28,6 @@ public:
 	panne(int _id, int _idp, int _p, int _ido,int _note, int _duree, int _passe);
 	~panne();
 	void affiche() const;
-	void apply(Systeme& s);
+    void apply(Systeme * s);
 };
 #endif

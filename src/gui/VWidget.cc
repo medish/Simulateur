@@ -16,7 +16,8 @@ VWidget::VWidget(MainGui * _mainGui,Valve * _v) {
 }
 
 VWidget::~VWidget(){
-
+    delete mainGui;
+    delete v;
 }
 
 

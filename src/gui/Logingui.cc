@@ -62,6 +62,7 @@ bool Logingui::checkcred(){
            state->GetManager()->PopState();
            state->GetManager()->PushState(menu);
            state->GetManager()->GetCurrentState()->update();
+ 
 
         return true;
         }else{

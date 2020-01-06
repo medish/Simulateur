@@ -6,7 +6,7 @@ VMRWidget::VMRWidget(MainGui * _mainGui, ValveMr * v): VWidget(_mainGui,v){
 }
 
 VMRWidget::~VMRWidget(){
-
+    delete vmr;
 }
 
 void VMRWidget::showInfos(){

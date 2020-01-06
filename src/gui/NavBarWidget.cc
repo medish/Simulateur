@@ -8,7 +8,7 @@ NavBarWidget::NavBarWidget(MainGui * _mainGui){
 }
 
 NavBarWidget::~NavBarWidget(){
-
+    delete mainGui;
 }
 
 void NavBarWidget::init(){

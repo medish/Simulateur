@@ -14,6 +14,7 @@ MainGState::~MainGState(){
         free();
 }
 
+
 void MainGState::init(double cap, double consomation, int _duree, int tactuel, int nbpannes){
   sys = new Systeme(cap, consomation, _duree, tactuel);
   mainGui = new MainGui(sys);
