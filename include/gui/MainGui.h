@@ -46,6 +46,7 @@ public slots:
     void stopSimulation();
     void applyPanne();
     void retourarriere();
+    void save();
 
 };
 

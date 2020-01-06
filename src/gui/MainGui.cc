@@ -17,7 +17,7 @@ MainGui::~MainGui(){
 void MainGui::init(){
     resize(1000,600);
     setLayout(&main_layout);
-
+    setWindowIcon(QIcon("../../assets/simulator.png"));
     // Time
     time.setHMS(0,0,0);
     time = time.addSecs(sys->duree - sys->tempsactuel);
@@ -134,9 +134,30 @@ void MainGui::preparePanne(){
 }
 
 void MainGui::retourarriere(){
-    hide();
-    state->GetManager()->PopState();
-    state->GetManager()->GetCurrentState()->display();
-    state->GetManager()->GetCurrentState()->update();
+   int reponse = QMessageBox::question(this, "Sauvegarde", "Etes vous sur de vouloir quitter la simulation ?", QMessageBox ::Yes | QMessageBox::No | QMessageBox::Cancel);
+   switch (reponse) {
+   case QMessageBox::Yes:{
+        save();
+        hide();
+        state->GetManager()->PopState();
+        state->GetManager()->GetCurrentState()->display();
+        state->GetManager()->GetCurrentState()->update();
+        break;
+   }
+   case QMessageBox::No:{
+       hide();
+       state->GetManager()->PopState();
+       state->GetManager()->GetCurrentState()->display();
+       state->GetManager()->GetCurrentState()->update();
+       break;
+     }
+   case QMessageBox::Cancel:{
+        break;
+    }
+    default: break;
+   }
+}
 
+void MainGui::save(){
+    std::cout << state->GetManager()->getLogin().toStdString() << std::endl;
 }
