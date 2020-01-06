@@ -58,7 +58,6 @@ void MoteurWidget::showInfos(){
         QString curr_t_p = "Reservoir "+
                 QString::number(m->res_linked->GetNum())
                 +" Pompe "+ QString::number(m->pompe_linked->GetNum());
-        qDebug()<<curr_t_p <<" Moteur"<<m->num;
         combo_t_p.setCurrentText(curr_t_p);
     }
     combo_etat.setCurrentIndex(m->etat);
@@ -84,12 +83,10 @@ void MoteurWidget::setEtatCombo(int etat){
 }
 
 void MoteurWidget::setRPCombo(int index){
-    qDebug() <<"res_pompe_combo " <<index;
     if(index == 0)
         setEtatCombo(0);
     else{
     QPoint tp = combo_t_p.itemData(index).toPoint();
-    qDebug()<< "Point "<<tp;
     m->SetPompe(mainGui->getSysteme()->GetReservoirs()[tp.rx()]->GetPompe(tp.ry()));
     }
     //mainGui->updateGui();
