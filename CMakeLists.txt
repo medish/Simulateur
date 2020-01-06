@@ -2,17 +2,23 @@ cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
 project(Simulateur)
 
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_INSTALL_PREFIX ~/Bureau)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE Debug)
 set(EXECUTABLE_OUTPUT_PATH ./bin/${CMAKE_BUILD_TYPE})
 set(CMAKE_CXX_FLAGS "-lsqlite3")
 
+install(PROGRAMS bin/Release/Simulateur
+  DESTINATION ~/Bureau
+  RENAME ${CMAKE_PROJECT_NAME})
+
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5Xml REQUIRED)
+
+
 # first we can indicate the documentation build as an option and set it to ON by default
 option(BUILD_DOC "Build documentation" ON)
-
 if (CMAKE_BUILD_TYPE MATCHES "^[Rr]elease")
 # check if Doxygen is installed
 find_package(Doxygen)
@@ -28,7 +34,7 @@ if (DOXYGEN_FOUND)
     # note the option ALL which allows to build the docs together with the application
     add_custom_target( doc_doxygen ALL
         COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-        WORKING_DIRECTORY src/* include/*
+        WORKING_DIRECTORY ../Simulateur
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM )
 else (DOXYGEN_FOUND)
@@ -68,6 +74,8 @@ ADD_CUSTOM_TARGET(dist
 		  COMMAND rm -rf  ${DIST_DIR}
                   WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
-ADD_CUSTOM_TARGET(run COMMAND cd bin/Debug && ./Simulateur)
+ADD_CUSTOM_TARGET(run COMMAND cd bin/Release && ./Simulateur)
+ADD_CUSTOM_TARGET(rundebug COMMAND cd bin/Debug && ./Simulateur)
 ADD_CUSTOM_TARGET(doc COMMAND doxygen docs/Doxyfile)
-ADD_CUSTOM_TARGET(release COMMAND cmake . -DCMAKE_BUILD_TYPE=Release && make doc && make)
+ADD_CUSTOM_TARGET(release COMMAND cmake -DCMAKE_BUILD_TYPE=Release && make)
+ADD_CUSTOM_TARGET(debug COMMAND cmake -DCMAKE_BUILD_TYPE=Debug && make)
