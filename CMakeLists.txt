@@ -4,7 +4,7 @@ project(Simulateur)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_BUILD_TYPE Debug)
 set(EXECUTABLE_OUTPUT_PATH ./bin/${CMAKE_BUILD_TYPE})
 set(CMAKE_CXX_FLAGS "-lsqlite3")
 
@@ -69,5 +69,5 @@ ADD_CUSTOM_TARGET(dist
                   WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
 ADD_CUSTOM_TARGET(run COMMAND cd bin/Debug && ./Simulateur)
-ADD_CUSTOM_TARGET(doc COMMAND doxygen docs/Doxyfile && firefox docs/html/index.html &)
-ADD_CUSTOM_TARGET(runfile COMMAND cd bin/Debug && ./Simulateur ../../assets/pannes/pannes1.xml)
+ADD_CUSTOM_TARGET(doc COMMAND doxygen docs/Doxyfile)
+ADD_CUSTOM_TARGET(release COMMAND cmake . -DCMAKE_BUILD_TYPE=Release && make doc)
