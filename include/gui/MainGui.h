@@ -42,6 +42,7 @@ public:
     ~MainGui();
     void updateGui();
     void preparePanne();
+    void evaluatePanne();
     Systeme * getSysteme(){return sys;}
     QString getTime(){return time.toString("hh:mm:ss");}
 public slots:

@@ -7,7 +7,7 @@
 #include "../include/states/MenuState.h"
 
 int main(int argc, char  *argv[]){	
-
+    srand((unsigned)time(0));
     QApplication app(argc, argv);
     StateManager sm;
   Loginstate* ls = new Loginstate();

@@ -55,6 +55,7 @@ public:
 	//Ajouter une mise à jour de la capacite max 
 	void UpdateCapaciteMax();
 	void updateconso();
+    bool isActive();
 	//Injecter une panne dans le systeme
 	friend void apply(Systeme &s);
 };

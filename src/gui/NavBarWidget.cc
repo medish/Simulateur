@@ -44,7 +44,6 @@ void NavBarWidget::init(){
     QObject::connect(&btnStart, SIGNAL(clicked()), mainGui, SLOT(startSimulation()));
 }
 void NavBarWidget::showInfos(){
-    qDebug()<<mainGui->getTime();
     label_time.display(mainGui->getTime());
     label_cap.display(mainGui->getSysteme()->GetCapacity());
     label_conso.display(mainGui->getSysteme()->getConsoMot());

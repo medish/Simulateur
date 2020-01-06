@@ -106,20 +106,24 @@ void MainGui::stopSimulation(){
     timerSim.stop();
     timerRept.stop();
     timerPanne.stop();
-    qDebug("stopped");
+    evaluatePanne();
 }
 
 void MainGui::applyPanne(){
-    if(size_p_vector > 0)
-        pannes.first()->apply(sys);
 
+    if(size_p_vector > 0){
+        evaluatePanne();
+        pannes.first()->apply(sys);
+        pannes.first()->isdone = 1;
+    }
     if(size_p_vector > 1){
         pannes.move(0,pannes.size()-1);
         timerPanne.start(QTime(0,0).msecsTo(time) - pannes.first()->duree*1000);
         size_p_vector--;
         return;
     }
-    //qDebug("Timer panne stopped");
+    timerPanne.stop();
+    pannes.move(0,pannes.size()-1);
 
 }
 
@@ -129,8 +133,20 @@ void MainGui::preparePanne(){
         pannes.move(0,pannes.size()-1);
         size_p_vector--;
     }
-    if(size_p_vector > 0)
+    if(size_p_vector > 0){
         timerPanne.start(QTime(0,0).msecsTo(time) - pannes.first()->duree*1000);
+    }
+}
+
+void MainGui::evaluatePanne(){
+    if(pannes.last()->isdone == 1){
+
+        if(sys->isActive()){
+            pannes.last()->note =1;
+        }
+        else
+            pannes.last()->note =0;
+    }
 }
 
 void MainGui::retourarriere(){

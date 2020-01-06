@@ -34,6 +34,7 @@ public:
     Systeme* GetSysteme() {return sys;}
     //Retourner le tableau de pannes
     QVector<panne*> * getPannes() {return &pannes;};
+    static QVector<panne*> * sortedPannes(QVector<panne*> *);
     //Retourne un systeme initialisé et une structure de stockage des pannes
     void parseXmlFile();
     static panne* GetRandomPannes(int nb, int duree);

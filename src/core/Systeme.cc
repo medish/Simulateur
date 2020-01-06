@@ -133,4 +133,13 @@ void Systeme::UpdateCapaciteMax(){
         setCapacity(0);
 }
 
+bool Systeme::isActive(){
+    if(moteurs[0]->GetEtat() == MARCHE
+       && moteurs[1]->GetEtat() == MARCHE
+       && moteurs[2]->GetEtat() == MARCHE)
+        return true;
+
+    return false;
+}
+
 

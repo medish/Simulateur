@@ -90,7 +90,6 @@ void PompeWidget::setMoteurCombo(int index){
     if(index == 0)
         p->SetMoteur(nullptr);
     else{
-        qDebug()<< "pompe_combo_moteur "<<index<<" "<< mainGui->getSysteme()->GetMoteurs()[index-1]->GetNumero();
         p->SetMoteur(mainGui->getSysteme()->GetMoteurs()[index-1]);
     }
 
