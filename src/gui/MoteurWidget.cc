@@ -70,12 +70,12 @@ void MoteurWidget::setEtatCombo(int etat){
     switch (etat) {
     case ARRET: {
         setStyleSheet("background-color:red;");
-        //mainGui->updateGui();
+        mainGui->updateGui();
         break;
     }
     case MARCHE: {
         setStyleSheet("background-color:green;");
-        //mainGui->updateGui();
+        mainGui->updateGui();
         break;}
     case PANNE: {
         combo_etat.setCurrentIndex(0); break;}
@@ -89,6 +89,6 @@ void MoteurWidget::setRPCombo(int index){
     QPoint tp = combo_t_p.itemData(index).toPoint();
     m->SetPompe(mainGui->getSysteme()->GetReservoirs()[tp.rx()]->GetPompe(tp.ry()));
     }
-    //mainGui->updateGui();
+    mainGui->updateGui();
 
 }

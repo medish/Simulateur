@@ -106,6 +106,7 @@ void MainGui::stopSimulation(){
     timerSim.stop();
     timerRept.stop();
     timerPanne.stop();
+    sys->tempsactuel = sys->duree - QTime(0,0).secsTo(time);
     evaluatePanne();
 }
 
