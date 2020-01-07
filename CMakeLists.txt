@@ -70,7 +70,7 @@ ADD_CUSTOM_TARGET(dist
 		  COMMAND rm -rf ${DIST_DIR}/build
 		  COMMAND mkdir ${DIST_DIR}/build
 		  COMMAND rm -rf ${DIST_DIR}/build
-  		  COMMAND tar --exclude="*~" --exclude="._*" --exclude="CMakeFiles" --exclude="cmake*" -zcvf ${DIST_DIR}.tar.gz ${DIST_DIR}
+                  COMMAND tar --exclude="*~" --exclude="._*" --exclude="CMakeFiles" --exclude="cmake*" --exclude="docs/html" -zcvf ${DIST_DIR}.tar.gz ${DIST_DIR}
 		  COMMAND rm -rf  ${DIST_DIR}
                   WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
