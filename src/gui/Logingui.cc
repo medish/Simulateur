@@ -14,7 +14,9 @@ Logingui::Logingui(Loginstate* st): QWidget(){
     this->setLayout(mainlayout);
     buttonlayout = new QHBoxLayout();
     connect = new  QPushButton("Connect");
+    connect->setStyleSheet("background-color : green; color:white; font-weight:bold;");
     quit = new QPushButton("Quit");
+    quit->setStyleSheet("background-color : red; color:white;font-weight:bold;");
     logo = new QLabel();
     logo->setPixmap(QPixmap("../../assets/simulator.png"));
     logo->setAlignment(Qt::AlignHCenter);

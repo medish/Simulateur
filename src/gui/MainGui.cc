@@ -29,6 +29,7 @@ void MainGui::init(){
     resize(1000,600);
     setLayout(&main_layout);
     setWindowIcon(QIcon("../../assets/simulator.png"));
+    setStyleSheet("background-color: lightgray;");
     // Time
     time.setHMS(0,0,0);
     time = time.addSecs(sys->duree - sys->tempsactuel);
@@ -62,8 +63,8 @@ void MainGui::init(){
     // Vannes moteurs-pompes
     main_layout.addWidget(middle_w, 2, 0, 1, 8);
     main_layout.addWidget(new VWidget(this, sys->vannes[2]), 2, 2);
-    main_layout.addWidget(new VWidget(this, sys->vannes[3]), 2, 3 , 1, 2, Qt::AlignCenter);
-    main_layout.addWidget(new VWidget(this, sys->vannes[4]), 2, 5);
+    main_layout.addWidget(new VWidget(this, sys->vannes[4]), 2, 3 , 1, 2, Qt::AlignCenter);
+    main_layout.addWidget(new VWidget(this, sys->vannes[3]), 2, 5);
     // Moteurs
     main_layout.addWidget(new MoteurWidget(this, sys->moteurs[0]), 3, 0, 1, 2);
     main_layout.addWidget(new MoteurWidget(this, sys->moteurs[1]), 3, 3, 1, 2);
@@ -186,7 +187,7 @@ void MainGui::save(){
     QTime timestamp;
     //std::cout << timestamp.currentTime().toString().toStdString() << std::endl;
     QFile filename("../../assets/pannes/" + state->GetManager()->getLogin() + timestamp.currentTime().toString() + ".xml");
-    std::cout << state->GetManager()->getLogin().toStdString() + timestamp.currentTime().toString().toStdString() << std::endl;
+    //std::cout << state->GetManager()->getLogin().toStdString() + timestamp.currentTime().toString().toStdString() << std::endl;
     xmlparser::WriteinXmlFile(&filename,sys,pannes);
 }
 

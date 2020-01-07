@@ -5,8 +5,8 @@ PompeWidget::PompeWidget(MainGui * _mainGui,Pompe * _p){
     mainGui = _mainGui;
     p = _p;
     init();
-    setEtatCombo(p->etat);
     showInfos();
+    setEtatCombo(p->etat);
     QObject::connect(&combo_etat, SIGNAL(currentIndexChanged(int)), this, SLOT(setEtatCombo(int)));
     QObject::connect(&combo_m, SIGNAL(currentIndexChanged(int)), this, SLOT(setMoteurCombo(int)));
 
@@ -64,6 +64,14 @@ void PompeWidget::showInfos(){
 }
 
 void PompeWidget::setEtatCombo(int etat){
+    if(etat == MARCHE)
+        if(p->res_linked->GetNum() != combo_m.currentIndex() &&
+        !mainGui->getSysteme()->vanneActive(p->res_linked->GetNum(), combo_m.currentIndex()))
+        {
+            combo_etat.setCurrentIndex(p->etat);
+            return;
+        }
+
     if(p->SetEtat(static_cast<etat_t>(etat)))
     switch (etat) {
         case ARRET: {
@@ -71,7 +79,8 @@ void PompeWidget::setEtatCombo(int etat){
         mainGui->updateGui();
         break;
     }
-        case MARCHE: {setStyleSheet("background-color:green;");
+        case MARCHE: {
+        setStyleSheet("background-color:green;");
         mainGui->updateGui();
         break;
     }
@@ -81,8 +90,10 @@ void PompeWidget::setEtatCombo(int etat){
         break;
     }
     }
+
     else
         combo_etat.setCurrentIndex(p->etat);
+
 }
 
 void PompeWidget::setMoteurCombo(int index){
@@ -90,7 +101,9 @@ void PompeWidget::setMoteurCombo(int index){
     if(index == 0)
         p->SetMoteur(nullptr);
     else{
-        p->SetMoteur(mainGui->getSysteme()->GetMoteurs()[index-1]);
+        if(p->res_linked->GetNum() == index ||
+                mainGui->getSysteme()->vanneActive(p->res_linked->GetNum(), index))
+            p->SetMoteur(mainGui->getSysteme()->GetMoteurs()[index-1]);
     }
 
     mainGui->updateGui();

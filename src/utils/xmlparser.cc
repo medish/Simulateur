@@ -17,7 +17,8 @@ xmlparser::xmlparser(QString filepath){
     int errorColumn;
     //Récuperation des éléments du fichiers XML
     if (!dom->setContent(file, false, &errorStr, &errorLine, &errorColumn))
-            qDebug() << errorStr << errorLine << errorColumn;
+        QMessageBox::warning(this, "Erreur DOM XML",
+                             "Le document XML n'a pas pu être parser.");
     }
 
 xmlparser::~xmlparser(){

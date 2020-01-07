@@ -17,6 +17,7 @@ enum tank_etat{
 };
 
 class Reservoir{
+    friend class Systeme;
     friend class TankWidget;
     friend class MainGui;
 private:

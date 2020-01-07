@@ -45,7 +45,7 @@ bool Loginstate::isUser(QString login, QString password){
     QString sql = "SELECT * FROM Pilotes WHERE Login = '"+ login +"' AND Password = '"+ password +"' ;";
     //Debug
     // std::cout << sql.toStdString() << std::endl;
-    std::cout << db << std::endl;
+    //std::cout << db << std::endl;
     int coderetour = sqlite3_prepare_v2(db, sql.toStdString().data(), -1, &resultat,0);
     //Debug
     //std::cout <<"Code retour sqlite3 prepare:  " << coderetour << std::endl;

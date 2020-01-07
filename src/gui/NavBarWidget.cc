@@ -14,7 +14,7 @@ NavBarWidget::~NavBarWidget(){
 void NavBarWidget::init(){
     setLayout(&v_layout);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    setStyleSheet("background-color : purple");
+    setStyleSheet("background-color : lightgray;");
     setMaximumWidth(300);
     setMinimumWidth(200);
     v_layout.setAlignment(Qt::AlignTop);
@@ -24,11 +24,19 @@ void NavBarWidget::init(){
     btnsave.setText("Sauvegarde");
     btnNote.setText("Afficher notes");
     btnquitter.setText("Retour");
+
+    btnPause.setStyleSheet("font-size: 17px; font-weight:bold; color:black;");
+    btnStart.setStyleSheet("font-size: 17px; font-weight:bold; color:black;");
+    btnsave.setStyleSheet("font-size: 17px; font-weight:bold; color:black;");
+    btnNote.setStyleSheet("font-size: 17px; font-weight:bold; color:black;");
+    btnquitter.setStyleSheet("background-color:red;font-size: 17px; font-weight:bold; color:white;");
     label_time.setDigitCount(8);
     label_time.setMinimumHeight(50);
-
-    label_cap.setMinimumHeight(25);
-    label_conso.setMinimumHeight(25);
+    label_cap.setMinimumHeight(30);
+    label_conso.setMinimumHeight(30);
+    label_time.setSegmentStyle(QLCDNumber::Flat);
+    label_cap.setSegmentStyle(QLCDNumber::Flat);
+    label_conso.setSegmentStyle(QLCDNumber::Flat);
 
     v_layout.addWidget(&label_time);
     f_layout.addRow("Capacité", &label_cap);

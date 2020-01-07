@@ -11,6 +11,7 @@ class Reservoir;
 
 class Moteur{
     friend class MoteurWidget;
+    friend class Systeme;
 private:
 	int  num; //Numero du moteur
 	etat_t etat;

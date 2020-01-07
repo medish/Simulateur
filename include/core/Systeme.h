@@ -56,6 +56,7 @@ public:
 	void UpdateCapaciteMax();
 	void updateconso();
     bool isActive();
+    bool vanneActive(int, int);
 	//Injecter une panne dans le systeme
 	friend void apply(Systeme &s);
 };

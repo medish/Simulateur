@@ -14,6 +14,7 @@ MenuGui::MenuGui(MenuState* state): QWidget(){
     libre = new QPushButton("Simulation Aléatoire");
     entr = new QPushButton("Entrainement libre");
     quit = new QPushButton("Quitter");
+    quit->setStyleSheet("background-color : red");
     mainlayout->addWidget(newgame);
     mainlayout->addWidget(charger);
     mainlayout->addWidget(libre);
@@ -63,7 +64,7 @@ void MenuGui::GenerateRandom(){
        
         MainGState * ms = new MainGState(4000.0, 2,15*60,0, 5);
         hide();
-       menu->GetManager()->PopState();
+        //menu->GetManager()->PopState();
         menu->GetManager()->PushState(ms);
         menu->GetManager()->GetCurrentState()->update();
         break;

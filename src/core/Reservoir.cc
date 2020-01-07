@@ -110,6 +110,6 @@ void operator+(Reservoir& a, Reservoir& b){
 		b.capacity = (moyenne);
 	}
 	else{
-        std::cout << "Transfert impossible entre " << a.num << "et " << b.num << std::endl;
+        //std::cout << "Transfert impossible entre " << a.num << "et " << b.num << std::endl;
 	}
 }

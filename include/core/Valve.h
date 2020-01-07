@@ -15,13 +15,15 @@ enum of{
 
 class Valve{
     friend class VWidget;
+    friend class Systeme;
 protected: 
 	of etat;
 	std::string nom;
+    std::string nom2;
 
 
 public:
-    Valve(of, std::string);
+    Valve(of, std::string, std::string);
     virtual ~Valve();
 	
 	std::string GetNom(){return nom;};
