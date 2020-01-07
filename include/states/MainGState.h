@@ -18,6 +18,7 @@ private:
 public:
     MainGState(double cap, double consomation, int _duree, int tactuel, int nbpannes);
     MainGState(QString);
+    MainGState(double, double);
     ~MainGState();
     //Getters
     MainGui * getMainGui(){return mainGui;}

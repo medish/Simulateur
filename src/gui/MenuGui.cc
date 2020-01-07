@@ -11,17 +11,20 @@ MenuGui::MenuGui(MenuState* state): QWidget(){
     setLayout(mainlayout);
     newgame = new QPushButton("Nouvelle Simulation");
     charger = new QPushButton("Charger Simulation");
-    libre = new QPushButton("Simulation Libre");
+    libre = new QPushButton("Simulation Aléatoire");
+    entr = new QPushButton("Entrainement libre");
     quit = new QPushButton("Quitter");
     mainlayout->addWidget(newgame);
     mainlayout->addWidget(charger);
     mainlayout->addWidget(libre);
+    mainlayout->addWidget(entr);
     mainlayout->addWidget(quit);
 
     //Connecter les signaux
     QObject::connect(newgame, SIGNAL(clicked()), this, SLOT(GenerateFromFile()));
     QObject::connect(charger, SIGNAL(clicked()), this, SLOT(GenerateFromFile()));
     QObject::connect(libre, SIGNAL(clicked()), this, SLOT(GenerateRandom()));
+    QObject::connect(entr, SIGNAL(clicked()), this, SLOT(GenerateFree()));
     QObject::connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
 }
 
@@ -83,4 +86,16 @@ void MenuGui::GenerateRandom(){
     default: break;
     }
 
+}
+
+void MenuGui::GenerateFree(){
+
+    QString res = QInputDialog::getText(this, "Choix capacité et consomtion","Capacité/Consomation");
+    QList<QString> l = res.split("/");
+
+    MainGState * ms = new MainGState(l.at(0).toDouble(),l.at(1).toDouble());
+    hide();
+    //menu->GetManager()->PopState();
+    menu->GetManager()->PushState(ms);
+    menu->GetManager()->GetCurrentState()->update();
 }

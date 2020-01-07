@@ -51,3 +51,10 @@ void NavBarWidget::showInfos(){
     label_conso.display(mainGui->getSysteme()->getConsoMot());
 
 }
+
+void NavBarWidget::enableWidgets(bool e){
+    btnStart.setEnabled(e);
+    btnPause.setEnabled(e);
+    btnsave.setEnabled(e);
+    btnNote.setEnabled(e);
+}

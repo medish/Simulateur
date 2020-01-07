@@ -22,5 +22,6 @@ public:
     NavBarWidget(MainGui *);
     ~NavBarWidget();
     void showInfos() override;
+    void enableWidgets(bool);
 };
 #endif

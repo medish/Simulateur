@@ -23,6 +23,7 @@ class MenuGui: public QWidget{
     QPushButton* charger;
     QPushButton* libre;
     QPushButton* quit;
+    QPushButton* entr;
   public:
     MenuGui(MenuState* state);
     ~MenuGui();
@@ -30,6 +31,7 @@ class MenuGui: public QWidget{
   public slots:
      void GenerateFromFile();
      void GenerateRandom();
+     void GenerateFree();
 
 };
 

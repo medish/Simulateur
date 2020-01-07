@@ -39,10 +39,12 @@ private :
     void init();
 public:
     MainGui(Systeme *, QVector<panne *> *, MainGState*);
+    MainGui(Systeme *, MainGState*);
     ~MainGui();
     void updateGui();
     void preparePanne();
     void evaluatePanne();
+    void enableWidgets(bool e);
     Systeme * getSysteme(){return sys;}
     QString getTime(){return time.toString("hh:mm:ss");}
 public slots:

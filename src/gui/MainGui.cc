@@ -8,6 +8,17 @@ MainGui::MainGui(Systeme * _sys, QVector<panne *> * _pannes, MainGState* _st){
     size_p_vector = pannes.size();
     state = _st;
     init();
+    stopSimulation();
+}
+
+MainGui::MainGui(Systeme * _sys, MainGState * _st){
+    sys = _sys;
+    size_p_vector = 0;
+    state = _st;
+    init();
+    QWidget * w = main_layout.itemAt(11)->widget();
+    NavBarWidget * n = dynamic_cast<NavBarWidget*>(w);
+    n->enableWidgets(false);
 }
 
 MainGui::~MainGui(){
@@ -74,14 +85,6 @@ void MainGui::init(){
 
 }
 
-void MainGui::updateGui(){
-    int count = main_layout.count();
-    for (int i =0;i<count;i++) {
-        QWidget * w = main_layout.itemAt(i)->widget();
-        if(MyQWidget * mw = dynamic_cast<MyQWidget*>(w))
-            mw->showInfos();
-    }
-}
 
 void MainGui::updateConsommation(){
     //qDebug()<<"Pannes apply"<<&pannes;
@@ -96,6 +99,7 @@ void MainGui::updateConsommation(){
     stopSimulation();
 }
 void MainGui::startSimulation(){
+    enableWidgets(true);
     timerSim.setSingleShot(true);
     timerSim.start(QTime(0,0).msecsTo(time));
     preparePanne();
@@ -108,6 +112,7 @@ void MainGui::stopSimulation(){
     timerPanne.stop();
     sys->tempsactuel = sys->duree - QTime(0,0).secsTo(time);
     evaluatePanne();
+    enableWidgets(false);
 }
 
 void MainGui::applyPanne(){
@@ -140,6 +145,7 @@ void MainGui::preparePanne(){
 }
 
 void MainGui::evaluatePanne(){
+    if(size_p_vector>0)
     if(pannes.last()->isdone == 1){
 
         if(sys->isActive()){
@@ -151,7 +157,8 @@ void MainGui::evaluatePanne(){
 }
 
 void MainGui::retourarriere(){
-   int reponse = QMessageBox::question(this, "Sauvegarde", "Etes vous sur de vouloir quitter la simulation ?", QMessageBox ::Yes | QMessageBox::No | QMessageBox::Cancel);
+    stopSimulation();
+   int reponse = QMessageBox::question(this, "Sauvegarde", "Voulez vous sauvegarder l'état de la simulation ?", QMessageBox ::Yes | QMessageBox::No | QMessageBox::Cancel);
    switch (reponse) {
    case QMessageBox::Yes:{
         save();
@@ -194,4 +201,23 @@ void MainGui::afficherNote(){
     int note = 10*somme/pannes.size();
     notes = notes + "\n \n"+"Note totale: "+QString::number(note)+"/10";
     QMessageBox::information(this, "Notes", notes);
+}
+
+void MainGui::enableWidgets(bool e){
+    int count = main_layout.count();
+    for (int i =0;i<count;i++) {
+        if(i != 11){
+            QWidget * w = main_layout.itemAt(i)->widget();
+            w->setEnabled(e);
+        }
+
+    }
+}
+void MainGui::updateGui(){
+    int count = main_layout.count();
+    for (int i =0;i<count;i++) {
+        QWidget * w = main_layout.itemAt(i)->widget();
+        if(MyQWidget * mw = dynamic_cast<MyQWidget*>(w))
+            mw->showInfos();
+    }
 }

@@ -10,10 +10,13 @@ MainGState::MainGState(QString infile){
     init(infile);
 }
 
+MainGState::MainGState(double cap, double consomation){
+    sys= new Systeme(cap, consomation,0,0);
+    mainGui = new MainGui(sys,this);
+}
 MainGState::~MainGState(){
         free();
 }
-
 
 void MainGState::init(double cap, double consomation, int _duree, int tactuel, int nbpannes){
   sys = new Systeme(cap, consomation, _duree, tactuel);
