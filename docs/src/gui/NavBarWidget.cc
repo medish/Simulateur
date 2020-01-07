@@ -14,7 +14,7 @@ NavBarWidget::~NavBarWidget(){
 void NavBarWidget::init(){
     setLayout(&v_layout);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    //setStyleSheet("background-color : lightgray;");
+    setStyleSheet("background-color : lightgray;");
     setMaximumWidth(300);
     setMinimumWidth(200);
     v_layout.setAlignment(Qt::AlignTop);
@@ -25,12 +25,11 @@ void NavBarWidget::init(){
     btnNote.setText("Afficher notes");
     btnquitter.setText("Retour");
 
-    /*btnPause.setStyleSheet("font-size: 17px; font-weight:bold;");
-    btnStart.setStyleSheet("font-size: 17px; font-weight:bold;");
-    btnsave.setStyleSheet("font-size: 17px; font-weight:bold;");
-    btnNote.setStyleSheet("font-size: 17px; font-weight:bold;");
+    btnPause.setStyleSheet("font-size: 17px; font-weight:bold; color:black;");
+    btnStart.setStyleSheet("font-size: 17px; font-weight:bold; color:black;");
+    btnsave.setStyleSheet("font-size: 17px; font-weight:bold; color:black;");
+    btnNote.setStyleSheet("font-size: 17px; font-weight:bold; color:black;");
     btnquitter.setStyleSheet("background-color:red;font-size: 17px; font-weight:bold; color:white;");
-    */
     label_time.setDigitCount(8);
     label_time.setMinimumHeight(50);
     label_cap.setMinimumHeight(30);

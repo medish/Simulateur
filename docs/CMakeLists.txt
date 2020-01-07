@@ -66,7 +66,7 @@ SET(DIST_DIR "${CMAKE_PROJECT_NAME}")
 ADD_CUSTOM_TARGET(dist 
 		  COMMAND rm -rf ${DIST_DIR}
 		  COMMAND mkdir  ${DIST_DIR}
-                  COMMAND cp -r ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/bin ${CMAKE_SOURCE_DIR}/docs ${CMAKE_SOURCE_DIR}/.gitignore ${CMAKE_SOURCE_DIR}/CMakeLists.txt ${CMAKE_SOURCE_DIR}/assets ${CMAKE_SOURCE_DIR}/simulateur.db ${DIST_DIR}   || true
+                  COMMAND cp -r ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/bin ${CMAKE_SOURCE_DIR}/doc ${CMAKE_SOURCE_DIR}/.gitignore ${CMAKE_SOURCE_DIR}/CMakeLists.txt ${DIST_DIR} ${CMAKE_SOURCE_DIR}/docs  || true
 		  COMMAND rm -rf ${DIST_DIR}/build
 		  COMMAND mkdir ${DIST_DIR}/build
 		  COMMAND rm -rf ${DIST_DIR}/build
